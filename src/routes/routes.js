@@ -2,20 +2,42 @@ const publicRoutes = [
   {
     path: '/',
     exact: false,
-    loader: () => import('../pages/MeetingRoom/MeetingRoom'),
+    loader: () => import('../pages/Home'),
     menu: false,
     label: 'Home Page',
     permissionRequired: null,
-    icon: 'home',
   },
   {
-    path: '/meeting',
+    path: '/work',
     exact: false,
-    loader: () => import('../pages/LandingPage'),
+    loader: () => import('../pages/Work'),
     menu: false,
-    label: 'Desc',
+    label: 'Work',
     permissionRequired: null,
-    icon: 'Description',
+  },
+  {
+    path: '/future',
+    exact: false,
+    loader: () => import('../pages/Future'),
+    menu: false,
+    label: 'Future',
+    permissionRequired: null,
+  },
+  {
+    path: '/event',
+    exact: false,
+    loader: () => import('../pages/Event'),
+    menu: false,
+    label: 'Event',
+    permissionRequired: null,
+  },
+  {
+    path: '/member',
+    exact: false,
+    loader: () => import('../pages/Member'),
+    menu: false,
+    label: 'Member',
+    permissionRequired: null,
   },
 ];
 
@@ -29,8 +51,6 @@ const errorRoutes = [
 ];
 
 export default {
-  privateRoutes,
   publicRoutes,
-  authRoutes,
   errorRoutes,
 };
