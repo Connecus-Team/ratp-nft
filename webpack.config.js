@@ -30,6 +30,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'build'),
+    publicPath: '/',
     filename: 'index.js',
     clean: true,
   },
@@ -37,6 +38,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public'),
     },
+    historyApiFallback: true,
     compress: true,
     hot: true,
     open: true,

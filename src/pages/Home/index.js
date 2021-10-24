@@ -4,7 +4,7 @@ import './styles.scss';
 function Home(props) {
   return (
     <div className="home-page">
-        Hello
+        Home Page
     </div>
   );
 }
