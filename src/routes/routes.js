@@ -44,7 +44,7 @@ const publicRoutes = [
 const authRoutes = [];
 const errorRoutes = [
   {
-    path: '/401',
+    path: '/404',
     exact: true,
     loader: () => import('../components/Error/Error404Page'),
   },

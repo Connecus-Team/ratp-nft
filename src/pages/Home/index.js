@@ -1,11 +1,14 @@
 import React from 'react';
+import HeadingLayer from '../../layouts/HeadingLayer';
 import './styles.scss';
 
 function Home(props) {
   return (
-    <div className="home-page">
+    <HeadingLayer>
+      <div className="home-page">
         Home Page
-    </div>
+      </div>
+    </HeadingLayer>
   );
 }
 

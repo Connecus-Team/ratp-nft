@@ -1,13 +1,16 @@
-import React from 'react'
-import './styles.scss'
+import React from 'react';
+import HeadingLayer from '../../layouts/HeadingLayer';
+import './styles.scss';
 
 function Event(props) {
   return (
-    <div className="event-page">
+    <HeadingLayer>
+      <div className="event-page">
         Event Page
-    </div>
-  )
+      </div>
+    </HeadingLayer>
+  );
 }
 
-export default Event
+export default Event;
 

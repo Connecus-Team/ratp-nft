@@ -6,10 +6,7 @@ import {ConnectedRouter} from 'connected-react-router';
 import RoutesComponent from './routes/RoutesComponent';
 import Loading from './components/Loading';
 
-
 const store = configStore();
-console.log(store);
-alert('aaaa');
 const App = () => (
   <div className="rapt-nft">
     <Suspense fallback={<Loading type={'bars'} color={'white'} />}>

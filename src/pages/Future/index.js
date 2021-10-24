@@ -1,11 +1,14 @@
 import React from 'react';
+import HeadingLayer from '../../layouts/HeadingLayer';
 import './styles.scss';
 
 function Future(props) {
   return (
-    <div className="future-page">
+    <HeadingLayer>
+      <div className="future-page">
         Future Page
-    </div>
+      </div>
+    </HeadingLayer>
   );
 }
 
