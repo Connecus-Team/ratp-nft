@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# RAPT - NFT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RAPT - NFT là phần mền sử dụng công nghệ Blockchain hoặc việc hỗ trợ scan sản phẩm và lưu thông tin vào mạng network Ethereum.
 
-## Available Scripts
+Phần mềm hỗ trợ cái chứng năng sau :
 
-In the project directory, you can run:
+ - Nhập thông tin sản phẩm và tạo ra mã QR
+ - Lưu thông tin sản phẩm vào mạng lưới Ethereum
+ - Truy xuất nguồn gốc sản phẩm
+ - Truy xuất quá trình lưu thông sản phẩm
 
-### `npm start`
+https://user-images.githubusercontent.com/48276512/138576240-b41f7354-b290-4119-a14c-4e91e845722f.png
+## Công nghệ
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Blockchain
+- IPFS
+- Reactjs 
+- Nodejs 
+- Kubernetes
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Mô hình hoạt động
 
-### `npm test`
+https://user-images.githubusercontent.com/48276512/138576140-d5c63c6e-b9d0-4c25-87fa-c0ec7261a9bb.png
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Thành Viên
+[1] Mr.Huynh Phu Dat - Project Manager
+[2] Mr.Ninh Le - Blockchain Architect 
+[3] Nguyen Manh Dung - Blockchain Developer
+[4] Phan Ke Hien - Software Developer
+[5] Nguyen Dinh Huong - Web Developer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Please make sure to update tests as appropriate.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
