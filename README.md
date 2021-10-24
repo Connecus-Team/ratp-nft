@@ -32,7 +32,5 @@ Phần mềm hỗ trợ cái chứng năng sau :
 - [5] Nguyen Dinh Huong - Web Developerr
 
 
-Please make sure to update tests as appropriate.
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
