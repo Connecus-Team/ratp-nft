@@ -25,11 +25,11 @@ Phần mềm hỗ trợ cái chứng năng sau :
 
 
 ## Thành Viên
-[1] Mr.Huynh Phu Dat - Project Manager
-[2] Mr.Ninh Le - Blockchain Architect 
-[3] Nguyen Manh Dung - Blockchain Developer
-[4] Phan Ke Hien - Software Developer
-[5] Nguyen Dinh Huong - Web Developer
+- [1] Mr.Huynh Phu Dat - Project Manager
+- [2] Mr.Ninh Le - Blockchain Architect 
+- [3] Nguyen Manh Dung - Blockchain Developer
+- [4] Phan Ke Hien - Software Developer
+- [5] Nguyen Dinh Huong - Web Developerr
 
 
 Please make sure to update tests as appropriate.
