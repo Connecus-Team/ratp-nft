@@ -26,7 +26,6 @@ module.exports = {
     'require-jsdoc': 0,
     'react/prop-types': 0,
     'no-invalid-this': 0,
-
     'max-len': ['error', {'code': 200}],
     'camelcase': 'off',
     'no-unused-vars': 'off',
