@@ -9,7 +9,8 @@ Phần mềm hỗ trợ cái chứng năng sau :
  - Truy xuất nguồn gốc sản phẩm
  - Truy xuất quá trình lưu thông sản phẩm
 
-https://user-images.githubusercontent.com/48276512/138576240-b41f7354-b290-4119-a14c-4e91e845722f.png
+![Group 111](https://user-images.githubusercontent.com/48276512/138576240-b41f7354-b290-4119-a14c-4e91e845722f.png)
+
 ## Công nghệ
 
 - Blockchain
@@ -20,7 +21,7 @@ https://user-images.githubusercontent.com/48276512/138576240-b41f7354-b290-4119-
 
 ## Mô hình hoạt động
 
-https://user-images.githubusercontent.com/48276512/138576140-d5c63c6e-b9d0-4c25-87fa-c0ec7261a9bb.png
+![Image 2](https://user-images.githubusercontent.com/48276512/138576140-d5c63c6e-b9d0-4c25-87fa-c0ec7261a9bb.png)
 
 
 ## Thành Viên
