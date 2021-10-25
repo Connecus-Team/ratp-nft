@@ -32,4 +32,10 @@
       background-position: 0 100%;
     }
   }
+  .page-active{
+    background: #42E8E0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
