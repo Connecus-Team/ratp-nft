@@ -1,40 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import ipfs from '../../../apis/ipfsapi';
+import QRCode from 'qrcode';
 
 function ProductRegist(props) {
-  const [buffer, setBuffer] = useState(null);
+  const [type, setType] = useState('individual');
+  const [category, setCategory] = useState('clothes');
+  const [productName, setProductName] = useState(null);
+  const [productCode, setProductCode] = useState(null);
+  const [productColor, setProductColor] = useState(null);
+  const [productDesc, setProductDesc] = useState(null);
+  const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
 
-  const captureFile = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    const file = event.target.files[0];
+  const [qrCode, setQRCode] = useState(false);
 
-    let reader = new window.FileReader();
-    reader.readAsArrayBuffer(file);
-
-    reader.onload =() => {
-
-    };
+  // view : https://ipfs.io/ipfs/
+  const captureFile = async (e) => {
+    try {
+      e.preventDefault();
+      const file = e.target.files[0];
+      const updateResult = await ipfs.add(file);
+      setIpfsHash(updateResult.path);
+    } catch (error) {
+      alert('update image error');
+    }
   };
-
-  const convertToBuffer = async (reader) => {
-    const buffer = await Buffer.from(reader.result);
-    setBuffer(buffer);
-  };
-
-  const handleRegistProduct = () => {
-    ipfs.files.add(buffer, (error, result) => {
-      if (error) {
-        alert('upfile error');
-        return;
-      } else {
-        setIpfsHash(result[0].hash);
-        return;
-      }
+  const handleRegistProduct = async () => {
+    const qrContent = ipfsHash;
+    QRCode.toCanvas(document.getElementById('canvas'), qrContent, function(error) {
+      if (error) console.error(error);
+      setQRCode(true);
     });
   };
+  console.log('aa', qrCode);
   return (
     <ProductRegistDiv>
       <div className="form form-section">
@@ -42,53 +41,58 @@ function ProductRegist(props) {
           <label className="control-label">Hình thức vận hành</label>
           <div className="input-content form-group type">
             <div>
-              <input type="radio" name="type" id="individual" value="individual"/>
+              <input type="radio" name="type" id="individual" value="individual" onChange={(e) => setType(e.target.value)}/>
               <label htmlFor="individual"> Cá nhân</label>
             </div>
             <div>
-              <input type="radio" name="type" value="enterprise"/>
+              <input type="radio" name="type" value="enterprise" onChange={(e) => setType(e.target.value)}/>
               <label htmlFor="enterprise" id="enterprise"> Doanh nghiệp</label>
             </div>
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Loại sản phẩm</label>
-          <div className="input-content form-group">
-            <select>
-              <option>Quần áo</option>
-              <option>Mỹ phấm</option>
-              <option>Nghệ thuật</option>
+          <div className="input-content form-group" >
+            <select onChange={(e) => setCategory(e.target.value)} value={category} >
+              <option value="clothes">Quần áo</option>
+              <option value="cosmetic">Mỹ phấm</option>
+              <option value="art">Nghệ thuật</option>
             </select>
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Tên sản phẩm</label>
           <div className="input-content form-group">
-            <input type="text" />
+            <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)}/>
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Mã sản phẩm</label>
           <div className="input-content form-group">
-            <input type="text" />
+            <input type="text" value={productCode} onChange={(e) => setProductCode(e.target.value)} />
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Màu sắc</label>
           <div className="input-content form-group">
-            <input type="text" />
+            <input type="text" value={productColor} onChange={(e) => setProductColor(e.target.value)} />
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Miêu tả</label>
           <div className="input-content form-group">
-            <input type="text" />
+            <textarea type="text" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} rows="5" />
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Ảnh sản phẩm</label>
-          <div className="input-content form-group">
-            <input type="file" onChange={() => captureFile()}/>
+          <div className="input-content form-group" style={{display: 'flex'}}>
+            <input type="file" onChange={(e) => captureFile(e)} style={{border: 'none', width: '200px'}}/>
+
+            {
+              ipfsHash &&
+              <img src={`https://ipfs.io/ipfs/${ipfsHash}`} style={{width: '70px', zIndex: 999}}/>
+            }
           </div>
         </div>
         <div className="form-sub-wrap">
@@ -128,13 +132,17 @@ function ProductRegist(props) {
                     minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit
             </div>
             <div className="rules-check">
-              <input type="checkbox" id="check-rules" name="check-rules"/>
+              <input type="checkbox" id="check-rules" name="check-rules" checked={rulesChecked} onChange={(e) => setRulesChecked(e.target.value)}/>
               <label>Đồng ý</label>
             </div>
           </div>
         </div>
         <div className="regist-btn">
           <button onClick={() => handleRegistProduct()}>Đăng ký</button>
+        </div>
+        <div className="qr-canvas" style={qrCode ? {} : {display: 'none'}}>
+          <canvas id="canvas"/>
+          <button> Tải xuống </button>
         </div>
       </div>
     </ProductRegistDiv>
@@ -168,6 +176,10 @@ const ProductRegistDiv = styled.div`
           border-bottom: 1px solid #ccc;
 
           padding: 0 5px;
+        }
+        >textarea{
+          width: 100%;
+          padding: 5px;
         }
       }
       .type{
@@ -237,7 +249,24 @@ const ProductRegistDiv = styled.div`
       }
     }
   }
-
+  .qr-canvas{
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    canvas{
+      width: 100px;
+      height: 100px;
+    }
+    button{
+      padding: 10px 20px;
+      margin-left: 10px;
+      background-color: var(--color-background);
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+  }
 `;
 
 export default ProductRegist;

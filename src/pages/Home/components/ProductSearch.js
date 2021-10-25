@@ -75,6 +75,7 @@ const ProductSearchDiv = styled.div`
         background-color: var(--color-background);
         border: transparent;
         color: white;
+        cursor: pointer;
       }
     }
     //--> Product Info 

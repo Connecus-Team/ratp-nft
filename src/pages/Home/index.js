@@ -7,16 +7,15 @@ import ProductSearch from './components/ProductSearch';
 import './styles.scss';
 function Home(props) {
   const [selectPage, setSelectPage] = useState('regist');
-  alert('aaa');
   return (
     <HeadingLayer>
       <div className="home-page">
         <Banner />
         <div className="home-page__container">
           <div className="home-page__btn-list btn">
-            <div className="btn__insert btn--active" onClick={() => setSelectPage('regist')}>Nhập thông tin sản phẩm</div>
-            <div className="btn__search" onClick={() => setSelectPage('search')}>Tra cứu thông tin sản phẩm</div>
-            <div className="btn__list" onClick={() => setSelectPage('list')}>Danh sách sản phẩm</div>
+            <div className="btn__insert " id={selectPage === 'regist' ? 'btn--active' : ''} onClick={() => setSelectPage('regist')}>Nhập thông tin sản phẩm</div>
+            <div className="btn__search" id={selectPage === 'search' ? 'btn--active' : ''} onClick={() => setSelectPage('search')}>Tra cứu thông tin sản phẩm</div>
+            <div className="btn__list" id={selectPage === 'list' ? 'btn--active' : ''} onClick={() => setSelectPage('list')}>Danh sách sản phẩm</div>
           </div >
           <div className="home-page__content">
             { selectPage === 'regist' ?

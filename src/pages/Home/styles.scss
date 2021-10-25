@@ -24,7 +24,7 @@
       font-weight: 500;
     }
   }
-  .btn{
+  #btn{
     &--active{
       background-color: var(--color-background);
       color: white;
@@ -34,5 +34,6 @@
   //form
   &__content{
     min-height: 50vh;
+    margin-bottom: 50px;
   }
 }

@@ -62,7 +62,6 @@ const Product = ({product}) => {
   );
 };
 const ProductListDiv = styled.div`
-
 `;
 
 const ProductItem = styled.div`
@@ -70,6 +69,7 @@ const ProductItem = styled.div`
       display: flex;
       border: 1px solid #ccc;
       position: relative;
+      padding: 5px;
       .product-sales-btn{
         position:absolute;
         right: 10px;
