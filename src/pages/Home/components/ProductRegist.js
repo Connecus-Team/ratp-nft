@@ -13,7 +13,7 @@ function ProductRegist(props) {
   const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
 
-  const [qrCode, setQRCode] = useState(false);
+  const [qrImageUrl, setQrImageUrl] = useState(null);
 
   // view : https://ipfs.io/ipfs/
   const captureFile = async (e) => {
@@ -28,12 +28,10 @@ function ProductRegist(props) {
   };
   const handleRegistProduct = async () => {
     const qrContent = ipfsHash;
-    QRCode.toCanvas(document.getElementById('canvas'), qrContent, function(error) {
-      if (error) console.error(error);
-      setQRCode(true);
-    });
+    const response = await QRCode.toDataURL(qrContent);
+    setQrImageUrl(response);
   };
-  console.log('aa', qrCode);
+  console.log('aa', qrImageUrl);
   return (
     <ProductRegistDiv>
       <div className="form form-section">
@@ -140,9 +138,9 @@ function ProductRegist(props) {
         <div className="regist-btn">
           <button onClick={() => handleRegistProduct()}>Đăng ký</button>
         </div>
-        <div className="qr-canvas" style={qrCode ? {} : {display: 'none'}}>
-          <canvas id="canvas"/>
-          <button> Tải xuống </button>
+        <div className="qr-canvas" style={qrImageUrl ? {} : {display: 'none'}}>
+          <img src={qrImageUrl} alt = 'qrCode Image'/>
+          <a href={qrImageUrl} download> Tải xuống </a>
         </div>
       </div>
     </ProductRegistDiv>

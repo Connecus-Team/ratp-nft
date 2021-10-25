@@ -35,7 +35,6 @@
     "web3": "^1.6.0"
   },
   "scripts": {
-    "qui": "react-scripts start",
     "start": "webpack-dev-server --mode development",
     "prod": "webpack --mode=production",
     "dev": "webpack --mode=development",

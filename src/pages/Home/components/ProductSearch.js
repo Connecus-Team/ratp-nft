@@ -1,20 +1,61 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import QrReader from 'react-qr-reader';
+import QRScanner from '../../../components/QRScanner';
 import styled from 'styled-components';
 
 function ProductSearch(props) {
-  const handleSearchQRCode = () => {
+  const [scanResultWebCam, setScanResultWebCam] = useState('');
+  const qrRef = useRef(null);
 
+
+  const handleSearchQRCode = () => {
+    QRScanner({
+      handleErrorWebCam: () => {
+      },
+      handleScanWebCam: (result) => {
+        if (result) {
+          setScanResultWebCam(result);
+        }
+      },
+    });
   };
+  const handleErrorFile = (error) => {
+    console.log(error);
+  };
+  const handleScanFile = (result) => {
+    console.log(result);
+    if (result) {
+      setScanResultWebCam(result);
+    }
+  };
+  const onScanFile = () => {
+    qrRef.current.openImageDialog();
+  };
+
   return (
     <ProductSearchDiv>
       <div className="product-search">
         <div className="product-search__form">
           <input type="text" className="product-search__input"/>
           <button>Tra cứu</button>
-          <button onClick={() => handleSearchQRCode()}>QR Code</button>
+          <button onClick={() => handleSearchQRCode()}>QR Code Scan</button>
+          <button onClick={() => onScanFile()}>QR Code Update</button>
         </div>
-        <div className="product-search__result">
+        <div className="product-search__option">
+          <div style={{display: 'none'}}>
+            <button onClick={() => onScanFile()}>Update</button>
+            <QrReader
+              ref={qrRef}
+              delay={300}
+              style={{width: '100%'}}
+              onError={handleErrorFile}
+              onScan={handleScanFile}
+              legacyMode
+            />
+          </div>
+          <div>Result :  {scanResultWebCam}</div>
+        </div>
+        <div className="product-search__result" style={{display: 'none'}}>
           <div className="product-search__result-img">
             <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQUKhSPUBmLLo7hXK8YC6nZlEABMIfXkhQdHGxkSVEBvRcZJDEOQaPIhnQ-5pybOa7o4hxl88Pdeccc&usqp=CAc" />
           </div>
@@ -37,7 +78,7 @@ function ProductSearch(props) {
             </div>
           </div>
         </div>
-        <div className="product-search__history">
+        <div className="product-search__history" style={{display: 'none'}}>
           <p>Lịch sử giao dịch</p>
           <table>
             <thead>
@@ -66,6 +107,16 @@ const ProductSearchDiv = styled.div`
   .product-search{
     border: 1px solid #ccc;
     padding: 10px 30px;
+    &__option{
+      display: flex;
+      > div{
+        flex: 1;
+        border: 1px solid #ccc;
+        margin: 10px;
+
+        border-radius: 4px;
+      }
+    }
     &__form{
       display: flex;
       input{

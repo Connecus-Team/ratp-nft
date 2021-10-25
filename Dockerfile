@@ -14,5 +14,5 @@ COPY --from=build /app/build /usr/share/nginx/html
 
 # new
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 5112
+EXPOSE 9000
 CMD ["nginx", "-g", "daemon off;"]
