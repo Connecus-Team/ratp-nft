@@ -15,6 +15,7 @@ function Banner(props) {
             <li># Chứng nhận quyền sở hữu sản phẩm</li>
             <li># Tích điểm thanh toán sản phẩm</li>
           </ul>
+          <div className="banner__help-btn">Hướng dẫn sử dụng</div>
         </div>
       </div>
       <button className="banner__btn">Collect Wallet</button>
