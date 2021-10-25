@@ -1,22 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './styles.scss';
 import Icon from '../../constants/icons';
 import Web3 from 'web3';
 
 function Banner(props) {
-  const handleConnectWallet = () => {
-    const connectWallet = async () => {
-      let web3Provider = null;
-      if (typeof web3 != 'undefined') {
-        web3Provider = web3.currentProvider;
+  const [currentAccount, setCurrentAcount] = useState(null);
+  const handleConnectWallet = async () => {
+    try {
+      let web3Provider;
+      // Check Install Metamask
+      if (window.ethereum) {
+        web3Provider = window.ethereum;
+        try {
+          await window.ethereum.enable();
+        } catch (error) {
+          console.error('User denied account access');
+        }
+      }// Legacy dapp browsers...
+      else if (window.web3) {
+        web3Provider = window.web3.currentProvider;
       } else {
-        web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+        alert('Please install MetaMask to use this dApp!');
+        return;
       }
-      const web3 = new Web3(web3Provider);
-    };
+      let web3 = new Web3(web3Provider);
+      const accounts = await web3.eth.requestAccounts();
+      setCurrentAcount(accounts[0]);
+      window.ethereum.on('accountsChanged', async function() {
+        accounts = await web3.eth.getAccounts();
+        setCurrentAcount(accounts[0]);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-  window.web3 = new Web3(window.ethereum);
-  console.log(window.web3);
+  const handleAccountsChanged = (account) => {
+    console.log(account);
+  };
+
   return (
     <div className="banner">
       <div className="banner__container">
@@ -33,7 +54,7 @@ function Banner(props) {
           <div className="banner__help-btn">Hướng dẫn sử dụng</div>
         </div>
       </div>
-      <button className="banner__btn" onClick={() => handleConnectWallet()}>Collect Wallet</button>
+      <button className="banner__btn" onClick={() => handleConnectWallet()}>Collect Wallet <p>{currentAccount}</p></button>
     </div>
   );
 }
