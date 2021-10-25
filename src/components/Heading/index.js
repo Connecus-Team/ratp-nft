@@ -11,7 +11,7 @@ function Heading() {
         <li><NavLink to="/future"> KẾ Hoạch</NavLink></li>
         <li><NavLink to="/event">Sự Kiện</NavLink></li>
         <li><NavLink to="/member">Thành Viên</NavLink></li>
-        <li><NavLink to="https://github.com/huonghope/ratp-nft">Mã Nguồn</NavLink></li>
+        <li><a href="https://github.com/huonghope/ratp-nft" target="_blank" rel="noreferrer">Mã Nguồn</a></li>
       </ul>
     </div>
   );
