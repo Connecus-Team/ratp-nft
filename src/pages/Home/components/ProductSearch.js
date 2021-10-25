@@ -1,14 +1,18 @@
 import React from 'react';
+import QrReader from 'react-qr-reader';
 import styled from 'styled-components';
 
 function ProductSearch(props) {
+  const handleSearchQRCode = () => {
+
+  };
   return (
     <ProductSearchDiv>
       <div className="product-search">
         <div className="product-search__form">
           <input type="text" className="product-search__input"/>
           <button>Tra cứu</button>
-          <button>QR Code</button>
+          <button onClick={() => handleSearchQRCode()}>QR Code</button>
         </div>
         <div className="product-search__result">
           <div className="product-search__result-img">
