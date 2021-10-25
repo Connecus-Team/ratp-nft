@@ -1,3 +1,15 @@
 .future-page{
-  
+  &__container{
+    max-width: 1200px;
+    margin: 10px auto;
+  }
+  &__col{
+    margin: 10px 0;
+  }
+  .content{
+    &__label{
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
 }
