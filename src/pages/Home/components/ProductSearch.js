@@ -38,16 +38,18 @@ function ProductSearch(props) {
           <table>
             <thead>
               <tr>
-                <th>From</th>
-                <th>To</th>
+                <th width="50%">From</th>
+                <th width="50%">To</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>text1.1</td>
-                <td>text1.2</td>
+                <th>0xqwqrqwr121231231</th>
+                <th>0xqwqrqwr121231231</th>
               </tr>
               <tr>
+                <th>0xqwqrqwr121231231</th>
+                <th>0xqwqrqwr121231231</th>
               </tr>
             </tbody>
           </table>
@@ -75,7 +77,7 @@ const ProductSearchDiv = styled.div`
         color: white;
       }
     }
-    //--> History
+    //--> Product Info 
     &__result{
       margin-top:20px;
       display: flex;
@@ -96,7 +98,19 @@ const ProductSearchDiv = styled.div`
     }
     //--> History
     &__history{
-      background: red;
+      margin-top: 20px;
+      
+      p{
+        margin-bottom: 10px;
+      }
+      table{
+        width: 100%;
+      }
+      table, th{
+        font-weight: 500;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
     }
   }
 `;
