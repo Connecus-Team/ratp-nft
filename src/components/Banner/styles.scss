@@ -1,0 +1,63 @@
+.banner{
+  background: radial-gradient(#0F054C, #0F054C);
+  position: relative;
+  // container
+  &__container{
+    width: 1200px;
+    max-width: 1920px;
+
+    margin: auto;
+    display: flex;
+    position: relative;
+  }
+  &__image{
+    left: 0;
+  }
+  &__text{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-70%);
+    right: 20px;
+    color: white;
+
+    &-brandname{
+      font-size: 60px;
+    } 
+    &-desc{
+      margin: 20px 0;
+      color: var(--color-text-secondary);
+    }
+    &-tags{
+      li{
+        font-weight: 500;
+      }
+    }
+  }
+  //buttons
+  &__btn{
+    background: red;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    padding: 10px 20px;
+    background-color: var(--color-text-secondary);
+    
+    border: 4px solid white;
+    border-radius: 5px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: all 0.2s 0s ease;
+    -webkit-transition: all 0.2s 0s ease;
+    -moz-transition: all 0.2s 0s ease;
+    -o-transition: all 0.2s 0s ease;
+    &:hover{
+      background: white;
+      border-color: var(--color-text-secondary);
+    }
+  }
+
+}
