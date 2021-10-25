@@ -1,7 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    app: ['babel-polyfill', '/src/index.js'],
+  },
   module: {
     rules: [
       {
@@ -27,6 +31,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js'],
+    fallback: {
+      'http': require.resolve('stream-http'),
+    },
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -49,5 +56,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new NodePolyfillPlugin(),
   ],
 };

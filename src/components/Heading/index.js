@@ -1,12 +1,10 @@
 import React from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 import './styles.scss';
-
 function Heading() {
   const location = useLocation();
   const pathname = location.pathname;
   const splitLocation = pathname.split('/');
-  console.log(splitLocation);
   return (
     <div className="heading">
       <ul>

@@ -1,7 +1,22 @@
 import React from 'react';
 import './styles.scss';
 import Icon from '../../constants/icons';
+import Web3 from 'web3';
+
 function Banner(props) {
+  const handleConnectWallet = () => {
+    const connectWallet = async () => {
+      let web3Provider = null;
+      if (typeof web3 != 'undefined') {
+        web3Provider = web3.currentProvider;
+      } else {
+        web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      }
+      const web3 = new Web3(web3Provider);
+    };
+  };
+  window.web3 = new Web3(window.ethereum);
+  console.log(window.web3);
   return (
     <div className="banner">
       <div className="banner__container">
@@ -18,7 +33,7 @@ function Banner(props) {
           <div className="banner__help-btn">Hướng dẫn sử dụng</div>
         </div>
       </div>
-      <button className="banner__btn">Collect Wallet</button>
+      <button className="banner__btn" onClick={() => handleConnectWallet()}>Collect Wallet</button>
     </div>
   );
 }
