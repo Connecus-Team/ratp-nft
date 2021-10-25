@@ -1,7 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
+import ipfs from '../../../apis/ipfsapi';
 
 function ProductRegist(props) {
+  const [buffer, setBuffer] = useState(null);
+  const [ipfsHash, setIpfsHash] = useState(null);
+
+  const captureFile = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const file = event.target.files[0];
+
+    let reader = new window.FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onload =() => {
+
+    };
+  };
+
+  const convertToBuffer = async (reader) => {
+    const buffer = await Buffer.from(reader.result);
+    setBuffer(buffer);
+  };
+
+  const handleRegistProduct = () => {
+    ipfs.files.add(buffer, (error, result) => {
+      if (error) {
+        alert('upfile error');
+        return;
+      } else {
+        setIpfsHash(result[0].hash);
+        return;
+      }
+    });
+  };
   return (
     <ProductRegistDiv>
       <div className="form form-section">
@@ -53,6 +86,12 @@ function ProductRegist(props) {
           </div>
         </div>
         <div className="form-sub-wrap">
+          <label className="control-label">Ảnh sản phẩm</label>
+          <div className="input-content form-group">
+            <input type="file" onChange={() => captureFile()}/>
+          </div>
+        </div>
+        <div className="form-sub-wrap">
           <label className="control-label">Điều khoản</label>
           <div className="input-content form-group rules">
             <div className="rules-content">
@@ -95,7 +134,7 @@ function ProductRegist(props) {
           </div>
         </div>
         <div className="regist-btn">
-          <button>Đăng ký</button>
+          <button onClick={() => handleRegistProduct()}>Đăng ký</button>
         </div>
       </div>
     </ProductRegistDiv>

@@ -30,7 +30,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['*', '.js'],
+    extensions: ['.js', '.jsx', '.scss', '.svg', '.css', '.json'],
     fallback: {
       'http': require.resolve('stream-http'),
     },

@@ -7,6 +7,7 @@ import ProductSearch from './components/ProductSearch';
 import './styles.scss';
 function Home(props) {
   const [selectPage, setSelectPage] = useState('regist');
+  alert('aaa');
   return (
     <HeadingLayer>
       <div className="home-page">
