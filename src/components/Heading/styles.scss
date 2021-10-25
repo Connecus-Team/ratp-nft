@@ -10,8 +10,26 @@
   ul{
     display: flex;
   }
-  ul li{
+  ul li a{
     padding: 0px 20px;
     color: white;
+
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    overflow: hidden;
+
+    background: linear-gradient(to right, #42E8E0, #42E8E0 50%, white 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 300ms ease;
+    &:hover {
+      background-position: 0 100%;
+    }
   }
 }

@@ -1,16 +1,17 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import './styles.scss';
 
 function Heading() {
   return (
     <div className="heading">
       <ul>
-        <li>Trang Chủ</li>
-        <li>Hoạt Động</li>
-        <li>KẾ Hoạch</li>
-        <li>Sự Kiện</li>
-        <li>Thành Viên</li>
-        <li>Mã Nguồn</li>
+        <li><NavLink to="/">Trang Chủ</NavLink></li>
+        <li><NavLink to="/word">Hoạt Động</NavLink></li>
+        <li><NavLink to="/future"> KẾ Hoạch</NavLink></li>
+        <li><NavLink to="/event">Sự Kiện</NavLink></li>
+        <li><NavLink to="/member">Thành Viên</NavLink></li>
+        <li><NavLink to="https://github.com/huonghope/ratp-nft">Mã Nguồn</NavLink></li>
       </ul>
     </div>
   );
