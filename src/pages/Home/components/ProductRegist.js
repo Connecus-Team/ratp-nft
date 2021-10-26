@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
 import styled from 'styled-components';
 import ipfs from '../../../apis/ipfsapi';
@@ -16,10 +16,11 @@ function ProductRegist(props) {
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
-  const currentUser = useSelector(userSelector.selectCurrentUser);
+  const web3 = useSelector(bannerSelector.selectWeb3);
 
+  // test
   const loadContract = async () => {
-    return await new window.web3.eth.Contract(REACT_APP_CONTRACT_ABI, REACT_APP_CONTRACT_ADDRESS);
+    return await new window.web3.eth.Contract(process.env.REACT_APP_CONTRACT_ABI, process.env.REACT_APP_CONTRACT_ADDRESS);
   };
 
   // view : https://ipfs.io/ipfs/
@@ -34,6 +35,21 @@ function ProductRegist(props) {
     }
   };
   const handleRegistProduct = async () => {
+    if (web3 === null)
+    {
+      alert('Chưa khởi tạo đối tượng Web3, Vui lòng liên kết ví với Website');
+      return;
+    }
+    // truy xuất accounts
+    const accounts = await web3.eth.requestAccounts(); // acounts[0] - address
+    const abi = process.env.REACT_APP_CONTRACT_ABI;
+    const address =process.env.REACT_APP_CONTRACT_ADDRESS;
+
+    // create contract
+    await new web3.eth.Contract(REACT_APP_CONTRACT_ABI, REACT_APP_CONTRACT_ADDRESS);
+    const dataInfo = `${type}===${productName}===${productCode}===${productColor}===${productDesc}`;
+    const result = web3.eth.methods.create(`https://ipfs.io/ipfs/${ipfsHash}` );
+
     return;
     const qrContent = ipfsHash;
     const response = await QRCode.toDataURL(qrContent);

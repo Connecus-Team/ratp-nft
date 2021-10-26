@@ -11,7 +11,7 @@ function Main(props) {
         <div className="main-page__container">
           {/* intro */}
           <div className="main-page__intro">
-            <h1>Lời mờ đầu</h1>
+            <h1>Lời mở đầu</h1>
             <div className="main-page__intro-content">
               <div className="intro-video">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/Wjg5IrSWmZM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;

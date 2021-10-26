@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import bannerAction from './redux/Banner.Action';
+import {useDispatch} from 'react-redux';
 import './styles.scss';
 import Icon from '../../constants/icons';
 import Web3 from 'web3';
 
 function Banner(props) {
   const [currentAccount, setCurrentAcount] = useState(null);
+  const dispatch = useDispatch();
+
+
   const handleConnectWallet = async () => {
     try {
       let web3Provider;
@@ -24,7 +29,9 @@ function Banner(props) {
         return;
       }
       let web3 = new Web3(web3Provider);
+
       const accounts = await web3.eth.requestAccounts();
+      dispatch(bannerAction.setWeb3(web3));
       setCurrentAcount(accounts[0]);
       window.ethereum.on('accountsChanged', async function() {
         accounts = await web3.eth.getAccounts();
