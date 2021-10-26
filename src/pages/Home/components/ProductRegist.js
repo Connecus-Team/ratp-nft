@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
 import styled from 'styled-components';
 import ipfs from '../../../apis/ipfsapi';
 import QRCode from 'qrcode';
@@ -14,6 +16,11 @@ function ProductRegist(props) {
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
+  const currentUser = useSelector(userSelector.selectCurrentUser);
+
+  const loadContract = async () => {
+    return await new window.web3.eth.Contract(REACT_APP_CONTRACT_ABI, REACT_APP_CONTRACT_ADDRESS);
+  };
 
   // view : https://ipfs.io/ipfs/
   const captureFile = async (e) => {
@@ -27,11 +34,14 @@ function ProductRegist(props) {
     }
   };
   const handleRegistProduct = async () => {
+    return;
     const qrContent = ipfsHash;
     const response = await QRCode.toDataURL(qrContent);
+    const productData = {type, category, productName, productCode, productColor, productDesc, ipfsHash};
+    window.contract = await loadContract();
+    const coolNumber = await window.contract.methods.coolNumber().call();
     setQrImageUrl(response);
   };
-  console.log('aa', qrImageUrl);
   return (
     <ProductRegistDiv>
       <div className="form form-section">
@@ -39,7 +49,7 @@ function ProductRegist(props) {
           <label className="control-label">Hình thức vận hành</label>
           <div className="input-content form-group type">
             <div>
-              <input type="radio" name="type" id="individual" value="individual" onChange={(e) => setType(e.target.value)}/>
+              <input type="radio" name="type" id="individual" value="individual" checked onChange={(e) => setType(e.target.value)}/>
               <label htmlFor="individual"> Cá nhân</label>
             </div>
             <div>
