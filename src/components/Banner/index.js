@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import bannerAction from './redux/Banner.Action';
 import {useDispatch} from 'react-redux';
@@ -28,15 +29,19 @@ function Banner(props) {
         alert('Please install MetaMask to use this dApp!');
         return;
       }
+      // const web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/81b9f5ec89d7444db4009cdbb00b8dba'));
+      // const web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545'));
+      // console.log(web3);
+      // ! current web 3
       let web3 = new Web3(web3Provider);
 
-      const accounts = await web3.eth.requestAccounts();
+      // const accounts = await web3.eth.requestAccounts();
       dispatch(bannerAction.setWeb3(web3));
-      setCurrentAcount(accounts[0]);
-      window.ethereum.on('accountsChanged', async function() {
-        accounts = await web3.eth.getAccounts();
-        setCurrentAcount(accounts[0]);
-      });
+      // setCurrentAcount(accounts[0]);
+      // window.ethereum.on('accountsChanged', async function() {
+      //   accounts = await web3.eth.getAccounts();
+      //   setCurrentAcount(accounts[0]);
+      // });
     } catch (error) {
       console.log(error);
     }
