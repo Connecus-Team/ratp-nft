@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Banner from '../../components/Banner';
 import Footer from '../../components/Footer';
+import ViewVideo from '../../components/ViewVideo';
 import HeadingLayer from '../../layouts/HeadingLayer';
 import './styles.scss';
 function Main(props) {
+  const hanleClickVewVideo = () => {
+    ViewVideo();
+  };
   return (
     <HeadingLayer>
       <div className="main-page">
@@ -14,8 +18,21 @@ function Main(props) {
             <h1>Lời mở đầu</h1>
             <div className="main-page__intro-content">
               <div className="intro-video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Wjg5IrSWmZM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
-                    picture-in-picture" allowFullScreen />
+                <div className="intro-video__wrap" onClick={() => hanleClickVewVideo()}>
+                  <img src="https://blockodyssey.io/static/media/revituImg01.2d13f689.png" className="intro-video__wrap-img"/>
+                  <svg data-v-01741338="" viewBox="0 0 47.51 47.51" xmlns="http://www.w3.org/2000/svg" className="
+                    absolute
+                    top-0
+                    bottom-0
+                    left-0
+                    right-0
+                    mx-auto
+                    my-auto
+                    w-1/6
+                  icon"><circle cx="23.75" cy="23.75" fill="#231f20" opacity=".8" r="23.75"></circle><path d="m37.16 23.75-21.11-12.18v24.37z" fill="#fff"></path></svg>
+                </div>
+                {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/Wjg5IrSWmZM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+                    picture-in-picture" allowFullScreen /> */}
               </div>
               <div className="intro-text">
                 <p>
@@ -126,6 +143,7 @@ const SectionContent = () => {
     const contenTemp = sectionList.filter((item) => item.label === selectTab);
     setContent(contenTemp[0]);
   }, [selectTab]);
+
   return (
     <div className="content-container">
       <div className="content-container__wrap">
@@ -142,6 +160,7 @@ const SectionContent = () => {
     </div>
   );
 };
+
 const SectionContentRealProduct = ({item}) => {
   const {title, imgSrc, content} = item;
   return (

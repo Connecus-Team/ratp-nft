@@ -10,7 +10,7 @@ const store = configStore();
 const App = () => {
   return (
     <div className="rapt-nft">
-      <Suspense fallback={<Loading type={'bars'} color={'white'} />}>
+      <Suspense fallback={<Loading type={'spokesars'} color={'black'} />}>
         <Provider store={store}>
           <ConnectedRouter history={getHistory()}>
             <RoutesComponent />

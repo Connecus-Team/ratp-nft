@@ -10,7 +10,7 @@ function Loading({type, color, wrapperStyle}) {
   );
 }
 const Wrapper = styled.div`
-  background: #1c2022;
+  background: #ccc;
   width: 100vw;
   height: 100vh;
   display: flex;
