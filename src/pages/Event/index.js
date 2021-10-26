@@ -1,5 +1,6 @@
 import React from 'react';
 import HeadingLayer from '../../layouts/HeadingLayer';
+import Footer from '../../components/Footer';
 import './styles.scss';
 
 function Event(props) {
@@ -34,6 +35,7 @@ function Event(props) {
 
         </div>
       </div>
+      <Footer />
     </HeadingLayer>
   );
 }

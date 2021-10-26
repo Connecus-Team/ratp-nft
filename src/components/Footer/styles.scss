@@ -1,0 +1,36 @@
+.footer{
+  margin-top: 50px;
+
+  
+  &__title{
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--color-text-primary);
+    font-weight: 300;
+
+  }
+  &__map{
+    max-width: 1200px;
+    margin: 0 auto;
+    &-list {
+      display: flex;
+      padding: 10px 40px;
+      justify-content: space-between;
+    }
+    &-list-child{
+      margin-top: 9px;
+      li {
+        font-size:14px;
+        margin: 5px 0;
+        cursor: pointer;
+      }
+    }
+  }
+  &__copyright{
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--color-gray-secondary);
+    color: black;
+  }
+}

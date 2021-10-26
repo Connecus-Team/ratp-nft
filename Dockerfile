@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm install
+RUN npm install --unsafe-perm
 COPY . ./
-RUN npm run build
+RUN npm run prod
 
 # production environment
 FROM nginx:stable-alpine

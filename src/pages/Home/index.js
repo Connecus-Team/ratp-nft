@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Banner from '../../components/Banner';
 import HeadingLayer from '../../layouts/HeadingLayer';
 import ProductList from './components/ProductList';
+import Footer from '../../components/Footer';
 import ProductRegist from './components/ProductRegist';
 import ProductSearch from './components/ProductSearch';
 import './styles.scss';
@@ -26,6 +27,7 @@ function Home(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </HeadingLayer>
   );
 }

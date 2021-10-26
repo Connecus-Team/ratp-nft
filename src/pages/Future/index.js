@@ -1,5 +1,6 @@
 import React from 'react';
 import HeadingLayer from '../../layouts/HeadingLayer';
+import Footer from '../../components/Footer';
 import './styles.scss';
 
 function Future(props) {
@@ -43,6 +44,7 @@ function Future(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </HeadingLayer>
   );
 }

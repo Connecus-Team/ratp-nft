@@ -2,6 +2,14 @@ const publicRoutes = [
   {
     path: '/',
     exact: false,
+    loader: () => import('../pages/Main'),
+    menu: false,
+    label: 'Main Page',
+    permissionRequired: null,
+  },
+  {
+    path: '/dashbord',
+    exact: false,
     loader: () => import('../pages/Home'),
     menu: false,
     label: 'Home Page',

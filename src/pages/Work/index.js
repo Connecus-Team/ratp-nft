@@ -1,5 +1,6 @@
 import React from 'react';
 import HeadingLayer from '../../layouts/HeadingLayer';
+import Footer from '../../components/Footer';
 import './styles.scss';
 
 function Work(props) {
@@ -121,6 +122,7 @@ function Work(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </HeadingLayer>
   );
 }
