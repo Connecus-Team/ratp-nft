@@ -162,8 +162,9 @@ function ProductRegist(props) {
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">Miêu tả</label>
-          <div className="input-content form-group">
-            <textarea type="text" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} rows="5" />
+          <div className="input-content form-group input-desc">
+            <textarea type="text" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} rows="5" maxLength="200" />
+            <label>Ngoài những thông tin trên bạn có thể nhập thêm các thông tin miêu tả quan trọng về sản phẩm vào form trên <span>Giới hạn 200 kí tự</span></label>
           </div>
         </div>
         <div className="form-sub-wrap">
@@ -265,8 +266,13 @@ const ProductRegistDiv = styled.div`
           border: none;
           width: 100%;
           border-bottom: 1px solid #ccc;
-
+  
           padding: 0 5px;
+        }
+      }
+      .input-desc{
+        label{
+          font-size: 11px;
         }
         >textarea{
           width: 100%;

@@ -5,7 +5,7 @@ import QRScanner from '../../../components/QRScanner';
 import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
 import contractValue from '../../../constants/contract';
 import styled from 'styled-components';
-const queryString = require('query-string');
+import queryString from 'query-string';
 
 
 function ProductSearch(props) {
@@ -13,7 +13,13 @@ function ProductSearch(props) {
 
 
   const [scanResultWebCam, setScanResultWebCam] = useState(null);
+
+  const [searchData, setSearchData] = useState(false);
+  const [productData, setProducData] = useState(null);
+  const [productImage, setProductImage] = useState(null);
+
   const qrRef = useRef(null);
+
 
   const getProductFromSmartContract = async () => {
     if (!scanResultWebCam) {
@@ -21,11 +27,24 @@ function ProductSearch(props) {
       return;
     }
 
-    console.log(scanResultWebCam);
-    const accounts = await web3.eth.getAccounts();
-    let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
-    const productInfo = await contract.methods.products('0xcf61334c7087b6909872f99d30733f9b416f900598a97c270d00c7ac8d73237a').call();
-    console.log(productInfo);
+    if (!web3) {
+      alert('Vui truy cập ví để thực hiện tru cứu');
+      return;
+    }
+    try {
+      const query = queryString.parse(scanResultWebCam);
+      const requestId = Object.values(query)[0];
+      const accounts = await web3.eth.getAccounts();
+      let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
+      const productInfo = await contract.methods.products(requestId).call();
+      const ipfsUrl = await contract.methods.requestIdToTokenURI(requestId).call();
+
+      setProducData(productInfo);
+      setProductImage(ipfsUrl);
+      setSearchData(true);
+    } catch (error) {
+      alert('Truy xuất dữ liệu phát sinh lỗi, Vui lòng thử lại sau');
+    }
   };
 
   const handleSearchQRCode = () => {
@@ -75,12 +94,16 @@ function ProductSearch(props) {
           </div>
           <div style={{padding: '5px'}}>Result :  {scanResultWebCam}</div>
         </div>
-        <div className="product-search__result" style={{display: 'none'}}>
+        <div className="product-search__result" style={searchData ? {} : {display: 'none'}}>
           <div className="product-search__result-img">
-            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQUKhSPUBmLLo7hXK8YC6nZlEABMIfXkhQdHGxkSVEBvRcZJDEOQaPIhnQ-5pybOa7o4hxl88Pdeccc&usqp=CAc" />
+            <img src={productImage} />
           </div>
           <div className="product-search__result-content">
             <div className="product-sub-info">
+              <label className="label-control">Thông tin sản phẩm</label>
+              <textarea style={{width: '100%'}} rows="10" cols="50" value={productData} />
+            </div>
+            {/* <div className="product-sub-info">
               <label className="label-control">Tên sản phẩm</label>
               <p>Túi LV thời trang</p>
             </div>
@@ -95,7 +118,7 @@ function ProductSearch(props) {
             <div className="product-sub-info">
               <label className="label-control">Miêu tả</label>
               <p>Túi LV thời trang thịnh hành nhất năm 2021</p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="product-search__history" style={{display: 'none'}}>
@@ -159,6 +182,10 @@ const ProductSearchDiv = styled.div`
       display: flex;
       &-img{
         width: 40%;
+        text-align: center;
+        img{
+          width: 40%;
+        }
       }
       &-content{
         width: 60%;

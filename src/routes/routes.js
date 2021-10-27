@@ -47,6 +47,14 @@ const publicRoutes = [
     label: 'Member',
     permissionRequired: null,
   },
+  {
+    path: '/search',
+    exact: false,
+    loader: () => import('../pages/Search'),
+    menu: false,
+    label: 'Search',
+    permissionRequired: null,
+  },
 ];
 
 const authRoutes = [];
