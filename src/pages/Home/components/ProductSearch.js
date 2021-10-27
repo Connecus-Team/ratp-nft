@@ -1,12 +1,32 @@
 import React, {useRef, useState} from 'react';
+import {useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
 import QRScanner from '../../../components/QRScanner';
+import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
+import contractValue from '../../../constants/contract';
 import styled from 'styled-components';
+const queryString = require('query-string');
+
 
 function ProductSearch(props) {
-  const [scanResultWebCam, setScanResultWebCam] = useState('');
+  const web3 = useSelector(bannerSelector.selectWeb3);
+
+
+  const [scanResultWebCam, setScanResultWebCam] = useState(null);
   const qrRef = useRef(null);
 
+  const getProductFromSmartContract = async () => {
+    if (!scanResultWebCam) {
+      alert('Vui lòng quét mã Barcode của sản phẩm muốn tra cứu');
+      return;
+    }
+
+    console.log(scanResultWebCam);
+    const accounts = await web3.eth.getAccounts();
+    let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
+    const productInfo = await contract.methods.products('0xcf61334c7087b6909872f99d30733f9b416f900598a97c270d00c7ac8d73237a').call();
+    console.log(productInfo);
+  };
 
   const handleSearchQRCode = () => {
     QRScanner({
@@ -37,7 +57,7 @@ function ProductSearch(props) {
       <div className="product-search">
         <div className="product-search__form">
           <input type="text" className="product-search__input"/>
-          <button>Tra cứu</button>
+          <button onClick={() =>getProductFromSmartContract()}>Tra cứu</button>
           <button onClick={() => handleSearchQRCode()}>QR Code Scan</button>
           <button onClick={() => onScanFile()}>QR Code Update</button>
         </div>
@@ -53,7 +73,7 @@ function ProductSearch(props) {
               legacyMode
             />
           </div>
-          <div>Result :  {scanResultWebCam}</div>
+          <div style={{padding: '5px'}}>Result :  {scanResultWebCam}</div>
         </div>
         <div className="product-search__result" style={{display: 'none'}}>
           <div className="product-search__result-img">

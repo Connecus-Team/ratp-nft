@@ -36,7 +36,7 @@ function Main(props) {
               </div>
               <div className="intro-text">
                 <p>
-                  <span style={{fontWeight: '1000'}}>Một trong những vấn đề gần đây được người dùng </span>
+                  <p style={{fontWeight: '1000'}}>Vấn nạn trong việc xác thực hàng</p>
                 tâm là vấn đề xác minh ….
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla cumque fugiat debitis eligendi excepturi quisquam
                 molestias atque magni, deleniti voluptas nobis vitae sequi, soluta, perspiciatis repellendus maiores earum

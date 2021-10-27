@@ -4,24 +4,25 @@ import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
 import styled from 'styled-components';
 import ipfs from '../../../apis/ipfsapi';
 import QRCode from 'qrcode';
+import contractValue from '../../../constants/contract';
+import LoadingInline from '../../../components/Loading/LoadingInline';
 
 function ProductRegist(props) {
   const [type, setType] = useState('individual');
   const [category, setCategory] = useState('clothes');
-  const [productName, setProductName] = useState(null);
-  const [productCode, setProductCode] = useState(null);
-  const [productColor, setProductColor] = useState(null);
-  const [productDesc, setProductDesc] = useState(null);
-  const [rulesChecked, setRulesChecked] = useState(false);
+  const [productName, setProductName] = useState('LV level3');
+  const [productCode, setProductCode] = useState('LVTEST');
+  const [productColor, setProductColor] = useState('black');
+  const [productDesc, setProductDesc] = useState('Túi thời trang');
+  const [rulesChecked, setRulesChecked] = useState(true);
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
   const web3 = useSelector(bannerSelector.selectWeb3);
 
-  // test
-  const loadContract = async () => {
-    return await new window.web3.eth.Contract(process.env.REACT_APP_CONTRACT_ABI, process.env.REACT_APP_CONTRACT_ADDRESS);
-  };
+
+  // const [submitBtn, setSubmitBtn] = useState(true);
+  const [loadingListingEventSC, setLoadingListingEventSC] = useState(false);
 
   // view : https://ipfs.io/ipfs/
   const captureFile = async (e) => {
@@ -41,71 +42,65 @@ function ProductRegist(props) {
         alert('Chưa khởi tạo đối tượng Web3, Vui lòng liên kết ví với Website');
         return;
       }
-      // truy xuất accounts
-      // const accounts = await web3.eth.requestAccounts(); // acounts[0] - address
-      // const abi = process.env.REACT_APP_CONTRACT_ABI;
-      // const address =process.env.REACT_APP_CONTRACT_ADDRESS;
-      // const abi = [
-      //   {
-      //     'inputs': [],
-      //     'name': 'count',
-      //     'outputs': [
-      //       {
-      //         'internalType': 'uint256',
-      //         'name': '',
-      //         'type': 'uint256',
-      //       },
-      //     ],
-      //     'stateMutability': 'view',
-      //     'type': 'function',
-      //   },
-      //   {
-      //     'inputs': [],
-      //     'name': 'countFunc',
-      //     'outputs': [],
-      //     'stateMutability': 'nonpayable',
-      //     'type': 'function',
-      //   },
-      // ];
-      const abi = [{'inputs': [{'internalType': 'address', 'name': '_vrfCoordinator', 'type': 'address'}, {'internalType': 'address', 'name': '_linkToken', 'type': 'address'}, {'internalType': 'bytes32', 'name': '_keyhash', 'type': 'bytes32'}], 'stateMutability': 'nonpayable', 'type': 'constructor'},
-        {'anonymous': false, 'inputs': [{'indexed': true, 'internalType': 'address', 'name': 'owner', 'type': 'address'}, {'indexed': true, 'internalType': 'address', 'name': 'approved', 'type': 'address'}, {'indexed': true, 'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'Approval', 'type': 'event'},
-        {'anonymous': false, 'inputs': [{'indexed': true, 'internalType': 'address', 'name': 'owner', 'type': 'address'}, {'indexed': true, 'internalType': 'address', 'name': 'operator', 'type': 'address'}, {'indexed': false, 'internalType': 'bool', 'name': 'approved', 'type': 'bool'}], 'name': 'ApprovalForAll', 'type': 'event'},
-        {'anonymous': false, 'inputs': [{'indexed': false, 'internalType': 'bytes32', 'name': 'requestId', 'type': 'bytes32'}, {'indexed': false, 'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'CreatedColection', 'type': 'event'},
-        {'anonymous': false, 'inputs': [{'indexed': true, 'internalType': 'address', 'name': 'from', 'type': 'address'}, {'indexed': true, 'internalType': 'address', 'name': 'to', 'type': 'address'}, {'indexed': true, 'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'Transfer', 'type': 'event'},
-        {'inputs': [{'internalType': 'address', 'name': 'to', 'type': 'address'}, {'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'approve', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'},
-        {'inputs': [{'internalType': 'address', 'name': 'owner', 'type': 'address'}], 'name': 'balanceOf', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [], 'name': 'baseURI', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [], 'name': 'counter', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'string', 'name': 'tokenURI', 'type': 'string'}, {'internalType': 'string', 'name': 'productText', 'type': 'string'}], 'name': 'create', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'},
-        {'inputs': [], 'name': 'fee', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'getApproved', 'outputs': [{'internalType': 'address', 'name': '', 'type': 'address'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'address', 'name': 'owner', 'type': 'address'}, {'internalType': 'address', 'name': 'operator', 'type': 'address'}], 'name': 'isApprovedForAll', 'outputs': [{'internalType': 'bool', 'name': '', 'type': 'bool'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [], 'name': 'keyHash', 'outputs': [{'internalType': 'bytes32', 'name': '', 'type': 'bytes32'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [], 'name': 'linkToken', 'outputs': [{'internalType': 'address', 'name': '', 'type': 'address'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [], 'name': 'name', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'ownerOf', 'outputs': [{'internalType': 'address', 'name': '', 'type': 'address'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'bytes32', 'name': '', 'type': 'bytes32'}], 'name': 'products', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'bytes32', 'name': 'requestId', 'type': 'bytes32'}, {'internalType': 'uint256', 'name': 'randomness', 'type': 'uint256'}], 'name': 'rawFulfillRandomness', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'},
-        {'inputs': [{'internalType': 'bytes32', 'name': '', 'type': 'bytes32'}], 'name': 'requestIdToSender', 'outputs': [{'internalType': 'address', 'name': '', 'type': 'address'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'bytes32', 'name': '', 'type': 'bytes32'}], 'name': 'requestIdToTokenId', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'bytes32', 'name': '', 'type': 'bytes32'}], 'name': 'requestIdToTokenURI', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'stateMutability': 'view', 'type': 'function'},
-        {'inputs': [{'internalType': 'address', 'name': 'from', 'type': 'address'}, {'internalType': 'address', 'name': 'to', 'type': 'address'}, {'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'safeTransferFrom', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'},
-        {'inputs': [{'internalType': 'address', 'name': 'from', 'type': 'address'}, {'internalType': 'address', 'name': 'to', 'type': 'address'}, {'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}, {'internalType': 'bytes', 'name': '_data', 'type': 'bytes'}], 'name': 'safeTransferFrom', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'}, {'inputs': [{'internalType': 'address', 'name': 'operator', 'type': 'address'}, {'internalType': 'bool', 'name': 'approved', 'type': 'bool'}], 'name': 'setApprovalForAll', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'}, {'inputs': [{'internalType': 'bytes4', 'name': 'interfaceId', 'type': 'bytes4'}], 'name': 'supportsInterface', 'outputs': [{'internalType': 'bool', 'name': '', 'type': 'bool'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [], 'name': 'symbol', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [{'internalType': 'uint256', 'name': 'index', 'type': 'uint256'}], 'name': 'tokenByIndex', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'name': 'tokenIdToGene', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [{'internalType': 'address', 'name': 'owner', 'type': 'address'}, {'internalType': 'uint256', 'name': 'index', 'type': 'uint256'}], 'name': 'tokenOfOwnerByIndex', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [{'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'tokenURI', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [], 'name': 'totalSupply', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'stateMutability': 'view', 'type': 'function'}, {'inputs': [{'internalType': 'address', 'name': 'from', 'type': 'address'}, {'internalType': 'address', 'name': 'to', 'type': 'address'}, {'internalType': 'uint256', 'name': 'tokenId', 'type': 'uint256'}], 'name': 'transferFrom', 'outputs': [], 'stateMutability': 'nonpayable', 'type': 'function'}, {'inputs': [], 'name': 'vrfCoordinator', 'outputs': [{'internalType': 'address', 'name': '', 'type': 'address'}], 'stateMutability': 'view', 'type': 'function'}];
+      if (!type || !category || !productName || !productCode || !productColor || !productDesc || !rulesChecked) {
+        alert('Vui lòng kiểm tra lại thông tin sản phẩm');
+        return;
+      }
 
-      const address = '0x8bEDFf6315e415d549384E4518219bCB0d2Cb832';
-      // const address = '0x1Ac88Bee4E0faFA7F106cF5e0cb9B7b93E33c072';
-      let contract = new web3.eth.Contract(abi, address);
+      const accounts = await web3.eth.getAccounts();
+      let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
+      let productInfo = `type:${type},category:${category},name:${productName},code:${productCode},color:${productColor},desc:${productDesc}`.toString();
+      await contract.methods.create(`https://ipfs.io/ipfs/${ipfsHash}`, productInfo).send({from: accounts[0]});
+      setLoadingListingEventSC(true);
+      contract.events.CreatedColection({}, (err, event) => {
+        if (err) {
+          alert('Sự kiện trả về phát sinh lỗi, Vui lòng thử lại sau');
+          console.log(err);
+          return;
+        }
+        console.log( 'eror', err, event);
+      }).on('connected', function(subscriptionId) {
+        console.log('subscriptionId', subscriptionId);
+      }).on('data', async function(event) {
+        console.log('data', event);
+        const {event: eventName} = event;
+        if (eventName === 'CreatedColection') {
+          const {returnValues} = event;
+          const {requestId} = returnValues;
 
-      contract.methods.create('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_DxuIzwaufEjdPlEs-SGFgZQH0SGTDUtjFQ&usqp=CAU', '1 do sen').
-          send({from: '0x4cf496524CE5fe537A04101E051703B808ffb65a'}).then((res) => {
-            console.log(res);
-          });
+          const qrURL = `http://localhost:9000/search?rqid=${requestId}`;
+          const response = await QRCode.toDataURL(qrURL);
+          setQrImageUrl(response);
+          setLoadingListingEventSC(false);
+        }
+      }).on('changed', function(event) {
+        console.log('change');
+        // remove event from local database
+      }).on('error', function(error, receipt) {
+        // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+        alert('Sự kiện chả về thất bại, Vui lòng thử lại sau');
+        return;
+      }); ;
+      // let options = {
+      //   fromBlock: 13578731,
+      //   address: [accounts[0]], // Only get events from specific addresses
+      //   topics: [], // What topics to subscribe to
+      // };
+      // let subscription = web3.eth.subscribe('logs', options, (err, event) => {
+      //   if (!err)
+      //   {console.log(event);};
+      // });
+
+      // subscription.on('data', (event) => console.log(event));
+      // subscription.on('changed', (changed) => console.log(changed));
+      // subscription.on('error', (err) => console.log('error', err.message, err.stack));
+      // subscription.on('connected', (nr) => console.log(nr));
+
+
       // send({from: , gas: })
       // const result = await contract.methods.countFunc().call();
 
       // console.log(result);
-      console.log(abi);
-      console.log(address);
       // create contract
       // await new web3.eth.Contract(REACT_APP_CONTRACT_ABI, REACT_APP_CONTRACT_ADDRESS);
       // const dataInfo = `${type}===${productName}===${productCode}===${productColor}===${productDesc}`;
@@ -115,10 +110,9 @@ function ProductRegist(props) {
       const qrContent = ipfsHash;
       const response = await QRCode.toDataURL(qrContent);
       const productData = {type, category, productName, productCode, productColor, productDesc, ipfsHash};
-      window.contract = await loadContract();
-      const coolNumber = await window.contract.methods.coolNumber().call();
       setQrImageUrl(response);
     } catch (error) {
+      alert('Truy cập có lỗi, Vui lòng thử lại sau. Hãy đọc qua phần hướng dẫn sử dụng !!!');
       console.log(error);
     }
   };
@@ -228,10 +222,19 @@ function ProductRegist(props) {
         <div className="regist-btn">
           <button onClick={() => handleRegistProduct()}>Đăng ký</button>
         </div>
-        <div className="qr-canvas" style={qrImageUrl ? {} : {display: 'none'}}>
-          <img src={qrImageUrl} alt = 'qrCode Image'/>
-          <a href={qrImageUrl} download> Tải xuống </a>
-        </div>
+        {
+          loadingListingEventSC ?
+          <div className="loading-event">
+            <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
+              <LoadingInline type={'bubbles'} color={'#0F054C'} />
+            </div>
+            <span>Vui lòng đợi trong giây lát, Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
+          </div> :
+          <div className="qr-canvas" style={qrImageUrl ? {} : {display: 'none'}}>
+            <img src={qrImageUrl} alt = 'qrCode Image'/>
+            <a href={qrImageUrl} download> Tải xuống </a>
+          </div>
+        }
       </div>
     </ProductRegistDiv>
   );
@@ -336,6 +339,15 @@ const ProductRegistDiv = styled.div`
         right: 20px;
       }
     }
+  }
+  .loading-event{
+    margin: 20px;
+    background: var(--color-gray-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
   }
   .qr-canvas{
     margin: 20px auto;
