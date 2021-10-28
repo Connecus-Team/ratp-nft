@@ -2,12 +2,25 @@ import React, {useState, useEffect} from 'react';
 import Banner from '../../components/Banner';
 import Footer from '../../components/Footer';
 import ViewVideo from '../../components/ViewVideo';
+import axios from 'axios';
 import HeadingLayer from '../../layouts/HeadingLayer';
 import './styles.scss';
 function Main(props) {
   const hanleClickVewVideo = () => {
     ViewVideo();
   };
+
+  useEffect(() => {
+    const url = 'https://deep-index.moralis.io/api/v2/nft/0x8bEDFf6315e415d549384E4518219bCB0d2Cb832/18/transfers?chain=bsc%20testnet&format=decimal';
+    axios.get(url, {
+      headers: {
+        'accept': 'application/json',
+        'X-API-Key': process.env.REACT_APP_MORALIS_API,
+      },
+    }).then((res) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <HeadingLayer>
       <div className="main-page">
@@ -36,11 +49,11 @@ function Main(props) {
               </div>
               <div className="intro-text">
                 <p>
-                  <p style={{fontWeight: '1000'}}>Vấn nạn trong việc xác thực hàng</p>
-                tâm là vấn đề xác minh ….
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla cumque fugiat debitis eligendi excepturi quisquam
-                molestias atque magni, deleniti voluptas nobis vitae sequi, soluta, perspiciatis repellendus maiores earum
-                laudantium voluptate.
+                  <p style={{fontWeight: '1000'}}>Hiện nay,</p> vấn nạn về hàng giả, hàng kém chất lượng đang là một vấn đề nhức nhối trong bối cảnh xã hội ngày càng phát triển bởi khối lượng
+                  mua và bán được tăng lên ngày càng nhiều.Các sản phẩm giả ngày càng được làm tinh vi khó phát hiện khiến cho quyền lợi của khách hàng bị đe dọa
+                  và uy tín cũng như doanh thu của các doanh nghiệp bị ảnh hưởng giảm sút. Từ đó việc trao đổi, mua bán các sản
+                  phẩm cũng trở nên vô cùng khó khắn khi việc mua và bán dựa trên lòng tin của các bên giao dịch nhờ vậy mà
+                  RATP được ra đời để giải quyết những vấn đề trên.
                 </p>
               </div>
             </div>
@@ -49,8 +62,12 @@ function Main(props) {
           <div className="main-page__section">
             <div className="main-page__section-heading">
               <h1>RATP là gì?</h1>
-              <p>Một ứng dụng phần mền sử dụng công nghệ blockchain để lưu lại thông tin sản</p>
-              <p>Giúp cho việc truy xuất nguồn gốc và chủ sở hữu</p>
+              <p>Một ứng dụng phần mềm sử dụng công nghệ blockchain để lưu lại thông tin sản phẩm giúp việc
+              truy xuất nguồn gốc và chủ sở hữu trở nên minh bạch bảo mật và nhanh chóng. Thông tin lưu
+              trữ được sử dụng như một giải pháp để ngăn chặn hàng giả, hàng kém chất lượng giúp cải thiện
+              độ tin cậy của thị trường. Ngoài ra, ứng dụng tạo nên một môi trường an toàn cho các giao
+              dịch thông qua việc phát hành các tài sản xa xỉ như túi xách, các mặt hàng với phiên bản
+              giới hạn dựa trên tài sản vật chất của doanh nghiệp hoặc người bán.</p>
             </div>
             <div className="main-page__section-content">
               <div className="section-content__img">
@@ -72,8 +89,12 @@ function Main(props) {
                 <div className="main-page__guide-row__content">
                   <h2>Cách đăng ký sản phẩm</h2>
                   <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error iure numquam aliquam accusantium quos, molestiae quae sint.
-                    Corrupti rerum adipisci voluptas, facilis inventore culpa dicta minus aliquam numquam nulla reiciendis?
+                    <ul>
+                      <li>Connect Ví metamask (nếu chưa có ví nên ấn vào đây)</li>
+                      <li>Click vào "Sử dụng" trên thanh menu</li>
+                      <li>Điền thông tin theo hướng dẫn của phần nhập thong tin</li>
+                      <li>Click đăng ký là bạn hoàn thành việc đăng ký sản phẩm</li>
+                    </ul>
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
@@ -83,10 +104,13 @@ function Main(props) {
               {/* product search */}
               <div className="main-page__guide-row" style={{background: 'var(--color-gray-secondary)'}}>
                 <div className="main-page__guide-row__content" style={{order: '1'}}>
-                  <h2>Cách tra cuứ sản phẩm</h2>
+                  <h2>Cách tra cứu sản phẩm</h2>
                   <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error iure numquam aliquam accusantium quos, molestiae quae sint.
-                    Corrupti rerum adipisci voluptas, facilis inventore culpa dicta minus aliquam numquam nulla reiciendis?
+                    <ul>
+                      <li>Click vào "Sử dụng" trên thanh menu</li>
+                      <li>Vào phần tra cứu thông tin sản phẩm</li>
+                      <li>Quét mã QR hoặc Update QR</li>
+                    </ul>
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
@@ -97,10 +121,12 @@ function Main(props) {
               {/* product list */}
               <div className="main-page__guide-row">
                 <div className="main-page__guide-row__content">
-                  <h2>Cách tra cuứ sản phẩm</h2>
+                  <h2>Giao dịch sản phẩm</h2>
                   <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error iure numquam aliquam accusantium quos, molestiae quae sint.
-                    Corrupti rerum adipisci voluptas, facilis inventore culpa dicta minus aliquam numquam nulla reiciendis?
+                    <li>Click vào "Sử dụng" trên thanh menu</li>
+                    <li>Chọn vào sản phẩm muốn Giao dịch</li>
+                    <li>Nhập địa chỉ người nhận</li>
+                    <li>Bấm Thực Hiện để hoàn thành</li>
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
@@ -119,19 +145,19 @@ function Main(props) {
 const SectionContent = () => {
   const sectionList = [{
     label: 'check-real',
-    title: 'Với nền tảng RATP các chinhs nhaan',
+    title: 'Kiểm tra nguồn gốc, xuất sứ',
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
     content: ['loream1', 'lorem1', 'lorem1'],
   },
   {
     label: 'check-tracking',
-    title: 'Với nền tảng RATP các thoong tin luwu thong',
+    title: 'Kiểm tra quyền sở hữu NFT',
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
     content: ['loream2', 'lorem2', 'lorem2'],
   },
   {
     label: 'store-point',
-    title: 'Với nền tảng RATP tích điểm',
+    title: 'Thực hiện giao dịch các tài sản NFT dựa trên tài sản thật',
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
     content: ['loream3', 'lorem3', 'lorem4'],
   },

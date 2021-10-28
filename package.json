@@ -78,6 +78,7 @@
     "path": "^0.12.7",
     "prettier": "^2.2.1",
     "sass-lint": "^1.13.1",
+    "source-map-loader": "^3.0.0",
     "stream-http": "^3.2.0",
     "webpack": "^5.59.1",
     "webpack-cli": "^4.9.1",

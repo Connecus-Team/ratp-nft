@@ -55,6 +55,7 @@ module.exports = {
     port: process.env.PORT || 3000,
     port: 9000,
   },
+  devtool: 'eval-cheap-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',

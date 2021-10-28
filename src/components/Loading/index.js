@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function Loading({type, color, wrapperStyle}) {
   return (
     <Wrapper style={wrapperStyle}>
-      <ReactLoading type={type} color={color} height={'10%'} width={'5%'} />
+      <ReactLoading type={type === undefined ? 'bubbles' : type } color={color === undefined ? 'black' : color} height={'10%'} width={'5%'} />
     </Wrapper>
   );
 }

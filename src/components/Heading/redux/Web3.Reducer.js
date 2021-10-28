@@ -1,15 +1,14 @@
 import produce from 'immer';
-import constants from './Banner.Constants';
+import constants from './Web3.Constants';
 
 const initialState = {
   web3: null,
 };
 
-export const landingPageReducer =(state = initialState, {type, payload}) =>
+export const web3Reducer =(state = initialState, {type, payload}) =>
   produce(state, (draft) => {
     switch (type) {
       case constants.SET_WEB3:
-        console.log(payload);
         draft.web3 = payload;
         break;
       case constants.SET_WEB3_ERROR:
@@ -19,5 +18,5 @@ export const landingPageReducer =(state = initialState, {type, payload}) =>
         return state;
     }
   });
-export default landingPageReducer;
+export default web3Reducer;
 

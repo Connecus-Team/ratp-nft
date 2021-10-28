@@ -2,25 +2,29 @@ import React, {useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
 import QRScanner from '../../../components/QRScanner';
-import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
+import web3Selector from '../../../components/Heading/redux/Web3.Selector';
+import LoadingInline from '../../../components/Loading/LoadingInline';
 import contractValue from '../../../constants/contract';
 import styled from 'styled-components';
 import queryString from 'query-string';
-
+import axios from 'axios';
 
 function ProductSearch(props) {
-  const web3 = useSelector(bannerSelector.selectWeb3);
+  const web3 = useSelector(web3Selector.selectWeb3);
 
 
   const [scanResultWebCam, setScanResultWebCam] = useState(null);
 
+  // const [loading, setLoading] = useState(false);
   const [searchData, setSearchData] = useState(false);
   const [productData, setProducData] = useState(null);
   const [productImage, setProductImage] = useState(null);
+  const [historyTransfer, setHistoryTransfer] = useState([]);
 
   const qrRef = useRef(null);
 
 
+  // search btn
   const getProductFromSmartContract = async () => {
     if (!scanResultWebCam) {
       alert('Vui lòng quét mã Barcode của sản phẩm muốn tra cứu');
@@ -32,6 +36,7 @@ function ProductSearch(props) {
       return;
     }
     try {
+      setSearchData(true);
       const query = queryString.parse(scanResultWebCam);
       const requestId = Object.values(query)[0];
       const accounts = await web3.eth.getAccounts();
@@ -39,9 +44,27 @@ function ProductSearch(props) {
       const productInfo = await contract.methods.products(requestId).call();
       const ipfsUrl = await contract.methods.requestIdToTokenURI(requestId).call();
 
-      setProducData(productInfo);
-      setProductImage(ipfsUrl);
-      setSearchData(true);
+      const tokenId = await contract.methods.requestIdToTokenId(requestId).call();
+      const url = `https://deep-index.moralis.io/api/v2/nft/${contractValue.address}/${tokenId}/transfers?chain=bsc%20testnet&format=decimal`;
+      axios.get(url, {
+        headers: {
+          'accept': 'application/json',
+          'X-API-Key': process.env.REACT_APP_MORALIS_API,
+        },
+      }).then((res) => {
+        const {status} = res;
+        if (status === 200) {
+          const {data} = res;
+          const {result} = data;
+          setHistoryTransfer(result);
+          setProducData(productInfo);
+          setProductImage(ipfsUrl);
+          setSearchData(false);
+          // setLoading(true);
+        } else {
+          alert('Truy xuất dữ liệu có lỗi, Vui lòng thử lại sau!!!');
+        }
+      }).catch((error) => console.log(error));
     } catch (error) {
       alert('Truy xuất dữ liệu phát sinh lỗi, Vui lòng thử lại sau');
     }
@@ -94,7 +117,15 @@ function ProductSearch(props) {
           </div>
           <div style={{padding: '5px'}}>Result :  {scanResultWebCam}</div>
         </div>
-        <div className="product-search__result" style={searchData ? {} : {display: 'none'}}>
+        {
+          searchData ?
+          <div className="loading-event">
+            <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
+              <LoadingInline type={'bubbles'} color={'#0F054C'} />
+            </div>
+            <span>Vui lòng đợi trong giây lát, Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
+          </div> :
+        <div className="product-search__result" style={productData === null ? {display: 'none'} : {}}>
           <div className="product-search__result-img">
             <img src={productImage} />
           </div>
@@ -121,27 +152,36 @@ function ProductSearch(props) {
             </div> */}
           </div>
         </div>
-        <div className="product-search__history" style={{display: 'none'}}>
-          <p>Lịch sử giao dịch</p>
-          <table>
-            <thead>
-              <tr>
-                <th width="50%">From</th>
-                <th width="50%">To</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>0xqwqrqwr121231231</th>
-                <th>0xqwqrqwr121231231</th>
-              </tr>
-              <tr>
-                <th>0xqwqrqwr121231231</th>
-                <th>0xqwqrqwr121231231</th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        }
+        {
+          historyTransfer.length !== 0 &&
+          <div className="product-search__history">
+            <p>Lịch sử giao dịch</p>
+            <table>
+              <thead>
+                <tr>
+                  <th width="10%">No.</th>
+                  <th width="45%">From</th>
+                  <th width="45%">To</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  historyTransfer.reverse().map((item, idx) => {
+                    return (
+                      <tr key={idx}>
+                        <th>{idx + 1}</th>
+                        <th>{item.from_address}</th>
+                        <th>{item.to_address}</th>
+                      </tr>
+                    );
+                  })
+
+                }
+              </tbody>
+            </table>
+          </div>
+        }
       </div>
     </ProductSearchDiv>
   );
@@ -159,6 +199,15 @@ const ProductSearchDiv = styled.div`
 
         border-radius: 4px;
       }
+    }
+    .loading-event{
+      margin: 20px;
+      background: var(--color-gray-secondary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
     }
     &__form{
       display: flex;

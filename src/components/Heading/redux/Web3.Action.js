@@ -1,4 +1,4 @@
-import constants from './Banner.Constants';
+import constants from './Web3.Constants';
 
 const actions = {
   setWeb3: (web3) => async (dispatch) => {
