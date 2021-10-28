@@ -2,14 +2,14 @@ import React, {useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
 import QRScanner from '../../../components/QRScanner';
-import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
+import web3Selector from '../../../components/Heading/redux/Web3.Selector';
 import contractValue from '../../../constants/contract';
 import styled from 'styled-components';
 import queryString from 'query-string';
 
 
 function ProductSearch(props) {
-  const web3 = useSelector(bannerSelector.selectWeb3);
+  const web3 = useSelector(web3Selector.selectWeb3);
 
 
   const [scanResultWebCam, setScanResultWebCam] = useState(null);

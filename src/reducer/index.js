@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import {connectRouter} from 'connected-react-router';
-import banner from '../components/Banner/redux/Banner.Reducer';
+import web3 from '../components/Heading/redux/Web3.Reducer';
 
 export default (history) =>
   combineReducers({
     router: connectRouter(history),
-    banner,
+    web3,
   });

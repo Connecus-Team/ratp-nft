@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import queryString from 'query-string';
 import HeadingLayer from '../../layouts/HeadingLayer';
-import bannerSelector from '../../components/Banner/redux/Banner.Selector';
+import web3Selector from '../../components/Heading/redux/Web3.Selector';
 import Footer from '../../components/Footer';
 import './styles.scss';
 
 function Search(props) {
-  const web3 = useSelector(bannerSelector.selectWeb3);
+  const web3 = useSelector(web3Selector.selectWeb3);
 
   const [searchData, setSearchData] = useState(false);
   const [productData, setProducData] = useState(null);

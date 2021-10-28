@@ -52,6 +52,12 @@
       .intro-text{
         padding: 5px;
         width: 50%;
+        animation: animation infinite 5s linear;
+        p{
+          -webkit-transform: translate3d(0,0,0);
+          transform: translate3d(1px, 2px, 3px);
+          transition: all 0.2s linear 0s;
+        }
       }
     }
   }
@@ -135,5 +141,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes animation {
+  from {
+    transform: transformX(-100px);
+  }
+  to {
+    transform: transformY(0px);
   }
 }

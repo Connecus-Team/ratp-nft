@@ -1,10 +1,10 @@
 import {createSelector} from 'reselect';
 
-const selectRaw = (state) => state.banner;
+const selectRaw = (state) => state.web3;
 
 const selectWeb3 = createSelector(
     [selectRaw],
-    (banner) => banner.web3,
+    (web3) => web3.web3,
 );
 const selectors = {
   selectWeb3,

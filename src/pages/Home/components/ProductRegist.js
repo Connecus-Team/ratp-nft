@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import bannerSelector from '../../../components/Banner/redux/Banner.Selector';
+import web3Selector from '../../../components/Heading/redux/Web3.Selector';
 import styled from 'styled-components';
 import ipfs from '../../../apis/ipfsapi';
 import QRCode from 'qrcode';
@@ -18,7 +18,7 @@ function ProductRegist(props) {
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
-  const web3 = useSelector(bannerSelector.selectWeb3);
+  const web3 = useSelector(web3Selector.selectWeb3);
 
 
   // const [submitBtn, setSubmitBtn] = useState(true);
