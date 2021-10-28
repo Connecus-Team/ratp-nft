@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Icon from '../../constants/icons';
 import './styles.scss';
 
@@ -19,7 +20,7 @@ function Banner({handleToUse}) {
           </ul>
           <div className="banner__btn">
             <div className="banner__help-btn" onClick={() => handleToUse()}>HƯỚNG DẪN SỬ DỤNG</div>
-            <div className="banner__use-btn"><a href="/application" className="use-link">SỬ DỤNG</a></div>
+            <div className="banner__use-btn"><Link to="/application" className="use-link">SỬ DỤNG</Link></div>
           </div>
         </div>
       </div>
