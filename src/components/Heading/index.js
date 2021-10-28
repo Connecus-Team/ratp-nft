@@ -11,6 +11,8 @@ function Heading() {
   const splitLocation = pathname.split('/');
   const [isFixed, setIsFixed] = useState(false);
   const [currentAccount, setCurrentAcount] = useState(null);
+
+  const [language, setLanguage] = useState('vn');
   const dispatch = useDispatch();
 
   const handleScroll = (event) => {
@@ -55,9 +57,18 @@ function Heading() {
       console.log(error);
     }
   };
+
+  const handleClickLanguage = (lang) => {
+    setLanguage(lang);
+  };
   return (
     <div className="heading" id="heading" style={isFixed ? {position: 'fixed', top: '0px', zIndex: 999} : {}}>
-      <ul>
+      <ul className="heading-lang">
+        <li className={language === 'vn' ? 'active-lang' : ''} onClick={() => handleClickLanguage('vn')}>VN</li>
+        <li className={language === 'en' ? 'active-lang' : ''} onClick={() => handleClickLanguage('en')}>ENG</li>
+        <li className={language === 'kor' ? 'active-lang' : ''} onClick={() => handleClickLanguage('kor')}>KOR</li>
+      </ul>
+      <ul className="heading-task">
         <li><NavLink className={splitLocation[1] === '' ? 'page-active' : ''} to="/">TRANG CHỦ</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'dashbord' ? 'page-active' : ''} to="/dashbord">SỬ DỤNG</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'work' ? 'page-active' : ''} to="/work">HOẠT ĐỘNG</NavLink></li>
@@ -65,7 +76,7 @@ function Heading() {
         <li><NavLink className={splitLocation[1] === 'event' ? 'page-active' : ''}to="/event">SỰ KIỆN</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'member' ? 'page-active' : ''}to="/member">THÀNH VIÊN</NavLink></li>
         <li><a href="https://github.com/huonghope/ratp-nft" target="_blank" rel="noreferrer">MÃ NGUỒN</a></li>
-        <li><button className="connect__btn" onClick={() => handleConnectWallet()}>TRUY CẬP VÍ <p>{currentAccount}</p></button></li>
+        <li><button className="connect__btn" onClick={() => handleConnectWallet()}>KẾT NỐI VÍ<p>{currentAccount}</p></button></li>
       </ul>
     </div>
   );

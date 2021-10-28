@@ -53,6 +53,7 @@ function ProductSearch(props) {
         },
       }).then((res) => {
         const {status} = res;
+        console.log(res);
         if (status === 200) {
           const {data} = res;
           const {result} = data;
@@ -60,7 +61,6 @@ function ProductSearch(props) {
           setProducData(productInfo);
           setProductImage(ipfsUrl);
           setSearchData(false);
-          // setLoading(true);
         } else {
           alert('Truy xuất dữ liệu có lỗi, Vui lòng thử lại sau!!!');
         }
@@ -115,7 +115,7 @@ function ProductSearch(props) {
               legacyMode
             />
           </div>
-          <div style={{padding: '5px'}}>Result :  {scanResultWebCam}</div>
+          <div style={{padding: '5px'}}>Kết quả scan :  {scanResultWebCam}</div>
         </div>
         {
           searchData ?

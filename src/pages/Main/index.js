@@ -28,7 +28,7 @@ function Main(props) {
         <div className="main-page__container">
           {/* intro */}
           <div className="main-page__intro">
-            <h1>Lời mở đầu</h1>
+            <h1>Ứng dụng RATP</h1>
             <div className="main-page__intro-content">
               <div className="intro-video">
                 <div className="intro-video__wrap" onClick={() => hanleClickVewVideo()}>
@@ -49,11 +49,9 @@ function Main(props) {
               </div>
               <div className="intro-text">
                 <p>
-                  <p style={{fontWeight: '1000'}}>Hiện nay,</p> vấn nạn về hàng giả, hàng kém chất lượng đang là một vấn đề nhức nhối trong bối cảnh xã hội ngày càng phát triển bởi khối lượng
-                  mua và bán được tăng lên ngày càng nhiều.Các sản phẩm giả ngày càng được làm tinh vi khó phát hiện khiến cho quyền lợi của khách hàng bị đe dọa
-                  và uy tín cũng như doanh thu của các doanh nghiệp bị ảnh hưởng giảm sút. Từ đó việc trao đổi, mua bán các sản
-                  phẩm cũng trở nên vô cùng khó khắn khi việc mua và bán dựa trên lòng tin của các bên giao dịch nhờ vậy mà
-                  RATP được ra đời để giải quyết những vấn đề trên.
+                  {/* <p style={{fontWeight: '1000'}}>Hiện nay,</p>
+                   */}
+                  RATP là
                 </p>
               </div>
             </div>
@@ -61,13 +59,10 @@ function Main(props) {
           {/* section */}
           <div className="main-page__section">
             <div className="main-page__section-heading">
-              <h1>RATP là gì?</h1>
+              <h1>Điểm nổi trội của RATP</h1>
               <p>Một ứng dụng phần mềm sử dụng công nghệ blockchain để lưu lại thông tin sản phẩm giúp việc
               truy xuất nguồn gốc và chủ sở hữu trở nên minh bạch bảo mật và nhanh chóng. Thông tin lưu
-              trữ được sử dụng như một giải pháp để ngăn chặn hàng giả, hàng kém chất lượng giúp cải thiện
-              độ tin cậy của thị trường. Ngoài ra, ứng dụng tạo nên một môi trường an toàn cho các giao
-              dịch thông qua việc phát hành các tài sản xa xỉ như túi xách, các mặt hàng với phiên bản
-              giới hạn dựa trên tài sản vật chất của doanh nghiệp hoặc người bán.</p>
+              </p>
             </div>
             <div className="main-page__section-content">
               <div className="section-content__img">

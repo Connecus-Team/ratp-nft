@@ -20,6 +20,7 @@ function ProductRegist(props) {
   const [qrImageUrl, setQrImageUrl] = useState(null);
   const web3 = useSelector(web3Selector.selectWeb3);
 
+  const [imgProductTemp, setImageProductTemp] = useState(null);
 
   // const [submitBtn, setSubmitBtn] = useState(true);
   const [loadingListingEventSC, setLoadingListingEventSC] = useState(false);
@@ -31,6 +32,7 @@ function ProductRegist(props) {
       const file = e.target.files[0];
       const updateResult = await ipfs.add(file);
       setIpfsHash(updateResult.path);
+      setImageProductTemp(URL.createObjectURL(file));
     } catch (error) {
       alert('update image error');
     }
@@ -174,7 +176,7 @@ function ProductRegist(props) {
 
             {
               ipfsHash &&
-              <img src={`https://ipfs.io/ipfs/${ipfsHash}`} style={{width: '70px', zIndex: 999}}/>
+              <img src={imgProductTemp} id="product-img" style={{width: '70px', zIndex: 999}}/>
             }
           </div>
         </div>

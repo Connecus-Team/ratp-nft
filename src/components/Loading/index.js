@@ -3,6 +3,7 @@ import ReactLoading from 'react-loading';
 import styled from 'styled-components';
 
 function Loading({type, color, wrapperStyle}) {
+  console.log(color, type);
   return (
     <Wrapper style={wrapperStyle}>
       <ReactLoading type={type === undefined ? 'bubbles' : type } color={color === undefined ? 'black' : color} height={'10%'} width={'5%'} />
