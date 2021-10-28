@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from '../../constants/icons';
 import './styles.scss';
 
-function Banner(props) {
+function Banner({handleToUse}) {
   return (
     <div className="banner">
       <div className="banner__container">
@@ -16,8 +16,10 @@ function Banner(props) {
             <li> o Kiểm tra nguồn gốc xuất xứ của sản phẩm</li>
             <li> o Giao dịch chứng nhận sở hữu sản phẩm</li>
           </ul>
-          <div className="banner__help-btn">Hướng dẫn sử dụng</div>
-          <div className="banner__help-btn">Sử dụng</div>
+          <div className="banner__btn">
+            <div className="banner__help-btn" onClick={() => handleToUse()}>Hướng dẫn sử dụng</div>
+            <div className="banner__use-btn"><a href="/application" className="use-link">Sử dụng</a></div>
+          </div>
         </div>
       </div>
     </div>

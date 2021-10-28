@@ -8,7 +8,7 @@ const publicRoutes = [
     permissionRequired: null,
   },
   {
-    path: '/dashbord',
+    path: '/application',
     exact: false,
     loader: () => import('../pages/Home'),
     menu: false,

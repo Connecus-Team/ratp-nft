@@ -17,11 +17,12 @@ function Heading() {
 
   const handleScroll = (event) => {
     const value = window.scrollY;
-    if (value !== 0 && !isFixed) {
-      setIsFixed(true);
-    } else if (value === 0) {
-      setIsFixed(false);
-    }
+    console.log(value);
+    // if (value !== 0 && !isFixed) {
+    //   setIsFixed(true);
+    // } else if (value === 0) {
+    //   setIsFixed(false);
+    // }
   };
   const handleConnectWallet = async () => {
     try {
@@ -45,6 +46,11 @@ function Heading() {
       // const web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545'));
       // console.log(web3);
       let web3 = new Web3(web3Provider);
+      const chainId = await web3.eth.getChainId();
+      if (chainId != 97) {
+        alert('Vui lòng liên kết với mạng Binace');
+        return;
+      }
 
       const accounts = await web3.eth.requestAccounts();
       dispatch(web3Action.setWeb3(web3));
@@ -70,13 +76,13 @@ function Heading() {
       </ul>
       <ul className="heading-task">
         <li><NavLink className={splitLocation[1] === '' ? 'page-active' : ''} to="/">TRANG CHỦ</NavLink></li>
-        <li><NavLink className={splitLocation[1] === 'dashbord' ? 'page-active' : ''} to="/dashbord">SỬ DỤNG</NavLink></li>
+        <li><NavLink className={splitLocation[1] === 'application' ? 'page-active' : ''} to="/application">SỬ DỤNG</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'work' ? 'page-active' : ''} to="/work">HOẠT ĐỘNG</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'future' ? 'page-active' : ''} to="/future">KẾ HOẠCH</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'event' ? 'page-active' : ''}to="/event">SỰ KIỆN</NavLink></li>
         <li><NavLink className={splitLocation[1] === 'member' ? 'page-active' : ''}to="/member">THÀNH VIÊN</NavLink></li>
         <li><a href="https://github.com/huonghope/ratp-nft" target="_blank" rel="noreferrer">MÃ NGUỒN</a></li>
-        <li><button className="connect__btn" onClick={() => handleConnectWallet()}>KẾT NỐI VÍ<p>{currentAccount}</p></button></li>
+        <li><button className="connect__btn" onClick={() => handleConnectWallet()}><p>{currentAccount ? currentAccount : 'KẾT NỐI VÍ'}</p></button></li>
       </ul>
     </div>
   );

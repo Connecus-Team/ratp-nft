@@ -40,6 +40,12 @@
     align-items: center;
 
     margin-right: 50px;
+    .page-active{
+      background: #42E8E0;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
   .heading-task li a{
     padding: 0px 20px;
@@ -63,12 +69,7 @@
       background-position: 0 100%;
     }
   }
-  .page-active{
-    background: #42E8E0;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  
    //buttons
   .connect__btn{
     background: red;

@@ -13,6 +13,11 @@
   &__image{
     left: 0;
   }
+  &__btn{
+    display: flex;
+  }
+ 
+ 
   &__help-btn{
     border:1px solid transparent;
     cursor: pointer;
@@ -21,10 +26,11 @@
     margin-top: 10px;
     text-align:center;
 
-    background: var(--color-text-secondary);
-    color: black;
+    // background: var(--color-text-secondary);
+    color: white;
     transition: all 0.2s linear 0s;
     position: relative;
+    border: 1px solid var(--color-text-secondary);
   
     &:before {
       content: "\f054";
@@ -44,22 +50,42 @@
       transition: all 0.2s linear 0s;
     }
     
-    &:hover {
-      text-indent: 30px;
-      background: none;
-      border: 1px solid var(--color-text-secondary);
+    // &:hover {
+    //   text-indent: 30px;
+    //   background: none;
+    //   border: 1px solid var(--color-text-secondary);
+    //   color: white;
+    //   &:before {
+    //     transform: scale(1,1);
+    //     text-indent: 0;
+    //   }
+    // }
+  }
+  &__use-btn{
+    cursor: pointer;
+    padding: 10px 50px;
+
+    margin-top: 10px;
+    text-align:center;
+    
+    transition: all 0.2s linear 0s;
+    position: relative;
+    background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+    // border:1px solid #00dbde;
+    border-radius: 10px;
+    margin-left: 5px;
+    &:hover{
+    }
+    a {
       color: white;
-      &:before {
-        transform: scale(1,1);
-        text-indent: 0;
-      }
+      text-decoration: none;
     }
   }
   &__text{
     position: absolute;
     top: 50%;
-    transform: translateY(-70%);
-    right: 20px;
+    transform: translateY(-100%);
+    right: 70px;
     color: white;
 
     &-brandname{

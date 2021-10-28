@@ -14,7 +14,7 @@ function ProductRegist(props) {
   const [productCode, setProductCode] = useState('LVTEST');
   const [productColor, setProductColor] = useState('black');
   const [productDesc, setProductDesc] = useState('Túi thời trang');
-  const [rulesChecked, setRulesChecked] = useState(true);
+  const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
@@ -217,7 +217,7 @@ function ProductRegist(props) {
                     minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit
             </div>
             <div className="rules-check">
-              <input type="checkbox" id="check-rules" name="check-rules" checked={rulesChecked} onChange={(e) => setRulesChecked(e.target.value)}/>
+              <input type="checkbox" id="check-rules" name="check-rules" checked={rulesChecked} onChange={() => setRulesChecked(!rulesChecked)}/>
               <label>Đồng ý</label>
             </div>
           </div>

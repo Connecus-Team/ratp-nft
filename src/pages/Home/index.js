@@ -11,7 +11,7 @@ function Home(props) {
   return (
     <HeadingLayer>
       <div className="home-page">
-        <Banner />
+        {/* <Banner /> */}
         <div className="home-page__container">
           <div className="home-page__btn-list btn">
             <div className="btn__insert " id={selectPage === 'regist' ? 'btn--active' : ''} onClick={() => setSelectPage('regist')}>Nhập thông tin sản phẩm</div>

@@ -1,15 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Banner from '../../components/Banner';
 import Footer from '../../components/Footer';
 import ViewVideo from '../../components/ViewVideo';
 import axios from 'axios';
 import HeadingLayer from '../../layouts/HeadingLayer';
+
 import './styles.scss';
+
+
 function Main(props) {
   const hanleClickVewVideo = () => {
     ViewVideo();
   };
 
+  const myRef = useRef(null);
   useEffect(() => {
     const url = 'https://deep-index.moralis.io/api/v2/nft/0x8bEDFf6315e415d549384E4518219bCB0d2Cb832/18/transfers?chain=bsc%20testnet&format=decimal';
     axios.get(url, {
@@ -21,10 +25,14 @@ function Main(props) {
       console.log(res);
     });
   }, []);
+
+  const handleToUse = () => {
+    window.scrollTo({top: myRef.current.offsetTop, behavior: 'smooth'});
+  };
   return (
     <HeadingLayer>
       <div className="main-page">
-        <Banner />
+        <Banner handleToUse={handleToUse} />
         <div className="main-page__container">
           {/* intro */}
           <div className="main-page__intro">
@@ -73,8 +81,9 @@ function Main(props) {
               </div>
             </div>
           </div>
+          <div ref={myRef}></div>
           {/* guide */}
-          <div className="main-page__guide">
+          <div className="main-page__guide" >
             <div className="main-page__guide-title">
               <h1>Hướng dẫn sử dụng RATP?</h1>
             </div>
