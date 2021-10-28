@@ -24,6 +24,7 @@
     padding: 10px 20px;
 
     margin-top: 10px;
+    width: 220px;
     text-align:center;
 
     // background: var(--color-text-secondary);
@@ -63,6 +64,7 @@
   }
   &__use-btn{
     cursor: pointer;
+    width: 220px;
     padding: 10px 50px;
 
     margin-top: 10px;
@@ -84,8 +86,8 @@
   &__text{
     position: absolute;
     top: 50%;
-    transform: translateY(-100%);
-    right: 70px;
+    transform: translateY(-80%);
+    right: 1px;
     color: white;
 
     &-brandname{

@@ -8,6 +8,12 @@ import Loading from './components/Loading';
 
 const store = configStore();
 const App = () => {
+  useEffect(() => {
+    window.onbeforeunload = function(event)
+    {
+      return confirm('Confirm refresh');
+    };
+  }, []);
   return (
     <div className="rapt-nft">
       <Suspense fallback={<Loading type={'spokesars'} color={'black'} />}>

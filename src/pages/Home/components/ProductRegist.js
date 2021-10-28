@@ -6,13 +6,14 @@ import ipfs from '../../../apis/ipfsapi';
 import QRCode from 'qrcode';
 import contractValue from '../../../constants/contract';
 import LoadingInline from '../../../components/Loading/LoadingInline';
+import moment from 'moment';
 
 function ProductRegist(props) {
   const [type, setType] = useState('individual');
   const [category, setCategory] = useState('clothes');
   const [productName, setProductName] = useState('LV level3');
   const [productCode, setProductCode] = useState('LVTEST');
-  const [productColor, setProductColor] = useState('black');
+  const [productDate, setProductDate] = useState(moment().format('YYYY-MM-DD'));
   const [productDesc, setProductDesc] = useState('Túi thời trang');
   const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
@@ -39,19 +40,22 @@ function ProductRegist(props) {
   };
   const handleRegistProduct = async () => {
     try {
+      // console.log(moment(productDate).format('L'));
+      // console.log(type, category, productName, productCode, productDate, productDesc);
       if (web3 === null)
       {
         alert('Chưa khởi tạo đối tượng Web3, Vui lòng liên kết ví với Website');
         return;
       }
-      if (!type || !category || !productName || !productCode || !productColor || !productDesc || !rulesChecked) {
+      if (!type || !category || !productName || !productCode || !productDate || !productDesc || !rulesChecked) {
         alert('Vui lòng kiểm tra lại thông tin sản phẩm');
         return;
       }
 
+
       const accounts = await web3.eth.getAccounts();
       let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
-      let productInfo = `type:${type},category:${category},name:${productName},code:${productCode},color:${productColor},desc:${productDesc}`.toString();
+      let productInfo = `"{'type':'${type}','category':'${category}','name':'${productName}','code':'${productCode}','date':'${productDate}','desc':'${productDesc}'}"`.toString();
       await contract.methods.create(`https://ipfs.io/ipfs/${ipfsHash}`, productInfo).send({from: accounts[0]});
       setLoadingListingEventSC(true);
       contract.events.CreatedColection({}, (err, event) => {
@@ -118,19 +122,21 @@ function ProductRegist(props) {
       console.log(error);
     }
   };
+
+  console.log(productDate);
   return (
     <ProductRegistDiv>
       <div className="form form-section">
         <div className="form-sub-wrap">
-          <label className="control-label">Hình thức vận hành</label>
+          <label className="control-label">Hình thức kinh doanh</label>
           <div className="input-content form-group type">
             <div>
               <input type="radio" name="type" id="individual" value="individual" checked onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="individual"> Cá nhân</label>
+              <label htmlFor="individual"> Cá Nhân</label>
             </div>
             <div>
               <input type="radio" name="type" value="enterprise" onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="enterprise" id="enterprise"> Doanh nghiệp</label>
+              <label htmlFor="enterprise" id="enterprise"> Doanh Nghiệp</label>
             </div>
           </div>
         </div>
@@ -138,9 +144,9 @@ function ProductRegist(props) {
           <label className="control-label">Loại sản phẩm</label>
           <div className="input-content form-group" >
             <select onChange={(e) => setCategory(e.target.value)} value={category} >
-              <option value="clothes">Quần áo</option>
-              <option value="cosmetic">Mỹ phấm</option>
-              <option value="art">Nghệ thuật</option>
+              <option value="clothes">Quần Áo</option>
+              <option value="cosmetic">Mỹ Phấm</option>
+              <option value="art">Nghệ Thuật</option>
             </select>
           </div>
         </div>
@@ -157,9 +163,9 @@ function ProductRegist(props) {
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Màu sắc</label>
+          <label className="control-label">Ngày sản xuất</label>
           <div className="input-content form-group">
-            <input type="text" value={productColor} onChange={(e) => setProductColor(e.target.value)} />
+            <input type="date" id='input-date' value={productDate} onChange={(e) => setProductDate(e.target.value)} />
           </div>
         </div>
         <div className="form-sub-wrap">
@@ -176,7 +182,7 @@ function ProductRegist(props) {
 
             {
               ipfsHash &&
-              <img src={imgProductTemp} id="product-img" style={{width: '70px', zIndex: 999}}/>
+              <img src={imgProductTemp} id="product-img" style={{width: '70px', zIndex: 1}}/>
             }
           </div>
         </div>
@@ -246,7 +252,9 @@ function ProductRegist(props) {
 const ProductRegistDiv = styled.div`
   .form{
     border: 1px solid #ccc;
-    padding: 10px 30px
+    padding: 10px 30px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   }
   .form-section{
     display: flex;
@@ -271,6 +279,9 @@ const ProductRegistDiv = styled.div`
   
           padding: 0 5px;
         }
+      }
+      #input-date{
+        width: 15%;
       }
       .input-desc{
         label{

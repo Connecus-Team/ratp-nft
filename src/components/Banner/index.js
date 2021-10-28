@@ -17,8 +17,8 @@ function Banner({handleToUse}) {
             <li> o Giao dịch chứng nhận sở hữu sản phẩm</li>
           </ul>
           <div className="banner__btn">
-            <div className="banner__help-btn" onClick={() => handleToUse()}>Hướng dẫn sử dụng</div>
-            <div className="banner__use-btn"><a href="/application" className="use-link">Sử dụng</a></div>
+            <div className="banner__help-btn" onClick={() => handleToUse()}>HƯỚNG DẪN SỬ DỤNG</div>
+            <div className="banner__use-btn"><a href="/application" className="use-link">SỬ DỤNG</a></div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
 import QRScanner from '../../../components/QRScanner';
@@ -8,6 +8,7 @@ import contractValue from '../../../constants/contract';
 import styled from 'styled-components';
 import queryString from 'query-string';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 function ProductSearch(props) {
   const web3 = useSelector(web3Selector.selectWeb3);
@@ -20,6 +21,7 @@ function ProductSearch(props) {
   const [productData, setProducData] = useState(null);
   const [productImage, setProductImage] = useState(null);
   const [historyTransfer, setHistoryTransfer] = useState([]);
+  const [tokenId, setTokenId] = useState(null);
 
   const qrRef = useRef(null);
 
@@ -53,11 +55,15 @@ function ProductSearch(props) {
         },
       }).then((res) => {
         const {status} = res;
-        console.log(res);
         if (status === 200) {
           const {data} = res;
           const {result} = data;
+          setTokenId(tokenId);
           setHistoryTransfer(result);
+          console.log(productInfo);
+          console.log(productInfo.replace('"', '').replace('"', '')['type']);
+          console.log(JSON.stringify(productInfo.replace('"', '')));
+
           setProducData(productInfo);
           setProductImage(ipfsUrl);
           setSearchData(false);
@@ -93,15 +99,35 @@ function ProductSearch(props) {
   const onScanFile = () => {
     qrRef.current.openImageDialog();
   };
+  const handleCheckTokenDirectBSC = () => {
+    if (contractValue.address && tokenId) {
+      let url = `https://testnet.bscscan.com/token/${contractValue.address}?a=${tokenId}`;
+      window.open(`https://metamask.io/`, '_blank');
+    } else {
+      alert('Không thể chuyển trang với đường dẫn này, Vui lòng thử lại sau !!!');
+    }
+  };
+
+  const getRequestId = (scanResultWebCam) => {
+    const query = queryString.parse(scanResultWebCam);
+    const requestId = Object.values(query)[0];
+    return requestId;
+  };
+  useEffect(() => {
+    // let transferList = [{from_address: '0000', to_address: '0000'}, {from_address: '2222', to_address: 3333}, {from_address: '11111', to_address: 2222}];
+    const productInfo = {'type': 'individual', 'category': 'clothes', 'name': 'LV level3', 'code': 'LVTEST', 'date': '2021-10-29', 'desc': 'Túi thời trang'};
+    console.log(productInfo.type);
+    // setHistoryTransfer(transferList);
+  }, []);
 
   return (
     <ProductSearchDiv>
       <div className="product-search">
         <div className="product-search__form">
-          <input type="text" className="product-search__input"/>
-          <button onClick={() =>getProductFromSmartContract()}>Tra cứu</button>
+          <input type="text" className="product-search__input" value={getRequestId(scanResultWebCam)} onChange={(e) => setScanResultWebCam(e.target.value)}/>
+          <button onClick={() =>getProductFromSmartContract()}>Tìm kiếm</button>
           <button onClick={() => handleSearchQRCode()}>QR Code Scan</button>
-          <button onClick={() => onScanFile()}>QR Code Update</button>
+          <button onClick={() => onScanFile()}>QR Code Upload</button>
         </div>
         <div className="product-search__option">
           <div style={{display: 'none'}}>
@@ -115,7 +141,7 @@ function ProductSearch(props) {
               legacyMode
             />
           </div>
-          <div style={{padding: '5px'}}>Kết quả scan :  {scanResultWebCam}</div>
+          {/* <div style={{padding: '5px'}}>Kết quả scan :  {scanResultWebCam}</div> */}
         </div>
         {
           searchData ?
@@ -123,7 +149,7 @@ function ProductSearch(props) {
             <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
               <LoadingInline type={'bubbles'} color={'#0F054C'} />
             </div>
-            <span>Vui lòng đợi trong giây lát, Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
+            <span>Vui lòng đợi trong giây lát. Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
           </div> :
         <div className="product-search__result" style={productData === null ? {display: 'none'} : {}}>
           <div className="product-search__result-img">
@@ -134,35 +160,22 @@ function ProductSearch(props) {
               <label className="label-control">Thông tin sản phẩm</label>
               <textarea style={{width: '100%'}} rows="10" cols="50" value={productData} />
             </div>
-            {/* <div className="product-sub-info">
-              <label className="label-control">Tên sản phẩm</label>
-              <p>Túi LV thời trang</p>
-            </div>
-            <div className="product-sub-info">
-              <label className="label-control">Kích thước</label>
-              <p>20cm x 50cm</p>
-            </div>
-            <div className="product-sub-info">
-              <label className="label-control">Màu sắc</label>
-              <p>Đen - trắng</p>
-            </div>
-            <div className="product-sub-info">
-              <label className="label-control">Miêu tả</label>
-              <p>Túi LV thời trang thịnh hành nhất năm 2021</p>
-            </div> */}
           </div>
         </div>
         }
         {
           historyTransfer.length !== 0 &&
           <div className="product-search__history">
-            <p>Lịch sử giao dịch</p>
+            <div className="product-search__history-check">
+              <p><i className="fa fa-history"></i> Lịch sử giao dịch</p>
+              <button className="btn btn-check" onClick={() => handleCheckTokenDirectBSC()}><i className="fa fa-share-square"/>Kiểm tra</button>
+            </div>
             <table>
               <thead>
                 <tr>
                   <th width="10%">No.</th>
-                  <th width="45%">From</th>
-                  <th width="45%">To</th>
+                  <th width="45%"> Người Gửi<i className="fa fa-arrow-circle-o-right" style={{color: 'red'}} /></th>
+                  <th width="45%"> Người Nhận <i className="fa fa-arrow-circle-o-left" style={{color: 'green'}} /></th>
                 </tr>
               </thead>
               <tbody>
@@ -171,12 +184,11 @@ function ProductSearch(props) {
                     return (
                       <tr key={idx}>
                         <th>{idx + 1}</th>
-                        <th>{item.from_address}</th>
-                        <th>{item.to_address}</th>
+                        <th><a href="https://testnet.bscscan.com/address/0x4cf496524ce5fe537a04101e051703b808ffb65a" target="_blank" rel="noopener noreferrer"> {item.from_address}</a></th>
+                        <th><a href="https://testnet.bscscan.com/address/0x4cf496524ce5fe537a04101e051703b808ffb65a" target="_blank" rel="noopener noreferrer" >{item.to_address} </a></th>
                       </tr>
                     );
                   })
-
                 }
               </tbody>
             </table>
@@ -187,8 +199,13 @@ function ProductSearch(props) {
   );
 }
 const ProductSearchDiv = styled.div`
-  .product-search{
     border: 1px solid #ccc;
+    padding: 10px 30px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+
+  .product-search{
+    /* border: 1px solid #ccc; */
     padding: 10px 30px;
     &__option{
       display: flex;
@@ -223,6 +240,7 @@ const ProductSearchDiv = styled.div`
         border: transparent;
         color: white;
         cursor: pointer;
+        border-radius:  5px;
       }
     }
     //--> Product Info 
@@ -251,17 +269,53 @@ const ProductSearchDiv = styled.div`
     //--> History
     &__history{
       margin-top: 20px;
+      &-check{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button{
+          padding: 7px 0px;
+          width: 130px;
+          margin-left: 10px;
+
+          background-color: var(--color-background);
+          border: transparent;
+          color: white;
+          cursor: pointer;
+          border-radius:  5px;
+          i{
+            margin-right: 5px;
+            font-size: 20px;
+          }
+        }
+      }
       
       p{
         margin-bottom: 10px;
       }
       table{
         width: 100%;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      }
+      table thead th i {
+        font-size: 20px;
+        margin-left: 5px;
+      }
+      table thead th{
+        background-color: var(--color-background);
+        color: white;
+        padding: 10px;
       }
       table, th{
         font-weight: 500;
         border: 1px solid #ccc;
         border-collapse: collapse;
+        padding: 5px 2px;
+        a{
+          text-decoration: none;
+          color: blue;
+          font-size: 14px;
+        }
       }
     }
   }
