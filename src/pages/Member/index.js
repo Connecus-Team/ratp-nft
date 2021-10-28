@@ -15,7 +15,30 @@ function Home(props) {
             </div>
           </div>
           <div className="member-page__col content">
-            <img className="content__img" src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/244712661_1709607392711099_2992031891309241091_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dRtUdv0qg7EAX_ljcXf&_nc_ht=scontent-ssn1-1.xx&oh=c893970b04d017122315f2564d91de5f&oe=619D1903"/>
+            <div className="mentor-list">
+              <h2>Mentor</h2>
+              <ul>
+                <li> <img className="content__img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+                <li> <img className="content__img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+              </ul>
+            </div>
+            <div className="developer-list">
+              <h2>Devoloper</h2>
+              <div>
+                <ul>
+                  <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+                  <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+                  <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+                  <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDtQ4YYvu990oOH2z_4HMlVEyMv_1pxubhuc0sffLu6tjmcx9LSoaFxtIV3xGK3TygpHY&usqp=CAU"/></li>
+                </ul>
+              </div>
+            </div>
+            {/* <img className="content__img" src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/244712661_1709607392711099_2992031891309241091_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dRtUdv0qg7EAX_ljcXf&_nc_ht=scontent-ssn1-1.xx&oh=c893970b04d017122315f2564d91de5f&oe=619D1903"/>
             <div className="content__text" >
               <ul>
                 <li>Phan Ke Hien</li>
@@ -67,7 +90,7 @@ function Home(props) {
                 <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus deserunt earum mollitia, totam aut dignissimos a perferendis, minima at suscipit ullam asperiores corrupti
                   laudantium voluptates maiores perspiciatis harum veritatis? Quod!</li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

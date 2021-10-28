@@ -14,7 +14,11 @@
     text-align: center;
   }
   .content{
-    display: flex;
+    // display: flex;
+    background: red;
+    .mentor-list{
+      
+    }
     &__img{
       width: 200px;
     }
