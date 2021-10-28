@@ -59,7 +59,10 @@ function Main(props) {
                 <p>
                   {/* <p style={{fontWeight: '1000'}}>Hiện nay,</p>
                    */}
-                  RATP là
+                  RATP ứng dụng công nghệ Blockchain và NFT để định danh các sản phẩm ngoài và chứng nhận quyền sở hữu của người tiêu dùng đối với các sản phẩm đó.<br/>
+                  Bằng cách cho phép người dùng dễ dàng kiểm tra nguồn gốc và xác minh chủ sở hữu của sản phẩm,
+                  RATP giúp bảo vệ quyền lợi người tiêu dùng cũng như giúp doanh nghiệp và các cá nhân bảo vệ doanh thu từ sản phẩm của mình trước những vấn đề về hàng giả,
+                  hàng kém chất lượng.
                 </p>
               </div>
             </div>
@@ -67,10 +70,8 @@ function Main(props) {
           {/* section */}
           <div className="main-page__section">
             <div className="main-page__section-heading">
-              <h1>Điểm nổi trội của RATP</h1>
-              <p>Một ứng dụng phần mềm sử dụng công nghệ blockchain để lưu lại thông tin sản phẩm giúp việc
-              truy xuất nguồn gốc và chủ sở hữu trở nên minh bạch bảo mật và nhanh chóng. Thông tin lưu
-              </p>
+              <h1>Điểm nổi trội của RATP</h1><br/>
+              <p>RATP cung cấp giải pháp xác minh tính tin cậy của sản phẩm. <br/>Từ đó giúp loại bỏ hàng giả và đảm bảo cho các giao dịch mua bán sản phẩm của người dùng</p>
             </div>
             <div className="main-page__section-content">
               <div className="section-content__img">
@@ -91,13 +92,13 @@ function Main(props) {
               {/* product regist */}
               <div className="main-page__guide-row">
                 <div className="main-page__guide-row__content">
-                  <h2>Cách đăng ký sản phẩm</h2>
+                  <h2>Đăng ký sản phẩm</h2>
                   <div>
                     <ul>
-                      <li>Connect Ví metamask (nếu chưa có ví nên ấn vào đây)</li>
-                      <li>Click vào "Sử dụng" trên thanh menu</li>
-                      <li>Điền thông tin theo hướng dẫn của phần nhập thong tin</li>
-                      <li>Click đăng ký là bạn hoàn thành việc đăng ký sản phẩm</li>
+                      <li>Bước 1: Kết nối ví MetaMask (Nếu chưa có ví bạn có thể đăng ký theo hướng dẫn tại đây).</li>
+                      <li>Bước 2: Điền đầy đủ thông tin ở mục nhập thông tín sản phẩm.</li>
+                      <li>Bước 3: Tích vào ô “Đồng ý” sau đó nhấp vào phần “Đăng ký”.</li>
+                      <li>Bước 4: Xác nhận trên ví MetaMask và chờ nhận lại mã QR của sản phẩm.</li>
                     </ul>
                   </div>
                 </div>
@@ -107,13 +108,14 @@ function Main(props) {
               </div>
               {/* product search */}
               <div className="main-page__guide-row" style={{background: 'var(--color-gray-secondary)'}}>
-                <div className="main-page__guide-row__content" style={{order: '1'}}>
-                  <h2>Cách tra cứu sản phẩm</h2>
+                <div className="main-page__guide-row__content" style={{order: '1', padding: '20px 0'}}>
+                  <h2>Tìm kiếm sản phẩm</h2>
                   <div>
                     <ul>
-                      <li>Click vào "Sử dụng" trên thanh menu</li>
-                      <li>Vào phần tra cứu thông tin sản phẩm</li>
-                      <li>Quét mã QR hoặc Update QR</li>
+                      <li>Bước 1: Nhấp vào “Sử dụng” trên thanh menu.</li>
+                      <li>Bước 2: Chọn mục “Tiềm kiếm thông tin sản phẩm”.</li>
+                      <li>Bước 3: Tải mã code QR (Camera hoặc Upload file)</li>
+                      <li>Bước 4: Bấm "Tìm kiếm"</li>
                     </ul>
                   </div>
                 </div>
@@ -127,10 +129,12 @@ function Main(props) {
                 <div className="main-page__guide-row__content">
                   <h2>Giao dịch sản phẩm</h2>
                   <div>
-                    <li>Click vào "Sử dụng" trên thanh menu</li>
-                    <li>Chọn vào sản phẩm muốn Giao dịch</li>
-                    <li>Nhập địa chỉ người nhận</li>
-                    <li>Bấm Thực Hiện để hoàn thành</li>
+                    <ul>
+                      <li>Bước 1: Nhấp vào “Sử dụng” trên thanh Menu.</li>
+                      <li>Bước 2: Chọn mục “Danh sách sản phẩm”.</li>
+                      <li>Bước 3: Chọn sản phẩm và bấm "Giao dịch"</li>
+                      <li>Bước 4: Nhập địa chỉ người nhận và bấm "Thực hiện".</li>
+                    </ul>
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
@@ -149,21 +153,24 @@ function Main(props) {
 const SectionContent = () => {
   const sectionList = [{
     label: 'check-real',
-    title: 'Kiểm tra nguồn gốc, xuất sứ',
+    title: `Doanh nghiệp hoặc cá nhân sở hữu sản phẩm có thể dễ dàng đăng ký với RATP để bảo vệ sản phẩm của mình. 
+    Bằng việc bảo vệ sản phẩm, nhà sản xuất có thể đảm bảo quyền lợi của người mua hàng giúp tăng uy tín và giá trị của thương hiệu.`,
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
-    content: ['loream1', 'lorem1', 'lorem1'],
+    content: ['• Đăng ký dễ dàng', '• Định danh và bảo vệ sản phẩm', '• Khẳng định chất lượng thương hiệu'],
   },
   {
     label: 'check-tracking',
-    title: 'Kiểm tra quyền sở hữu NFT',
+    title: `Với thông tin được mã hóa trong mã QR được gắn trên sản phẩm, RATP giúp người dùng kiểm tra xuất xứ, 
+    lịch sử giao dịch của sản phẩm với thông tin minh bạch, chính xác và nói không với giao dịch bằng “lòng tin” vô điều kiện.`,
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
-    content: ['loream2', 'lorem2', 'lorem2'],
+    content: ['• Chống giả mạo', '• Truy xuất dễ dàng', '• Thông tin minh bạch'],
   },
   {
     label: 'store-point',
-    title: 'Thực hiện giao dịch các tài sản NFT dựa trên tài sản thật',
+    title: `Mỗi giao dịch của sản phẩm đều được đảm bảo bằng việc giao dịch NFT thay cho quyền sở hữu. 
+    Người mua có thể xác minh nguồn gốc cũng như quyền sở hữu sản phẩm của người bán hàng một cách dễ dàng.`,
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
-    content: ['loream3', 'lorem3', 'lorem4'],
+    content: ['• Đảm bảo quyền lợi của hai bên giao dịch', '• Thao tác giao dịch đơn giản', '• Niềm tin ở sản phẩm thật thay vì lòng tin mong manh với người bán'],
   },
   ];
   const [selectTab, setSelectTab] = useState('check-real');
@@ -177,11 +184,11 @@ const SectionContent = () => {
   return (
     <div className="content-container">
       <div className="content-container__wrap">
-        <h2 className="content-container__name">RATP</h2>
+        <h1 className="content-container__name">RATP</h1>
         <ul className="content-container__list">
-          <li onClick={() => setSelectTab('check-real')}>Kiểm tra hàng thật</li>
-          <li onClick={() => setSelectTab('check-tracking')}>Kiểm tra lưu thông</li>
-          <li onClick={() => setSelectTab('store-point')}>Kiểm tra Tích điểm thanh toán</li>
+          <li onClick={() => setSelectTab('check-real')}>Đăng ký sản phẩm</li>
+          <li onClick={() => setSelectTab('check-tracking')}>Kiểm tra nguồn gốc</li>
+          <li onClick={() => setSelectTab('store-point')}>Giao dịch đảm bảo</li>
         </ul>
       </div>
       { content.length !== 0 &&

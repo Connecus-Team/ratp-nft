@@ -55,7 +55,8 @@ function ProductRegist(props) {
 
       const accounts = await web3.eth.getAccounts();
       let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
-      let productInfo = `"{'type':'${type}','category':'${category}','name':'${productName}','code':'${productCode}','date':'${productDate}','desc':'${productDesc}'}"`.toString();
+      let productInfo = `"type: ${type}$$$category: ${category}$$$name:${productName}$$$code:${productCode}$$$date:${productDate}, desc:${productDesc}"`;
+      console.log(productInfo);
       await contract.methods.create(`https://ipfs.io/ipfs/${ipfsHash}`, productInfo).send({from: accounts[0]});
       setLoadingListingEventSC(true);
       contract.events.CreatedColection({}, (err, event) => {

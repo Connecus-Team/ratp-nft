@@ -116,15 +116,17 @@ function ProductList(props) {
 }
 
 const Product = ({product, handleTransfer}) => {
-  const [btnText, setBtnText] = useState('Giao Dịch');
+  const [btnText, setBtnText] = useState('Giao dịch');
   const [addressTo, setAddressTo] = useState(null);
 
   const handleCickTransfer = () => {
-    if (btnText === 'Giao Dịch') {
-      setBtnText('Thực Hiện');
-    } else if (btnText === 'Thực Hiện') {
+    if (btnText === 'Giao dịch') {
+      setBtnText('Thực hiện');
+    } else if (btnText === 'Thực hiện') {
       if (addressTo) {
         handleTransfer(product, addressTo);
+      } else {
+        setBtnText('Giao dịch');
       }
     }
   };
@@ -132,12 +134,14 @@ const Product = ({product, handleTransfer}) => {
   return (
     <ProductItem className="product-item">
       <div className="product-sales-wrap">
-        <button className="product-sales-btn" onClick={() => handleCickTransfer()}>{btnText}</button>
-        <div>
-          <label>Địa chỉ người nhận</label>
+        <div className="product-sales-wrap-transfer">
+          <button className="product-sales-btn" onClick={() => handleCickTransfer()}>{btnText}</button>
           {
-            btnText === 'Thực Hiện' &&
-            <input type='text' onChange={(e) => setAddressTo(e.target.value)} />
+            btnText === 'Thực hiện' &&
+            <div>
+              <label>Địa chỉ người nhận </label>
+              <input type='text' onChange={(e) => setAddressTo(e.target.value)} />
+            </div>
           }
         </div>
       </div>
@@ -145,8 +149,8 @@ const Product = ({product, handleTransfer}) => {
         <img src={product.token_uri}/>
       </div>
       <div className="product-item__content">
-        {product.productInfo}
-        {/* <div className="product-sub-info">
+        {/* {product.productInfo} */}
+        <div className="product-sub-info">
           <label className="label-control">Tên sản phẩm</label>
           <p>{product.name}</p>
         </div>
@@ -161,7 +165,7 @@ const Product = ({product, handleTransfer}) => {
         <div className="product-sub-info">
           <label className="label-control">Miêu tả</label>
           <p>{product.desc}</p>
-        </div> */}
+        </div>
       </div>
     </ProductItem>
   );
@@ -185,7 +189,21 @@ const ProductItem = styled.div`
       position: relative;
       padding: 5px;
       .product-sales-wrap{
+        position: absolute;
+        top: 10px;
+        right: 10px;
 
+        &-transfer{
+          display: flex;
+          flex-direction: column;
+          align-items:flex-end;
+          > div {
+            margin-top: 20px;
+            label{
+              margin-left: 10px;
+            }
+          }
+        }
       }
       .product-sales-btn{
         /* position:absolute; */
@@ -232,6 +250,15 @@ const ProductItem = styled.div`
 
       .product-item__img{
         width: 40%;
+        max-height: 300px;
+        overflow: hidden;
+
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        img{
+          width: 80%;
+        }
       }
       .product-item__content{
         width: 60%;

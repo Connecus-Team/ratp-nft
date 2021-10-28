@@ -60,10 +60,11 @@ function ProductSearch(props) {
           const {result} = data;
           setTokenId(tokenId);
           setHistoryTransfer(result);
-          console.log(productInfo);
-          console.log(productInfo.replace('"', '').replace('"', '')['type']);
-          console.log(JSON.stringify(productInfo.replace('"', '')));
-
+          // let convertObject = productInfo.replaceAll(`'`, `"`).replaceAll(`"`, `'`);
+          // console.log(convertObject);
+          // console.log(JSON.parse(convertObject));
+          // console.log(productInfo.replace('"', '').replace('"', '')['type']);
+          // console.log(JSON.stringify(productInfo.replace('"', '')));
           setProducData(productInfo);
           setProductImage(ipfsUrl);
           setSearchData(false);
@@ -119,7 +120,7 @@ function ProductSearch(props) {
     console.log(productInfo.type);
     // setHistoryTransfer(transferList);
   }, []);
-
+  // console.log('aabbcc'.replaceAll('b', '.'));
   return (
     <ProductSearchDiv>
       <div className="product-search">

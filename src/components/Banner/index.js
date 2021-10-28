@@ -10,11 +10,12 @@ function Banner({handleToUse}) {
         <img className="banner__image"src={Icon.bannerImage}/>
         <div className="banner__text">
           <h1 className="banner__text-brandname">RATP</h1>
-          <p className="banner__text-desc">Khi lòng tin vào sản phẩm được đảm bảo</p>
+          <p className="banner__text-desc">An toàn - Minh bạch - Tin cậy</p>
           <ul className="banner__text-tags">
-            <li> o Chứng nhận quyền sở hữu sản phẩm</li>
-            <li> o Kiểm tra nguồn gốc xuất xứ của sản phẩm</li>
-            <li> o Giao dịch chứng nhận sở hữu sản phẩm</li>
+            <li>  <i className="fa fa-shield"/> Đăng ký bảo vệ sản phẩm</li>
+            <li>  <i className="fa fa-shield"/> Tra cứu nguồn gốc minh bạch</li>
+            <li>  <i className="fa fa-shield"/> Xác minh quyền sở hữu</li>
+            <li>  <i className="fa fa-shield"/> Giao dịch đảm bảo</li>
           </ul>
           <div className="banner__btn">
             <div className="banner__help-btn" onClick={() => handleToUse()}>HƯỚNG DẪN SỬ DỤNG</div>
