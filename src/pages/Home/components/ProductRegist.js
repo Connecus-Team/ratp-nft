@@ -8,6 +8,8 @@ import contractValue from '../../../constants/contract';
 import LoadingInline from '../../../components/Loading/LoadingInline';
 import {useTranslation} from 'react-i18next';
 import moment from 'moment';
+import Waiting from '../../../components/Waiting';
+import ImgZoomIn from '../../../components/ImgZoomIn';
 
 function ProductRegist(props) {
   const [type, setType] = useState('individual');
@@ -54,11 +56,15 @@ function ProductRegist(props) {
         return;
       }
 
+      if (productName.length >= 100 || productCode.length >= 100 || productDate.length >= 200) {
+        alert('Độ dài tối thiểu của các thuộc tính sản phẩm có độ dài tối đa là 100, và miêu tả là 200. Vui lòng kiểm tra lại');
+        return;
+      }
+
 
       const accounts = await web3.eth.getAccounts();
       let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
-      let productInfo = `"type: ${type}, category: ${category}, name:${productName}, code:${productCode}, date:${productDate}, desc:${productDesc}"`;
-      console.log(productInfo);
+      let productInfo = `"type: ${type}, category: ${category}, name: ${productName}, code: ${productCode}, date: ${productDate}, desc: ${productDesc}"`;
       await contract.methods.create(`https://ipfs.io/ipfs/${ipfsHash}`, productInfo).send({from: accounts[0]});
       setLoadingListingEventSC(true);
       contract.events.CreatedColection({}, (err, event) => {
@@ -67,16 +73,13 @@ function ProductRegist(props) {
           console.log(err);
           return;
         }
-        console.log( 'eror', err, event);
       }).on('connected', function(subscriptionId) {
         console.log('subscriptionId', subscriptionId);
       }).on('data', async function(event) {
-        console.log('data', event);
         const {event: eventName} = event;
         if (eventName === 'CreatedColection') {
           const {returnValues} = event;
           const {requestId} = returnValues;
-
           const qrURL = `${contractValue.webDomain}/search?rqid=${requestId}`;
           const response = await QRCode.toDataURL(qrURL);
           setQrImageUrl(response);
@@ -103,11 +106,11 @@ function ProductRegist(props) {
           <div className="input-content form-group type">
             <div>
               <input type="radio" name="type" id="individual" value="individual" checked onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="individual">{t('applicationPage.formRegist.type.value.0')}</label>
+              <label htmlFor="individual"> {t('applicationPage.formRegist.type.value.0')}</label>
             </div>
             <div>
               <input type="radio" name="type" value="enterprise" onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="enterprise" id="enterprise">{t('applicationPage.formRegist.type.value.1')}</label>
+              <label htmlFor="enterprise" id="enterprise"> {t('applicationPage.formRegist.type.value.1')}</label>
             </div>
           </div>
         </div>
@@ -124,19 +127,19 @@ function ProductRegist(props) {
         <div className="form-sub-wrap">
           <label className="control-label">{t('applicationPage.formRegist.productName.key')}</label>
           <div className="input-content form-group">
-            <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)}/>
+            <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} maxLength="100"/>
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">{t('applicationPage.formRegist.productCode.key')}</label>
           <div className="input-content form-group">
-            <input type="text" value={productCode} onChange={(e) => setProductCode(e.target.value)} />
+            <input type="text" value={productCode} onChange={(e) => setProductCode(e.target.value)} maxLength="100" />
           </div>
         </div>
         <div className="form-sub-wrap">
           <label className="control-label">{t('applicationPage.formRegist.productDate.key')}</label>
           <div className="input-content form-group">
-            <input type="date" id='input-date' value={productDate} onChange={(e) => setProductDate(e.target.value)} />
+            <input type="date" id='input-date' value={productDate} onChange={(e) => setProductDate(e.target.value)} maxLength="100"/>
           </div>
         </div>
         <div className="form-sub-wrap">
@@ -150,10 +153,9 @@ function ProductRegist(props) {
           <label className="control-label">{t('applicationPage.formRegist.productImage.key')}</label>
           <div className="input-content form-group" style={{display: 'flex'}}>
             <input type="file" onChange={(e) => captureFile(e)} style={{border: 'none', width: '200px'}}/>
-
             {
               ipfsHash &&
-              <img src={imgProductTemp} id="product-img" style={{width: '70px', zIndex: 1}}/>
+              <img src={imgProductTemp} onClick={() => {ImgZoomIn({imgUrl: imgProductTemp});}} id="product-img" style={{width: '70px', zIndex: 1}}/>
             }
           </div>
         </div>
@@ -204,12 +206,7 @@ function ProductRegist(props) {
         </div>
         {
           loadingListingEventSC ?
-          <div className="loading-event">
-            <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
-              <LoadingInline type={'bubbles'} color={'#0F054C'} />
-            </div>
-            <span>Vui lòng đợi trong giây lát, Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
-          </div> :
+          <Waiting /> :
           <div className="qr-canvas" style={qrImageUrl ? {} : {display: 'none'}}>
             <img src={qrImageUrl} alt = 'qrCode Image'/>
             <a href={qrImageUrl} download> Tải xuống </a>

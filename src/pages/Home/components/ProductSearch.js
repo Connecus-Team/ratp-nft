@@ -2,6 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import QrReader from 'react-qr-reader';
 import QRScanner from '../../../components/QRScanner';
+import Waiting from '../../../components/Waiting';
 import web3Selector from '../../../components/Heading/redux/Web3.Selector';
 import LoadingInline from '../../../components/Loading/LoadingInline';
 import contractValue from '../../../constants/contract';
@@ -17,7 +18,7 @@ function ProductSearch(props) {
 
   const [scanResultWebCam, setScanResultWebCam] = useState(null);
 
-  // const [loading, setLoading] = useState(false);
+  const [loadingHistory, setLoadingHistory] = useState(false);
   const [searchData, setSearchData] = useState(false);
   const [productData, setProducData] = useState(null);
   const [productImage, setProductImage] = useState(null);
@@ -46,6 +47,38 @@ function ProductSearch(props) {
       const productInfo = await contract.methods.products(requestId).call();
       const ipfsUrl = await contract.methods.requestIdToTokenURI(requestId).call();
 
+      let productObject = {
+        type: '',
+        category: '',
+        name: '',
+        code: '',
+        date: '',
+        desc: '',
+      };
+
+      const fullLength = productInfo.length;
+      const typeIndex = productInfo.indexOf('type');
+      const categoryIndex = productInfo.indexOf('category');
+      const nameIndex = productInfo.indexOf('name');
+      const codeIndex = productInfo.indexOf('code');
+      const dateIndex = productInfo.indexOf('date');
+      const descIndex = productInfo.indexOf('desc');
+
+
+      productObject = {
+        type: productInfo.slice(typeIndex + 6, categoryIndex - 2),
+        category: productInfo.slice(categoryIndex + 10, nameIndex - 2),
+        name: productInfo.slice(nameIndex + 6, codeIndex - 2),
+        code: productInfo.slice(codeIndex + 6, dateIndex - 2),
+        date: productInfo.slice(dateIndex + 6, descIndex - 2),
+        desc: productInfo.slice(descIndex + 6, fullLength - 1),
+      };
+      setProducData(productObject);
+      setProductImage(ipfsUrl);
+      setSearchData(false);
+
+
+      setLoadingHistory(true);
       const tokenId = await contract.methods.requestIdToTokenId(requestId).call();
       const url = `https://deep-index.moralis.io/api/v2/nft/${contractValue.address}/${tokenId}/transfers?chain=bsc%20testnet&format=decimal`;
       axios.get(url, {
@@ -60,20 +93,14 @@ function ProductSearch(props) {
           const {result} = data;
           setTokenId(tokenId);
           setHistoryTransfer(result);
-          // let convertObject = productInfo.replaceAll(`'`, `"`).replaceAll(`"`, `'`);
-          // console.log(convertObject);
-          // console.log(JSON.parse(convertObject));
-          // console.log(productInfo.replace('"', '').replace('"', '')['type']);
-          // console.log(JSON.stringify(productInfo.replace('"', '')));
-          setProducData(productInfo);
-          setProductImage(ipfsUrl);
-          setSearchData(false);
+          setLoadingHistory(false);
         } else {
           alert('Truy xuất dữ liệu có lỗi, Vui lòng thử lại sau!!!');
         }
       }).catch((error) => {
+        setSearchData(false);
+        setLoadingHistory(false);
         alert('Truy cập API Moralis phát sinh lỗi, Vui lòng thử lại sau !!!');
-        console.log(error);
       });
     } catch (error) {
       alert('Truy xuất dữ liệu phát sinh lỗi, Vui lòng thử lại sau');
@@ -117,13 +144,7 @@ function ProductSearch(props) {
     const requestId = Object.values(query)[0];
     return requestId;
   };
-  useEffect(() => {
-    // let transferList = [{from_address: '0000', to_address: '0000'}, {from_address: '2222', to_address: 3333}, {from_address: '11111', to_address: 2222}];
-    const productInfo = {'type': 'individual', 'category': 'clothes', 'name': 'LV level3', 'code': 'LVTEST', 'date': '2021-10-29', 'desc': 'Túi thời trang'};
-    console.log(productInfo.type);
-    // setHistoryTransfer(transferList);
-  }, []);
-  // console.log('aabbcc'.replaceAll('b', '.'));
+
   return (
     <ProductSearchDiv>
       <div className="product-search">
@@ -149,12 +170,8 @@ function ProductSearch(props) {
         </div>
         {
           searchData ?
-          <div className="loading-event">
-            <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
-              <LoadingInline type={'bubbles'} color={'#0F054C'} />
-            </div>
-            <span>{t('applicationPage.formSeacrh.loadingText')}</span>
-          </div> :
+        <Waiting />:
+        productData ?
         <div className="product-search__result" style={productData === null ? {display: 'none'} : {}}>
           <div className="product-search__result-img">
             <img src={productImage} />
@@ -162,12 +179,40 @@ function ProductSearch(props) {
           <div className="product-search__result-content">
             <div className="product-sub-info">
               <label className="label-control"> {t('applicationPage.formSeacrh.searchInfo.text.0')}</label>
-              <textarea style={{width: '100%'}} rows="10" cols="50" value={productData} />
+              <div className="info-wrap">
+                <div>
+                  <label>{t('applicationPage.formSeacrh.tableText.1')}</label>
+                  <p>{productData.type}</p>
+                </div>
+                <div>
+                  <label>{t('applicationPage.formSeacrh.tableText.2')}</label>
+                  <p>{productData.category}</p>
+                </div>
+                <div>
+                  <label>{t('applicationPage.formSeacrh.tableText.3')}</label>
+                  <p>{productData.name}</p>
+                </div>
+                <div>
+                  <label>{t('applicationPage.formSeacrh.tableText.4')}</label>
+                  <p>{productData.code}</p>
+                </div>
+                <div>
+                  <label>{t('applicationPage.formSeacrh.tableText.5')}</label>
+                  <p>{productData.date}</p>
+                </div>
+                <div>
+                  <label>{t('applicationPage.formSeacrh.tableText.6')}</label>
+                  <textarea value={productData.desc}/>
+                </div>
+              </div>
+              {/* <textarea style={{width: '100%'}} rows="10" cols="50" value={productData} /> */}
             </div>
           </div>
-        </div>
+        </div> : ''
         }
         {
+          loadingHistory ?
+          <Waiting /> :
           historyTransfer.length !== 0 &&
           <div className="product-search__history">
             <div className="product-search__history-check">
@@ -249,7 +294,7 @@ const ProductSearchDiv = styled.div`
     }
     //--> Product Info 
     &__result{
-      margin-top:20px;
+      margin:50px 0;
       display: flex;
       &-img{
         width: 40%;
@@ -263,10 +308,36 @@ const ProductSearchDiv = styled.div`
         .product-sub-info{
           width: 100%;
           display: flex;
+          flex-direction: column;
+          border:  1px solid var(--color-gray);
+          border-radius:  5px;
           margin: 5px 0;
-          label{
-            width: 20%;
+          > label{
+            width: 100%;
+            background: blue;
+            text-align:center;
+            padding: 10px 0;
+            background-color: var(--color-background);
+            color: white;
           }
+          .info-wrap{
+            padding: 0 5px;
+            > div {
+              display: flex;
+              margin: 10px 0;
+              > label{
+                width: 30%;
+              }
+              > textarea{
+                width: 70%;
+                resize: none;
+                padding: 5px;
+                overflow: auto;
+                height: 50px;
+              }
+            }
+          }
+          
         }
       }
     }

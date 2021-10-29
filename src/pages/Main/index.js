@@ -5,8 +5,10 @@ import ViewVideo from '../../components/ViewVideo';
 import axios from 'axios';
 import HeadingLayer from '../../layouts/HeadingLayer';
 import {useTranslation} from 'react-i18next';
+import Icon from '../../constants/icons';
 
 import './styles.scss';
+import ImgZoomIn from '../../components/ImgZoomIn';
 
 
 function Main(props) {
@@ -74,7 +76,7 @@ function Main(props) {
             </div>
             <div className="main-page__section-content">
               <div className="section-content__img">
-                <img src="https://blockodyssey.io/static/media/scanusImg01.e593b659.png"/>
+                <img onClick={() => {ImgZoomIn({imgUrl: Icon.lvBag});}} src={Icon.lvBag} alt="lv-bag"/>
               </div>
               <div className="section-content__content">
                 <SectionContent />
@@ -102,7 +104,7 @@ function Main(props) {
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
-                  <img src="https://blockodyssey.io/static/media/scanusImg01.e593b659.png" />
+                  <img onClick={() => {ImgZoomIn({imgUrl: Icon.guideRegiste});}} src={Icon.guideRegiste} />
                 </div>
               </div>
               {/* product search */}
@@ -119,7 +121,7 @@ function Main(props) {
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
-                  <img src="https://blockodyssey.io/static/media/scanusImg01.e593b659.png" />
+                  <img onClick={() => {ImgZoomIn({imgUrl: Icon.guideSearch});}} src={Icon.guideSearch} />
                 </div>
               </div>
 
@@ -137,7 +139,7 @@ function Main(props) {
                   </div>
                 </div>
                 <div className="main-page__guide-row__img">
-                  <img src="https://blockodyssey.io/static/media/scanusImg01.e593b659.png" />
+                  <img onClick={() => {ImgZoomIn({imgUrl: Icon.guideList});}} src={Icon.guideList} />
                 </div>
               </div>
             </div>

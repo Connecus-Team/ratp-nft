@@ -5,32 +5,12 @@ import contractValue from '../../../constants/contract';
 import web3Selector from '../../../components/Heading/redux/Web3.Selector';
 import axios from 'axios';
 import LoadingInline from '../../../components/Loading/LoadingInline';
+import {useTranslation} from 'react-i18next';
+import Waiting from '../../../components/Waiting';
+import QRCode from 'qrcode';
+import ImgZoomIn from '../../../components/ImgZoomIn';
 
 function ProductList(props) {
-  // const productList = [{
-  //   name: 'Túi LV thời trang xxx',
-  //   color: 'Trắng - Đen',
-  //   size: '10cm x 20cm',
-  //   desc: 'Túi LV tốt nhất 2021',
-  // },
-  // {
-  //   name: 'Túi LV thời trang TTZ',
-  //   color: 'Trắng - Đen',
-  //   size: '10cm x 20cm',
-  //   desc: 'Túi LV tốt nhất 2021',
-  // },
-  // {
-  //   name: 'Túi LV thời trang LKOQ',
-  //   color: 'Trắng - Đen',
-  //   size: '10cm x 20cm',
-  //   desc: 'Túi LV tốt nhất 2021',
-  // },
-  // {
-  //   name: 'Túi LV thời trang PPY',
-  //   color: 'Trắng - Đen',
-  //   size: '10cm x 20cm',
-  //   desc: 'Túi LV tốt nhất 2021',
-  // }];
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const web3 = useSelector(web3Selector.selectWeb3);
@@ -57,11 +37,41 @@ function ProductList(props) {
             const {data} = res;
             const {result} = data;
             const productsTemp = [];
+
             for (let index = 0; index < result.length; index++) {
               const {token_id} = result[index];
               const requestId = await contract.methods.tokenIdToRequestId(token_id).call();
               const productInfo = await contract.methods.products(requestId).call();
-              productsTemp.push({...result[index], productInfo});
+
+
+              let productObject = {
+                type: '',
+                category: '',
+                name: '',
+                code: '',
+                date: '',
+                desc: '',
+                requestId: requestId,
+              };
+
+              const fullLength = productInfo.length;
+              const typeIndex = productInfo.indexOf('type');
+              const categoryIndex = productInfo.indexOf('category');
+              const nameIndex = productInfo.indexOf('name');
+              const codeIndex = productInfo.indexOf('code');
+              const dateIndex = productInfo.indexOf('date');
+              const descIndex = productInfo.indexOf('desc');
+
+              productObject = {
+                type: productInfo.slice(typeIndex + 6, categoryIndex - 2),
+                category: productInfo.slice(categoryIndex + 10, nameIndex - 2),
+                name: productInfo.slice(nameIndex + 6, codeIndex - 2),
+                code: productInfo.slice(codeIndex + 6, dateIndex - 2),
+                date: productInfo.slice(dateIndex + 6, descIndex - 2),
+                desc: productInfo.slice(descIndex + 6, fullLength- 1),
+                requestId: requestId,
+              };
+              productsTemp.push({...result[index], productObject});
             }
             // localStorage.setItem('products', JSON.stringify(productsTemp));
             setProducts(productsTemp);
@@ -98,12 +108,7 @@ function ProductList(props) {
     <ProductListDiv>
       {
         loading ?
-        <div className="loading-event">
-          <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
-            <LoadingInline type={'bubbles'} color={'#0F054C'} />
-          </div>
-          <span>Vui lòng đợi trong giây lát, Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
-        </div> :
+        <Waiting /> :
         products.length !== 0 && products.map((product) => <Product
           product={product}
           handleTransfer={handleTransfer}
@@ -114,20 +119,36 @@ function ProductList(props) {
 }
 
 const Product = ({product, handleTransfer}) => {
-  const [btnText, setBtnText] = useState('Giao dịch');
+  const {t, i18n} = useTranslation();
+  const [btnText, setBtnText] = useState();
   const [addressTo, setAddressTo] = useState(null);
+  const [qrImageUrl, setQrImageUrl] = useState(null);
+
+  useEffect(() => {
+    setBtnText(t('applicationPage.formList.btnList.0'));
+  }, [t]);
 
   const handleCickTransfer = () => {
-    if (btnText === 'Giao dịch') {
-      setBtnText('Thực hiện');
-    } else if (btnText === 'Thực hiện') {
+    if (btnText === t('applicationPage.formList.btnList.0')) {
+      setBtnText(t('applicationPage.formList.btnList.1'));
+    } else if (btnText === t('applicationPage.formList.btnList.1')) {
       if (addressTo) {
         handleTransfer(product, addressTo);
       } else {
-        setBtnText('Giao dịch');
+        setBtnText(t('applicationPage.formList.btnList.0'));
       }
     }
   };
+
+  useEffect(() => {
+    const setQrImage = async () => {
+      const qrURL = `${contractValue.webDomain}/search?rqid=${product.productObject.requestId}`;
+      const response = await QRCode.toDataURL(qrURL);
+      setQrImageUrl(response);
+    };
+    setQrImage();
+  }, [product]);
+
 
   return (
     <ProductItem className="product-item">
@@ -135,34 +156,49 @@ const Product = ({product, handleTransfer}) => {
         <div className="product-sales-wrap-transfer">
           <button className="product-sales-btn" onClick={() => handleCickTransfer()}>{btnText}</button>
           {
-            btnText === 'Thực hiện' &&
+            btnText === t('applicationPage.formList.btnList.1') &&
             <div>
-              <label>Địa chỉ người nhận </label>
+              <label style={{marginRight: '5px'}}>{t('applicationPage.formList.text')}</label>
               <input type='text' onChange={(e) => setAddressTo(e.target.value)} />
             </div>
           }
         </div>
       </div>
       <div className="product-item__img">
-        <img src={product.token_uri}/>
+        <img src={product.token_uri} onClick={() =>ImgZoomIn({imgUrl: product.token_uri})}/>
       </div>
       <div className="product-item__content">
         {/* {product.productInfo} */}
         <div className="product-sub-info">
-          <label className="label-control">Tên sản phẩm</label>
-          <p>{product.name}</p>
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.1')}</label>
+          <p>{product.productObject.type}</p>
         </div>
         <div className="product-sub-info">
-          <label className="label-control">Kích thước</label>
-          <p>{product.size}</p>
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.2')}</label>
+          <p>{product.productObject.category}</p>
         </div>
         <div className="product-sub-info">
-          <label className="label-control">Màu sắc</label>
-          <p>{product.color}</p>
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.3')}</label>
+          <p>{product.productObject.name}</p>
         </div>
         <div className="product-sub-info">
-          <label className="label-control">Miêu tả</label>
-          <p>{product.desc}</p>
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.4')}</label>
+          <p>{product.productObject.code}</p>
+        </div>
+        <div className="product-sub-info">
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.5')}</label>
+          <p>{product.productObject.date}</p>
+        </div>
+        <div className="product-sub-info">
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.6')}</label>
+          <textarea value={product.productObject.desc}/>
+        </div>
+        <div className="product-sub-info">
+          <label className="label-control">{t('applicationPage.formSeacrh.tableText.7')}</label>
+          <div>
+            <img src={qrImageUrl} alt = 'qrCode Image'/>
+            <a href={qrImageUrl} download> Tải xuống </a>
+          </div>
         </div>
       </div>
     </ProductItem>
@@ -265,7 +301,13 @@ const ProductItem = styled.div`
           display: flex;
           margin: 5px 0;
           label{
-            width: 20%;
+            width: 30%;
+          }
+          textarea{
+            width: 70%;
+            padding: 10px;
+            overflow:auto;
+            resize: none;
           }
         }
       }

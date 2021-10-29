@@ -24,6 +24,14 @@
         font-size:14px;
         margin: 5px 0;
         cursor: pointer;
+        a{
+          text-decoration: none;
+          color: black;
+        }
+      }
+      img{
+        width: 20px;
+        margin-right: 5px;
       }
     }
   }
@@ -33,4 +41,15 @@
     background-color: var(--color-gray-secondary);
     color: black;
   }
+}
+@media (max-width: 768px){
+  .footer {
+    &__map{
+      font-size: 11px;
+      li{
+        font-size: 7px;
+      }
+    }
+  }
+  
 }

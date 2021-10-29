@@ -1,6 +1,7 @@
 import React from 'react';
 import HeadingLayer from '../../layouts/HeadingLayer';
 import Footer from '../../components/Footer';
+import Icon from '../../constants/icons';
 import './styles.scss';
 
 function Home(props) {
@@ -10,33 +11,20 @@ function Home(props) {
         <div className="member-page__container">
           <div className="member-page__col member-img">
             <div className="member-page__col work-img">
-              <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/p1080x2048/245182636_203077278569068_8960726563935767017_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ae9488&_nc_ohc=tSbSDoZJ5YkAX9vTU7Z&_nc_ht=scontent-ssn1-1.xx&oh=eb2a6a2ad85cdaedacf15929b6bb286f&oe=619CD9B4"/>
+              <img src={Icon.banner2}/>
               <label>Ảnh Thành Viên Dự Án</label>
             </div>
-          </div>
-          <div className="member-page__contact">
-            <p>Mọi câu hỏi về sự án xin liên hệ qua địa chỉ Email: rtap@gmail.com</p>
           </div>
           <div className="member-page__col content">
             <div className="mentor-list">
               <h2>Mentor Member</h2>
               <ul>
                 <li className="mentor-list__item-li">
-                  <div className="mentor-list__img-wrap">
+                  {/* <div className="mentor-list__img-wrap">
                     <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/244712661_1709607392711099_2992031891309241091_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dRtUdv0qg7EAX_ljcXf&_nc_ht=scontent-ssn1-1.xx&oh=c893970b04d017122315f2564d91de5f&oe=619D1903"/>
-                  </div>
+                  </div> */}
                   <div className="mentor-list__content-wrap">
-                    <p>Mentor 2</p>
-                    <p>DevOps Engineer</p>
-                  </div>
-                </li>
-                <li className="mentor-list__item-li">
-                  <div className="mentor-list__img-wrap">
-                    <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/244712661_1709607392711099_2992031891309241091_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dRtUdv0qg7EAX_ljcXf&_nc_ht=scontent-ssn1-1.xx&oh=c893970b04d017122315f2564d91de5f&oe=619D1903"/>
-                  </div>
-                  <div className="mentor-list__content-wrap">
-                    <p>Mentor 1</p>
-                    <p>DevOps Engineer</p>
+                    <p>Le Thanh Hung</p>
                   </div>
                 </li>
               </ul>

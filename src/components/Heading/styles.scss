@@ -94,3 +94,12 @@
    //buttons
  
 }
+
+
+@media (max-width: 768px){
+  .heading{
+   &-lang + &-task{
+     display: none;
+   }
+  }
+}

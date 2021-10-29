@@ -102,7 +102,7 @@
       },
       {
         "name" : "Liên hệ",
-        "content" : ["hi@ratp.link"]
+        "content" : ["hi@ratp.link", "https://twitter.com/ratp_link","https://t.me/joinchat/awkHSfjXaHkwMjA1", "https://discord.gg/MPrrd6eE"]
       }
     ]}
   },
@@ -145,12 +145,17 @@
     },
     "formSeacrh": {
       "btnList": ["Tìm kiếm", "Chụp QR Code", "Đăng QR Code"],
+      "tableText": ["Thông tin sản phẩm", "Hình thức kinh doanh", "Loại sản phảm", "Tên sản phẩm", "Mã sản phẩm", "Ngày sản xuất", "Miêu tả", "Barcode"],
       "loadingText" : "Vui lòng đợi trong giây lát. Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!",
       "searchInfo": {
         "text" : ["Thông tin sản phẩm", "Lịch sử giao dịch"],
         "tableCol": ["Người Gửi", "Người Nhận"]
       },
       "checkBtn": "Kiểm tra"
+    },
+    "formList": {
+      "btnList" : ["Giao dịch", "Thực hiện"],
+      "text" : "Địa chỉ người nhận"
     }
   },
   "futurePage" : {

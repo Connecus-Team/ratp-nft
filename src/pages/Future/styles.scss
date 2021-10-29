@@ -4,7 +4,23 @@
     margin: 10px auto;
   }
   &__col{
-    margin: 10px 0;
+    margin: 20px 0;
+    p{
+      text-align: justify;
+      line-height: 25px;
+    }
+    ul li {
+      text-align: justify;
+      margin: 5px 0;
+    }
+    img{
+      margin: 0 auto;
+      width: 100%;
+    }
+    label{
+      display: inline-block;
+      margin-bottom: 5px;
+    }
   }
   .content{
     &__label{

@@ -146,11 +146,16 @@
     "formSeacrh": {
       "btnList": ["Search", "Capture QR Code", "Upload QR Code"],
       "loadingText": "Please wait a moment. Uploading authentication online may take some time",
+      "tableText": ["Product Information", "Business type", "Category", "Product Name", "Product Code", "Product Date", "Product Desctription", "Bar Code"],
       "searchInfo": {
-        "text" : ["Product information", "Transaction history"],
+        "text" : ["Product Information", "Transaction History"],
         "tableCol": ["Sender", "Receiver"]
       },
       "checkBtn": "Check"
+    },
+    "formList": {
+      "btnList" : ["Transaction", "Perform"],
+      "text": "Receiver address"
     }
   },
   "futurePage" : {

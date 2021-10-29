@@ -1,23 +1,15 @@
 .search-page{
+  max-width: 1200px;
+  margin:  0 auto;
+  border: 1px solid #ccc;
 
-  .loading-event{
-    margin: 20px;
-    background: var(--color-gray-secondary);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-  }
-  
   .product-search{
-    /* border: 1px solid #ccc; */
-    padding: 10px 30px;
-
-    //--> Product Info 
     &__result{
-      margin-top:20px;
+      margin:50px 0;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       &-img{
         width: 40%;
         text-align: center;
@@ -30,62 +22,59 @@
         .product-sub-info{
           width: 100%;
           display: flex;
+          flex-direction: column;
+          border:  1px solid var(--color-gray);
+          border-radius:  5px;
           margin: 5px 0;
-          label{
-            width: 20%;
+          > label{
+            width: 100%;
+            background: blue;
+            text-align:center;
+            padding: 10px 0;
+            background-color: var(--color-background);
+            color: white;
           }
+          .info-wrap{
+            padding: 0 5px;
+            > div {
+              display: flex;
+              margin: 10px 0;
+              > label{
+                width: 30%;
+              }
+              > textarea{
+                width: 70%;
+                resize: none;
+                padding: 5px;
+                overflow: auto;
+                height: 50px;
+              }
+            }
+          }
+          
         }
       }
     }
-    //--> History
-    &__history{
-      margin-top: 20px;
-      &-check{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        button{
-          padding: 7px 0px;
-          width: 130px;
-          margin-left: 10px;
+  }
+}
 
-          background-color: var(--color-background);
-          border: transparent;
-          color: white;
-          cursor: pointer;
-          border-radius:  5px;
-          i{
-            margin-right: 5px;
-            font-size: 20px;
-          }
+@media (max-width: 768px){
+  .search-page{
+    .product-search{
+      &__result-img{
+        width: 100%;
+        img{
+          width: 100%;
         }
       }
-      
-      p{
-        margin-bottom: 10px;
-      }
-      table{
+      &__result-content{
         width: 100%;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      }
-      table thead th i {
-        font-size: 20px;
-        margin-left: 5px;
-      }
-      table thead th{
-        background-color: var(--color-background);
-        color: white;
-        padding: 10px;
-      }
-      table, th{
-        font-weight: 500;
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-        padding: 5px 2px;
-        a{
-          text-decoration: none;
-          color: blue;
-          font-size: 14px;
+        font-size: 13px;
+        p{
+          margin-left: 10px;
+        }
+        img{
+          width: 50%;
         }
       }
     }
