@@ -107,7 +107,8 @@
     ]}
   },
   "applicationPage": {
-
+    "btnTop" : "KẾT NỐI VÍ",
+    "btnList" : ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN", "DANH SÁCH SẢN PHẨM"]
   },
   "futurePage" : {
 

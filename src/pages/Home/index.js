@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import ProductRegist from './components/ProductRegist';
 import ProductSearch from './components/ProductSearch';
 import web3Action from '../../components/Heading/redux/Web3.Action';
+import {useTranslation} from 'react-i18next';
 import Web3 from 'web3';
 
 import './styles.scss';
@@ -15,7 +16,7 @@ function Home(props) {
   const [currentAccount, setCurrentAcount] = useState(null);
 
   const dispatch = useDispatch();
-
+  const {t, i18n} = useTranslation();
   const handleConnectWallet = async () => {
     try {
       let web3Provider;
