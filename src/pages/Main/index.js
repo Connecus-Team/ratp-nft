@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import ViewVideo from '../../components/ViewVideo';
 import axios from 'axios';
 import HeadingLayer from '../../layouts/HeadingLayer';
+import {useTranslation} from 'react-i18next';
 
 import './styles.scss';
 
@@ -13,6 +14,7 @@ function Main(props) {
     ViewVideo();
   };
 
+  const {t, i18n} = useTranslation();
   const myRef = useRef(null);
   useEffect(() => {
     const url = 'https://deep-index.moralis.io/api/v2/nft/0x8bEDFf6315e415d549384E4518219bCB0d2Cb832/18/transfers?chain=bsc%20testnet&format=decimal';
@@ -36,7 +38,7 @@ function Main(props) {
         <div className="main-page__container">
           {/* intro */}
           <div className="main-page__intro">
-            <h1>Ứng dụng RATP</h1>
+            <h1>{t('mainPage.intro.name')}</h1>
             <div className="main-page__intro-content">
               <div className="intro-video">
                 <div className="intro-video__wrap" onClick={() => hanleClickVewVideo()}>
@@ -59,10 +61,7 @@ function Main(props) {
                 <p>
                   {/* <p style={{fontWeight: '1000'}}>Hiện nay,</p>
                    */}
-                  RATP ứng dụng công nghệ Blockchain và NFT để định danh các sản phẩm ngoài và chứng nhận quyền sở hữu của người tiêu dùng đối với các sản phẩm đó.<br/>
-                  Bằng cách cho phép người dùng dễ dàng kiểm tra nguồn gốc và xác minh chủ sở hữu của sản phẩm,
-                  RATP giúp bảo vệ quyền lợi người tiêu dùng cũng như giúp doanh nghiệp và các cá nhân bảo vệ doanh thu từ sản phẩm của mình trước những vấn đề về hàng giả,
-                  hàng kém chất lượng.
+                  {t('mainPage.intro.text')}
                 </p>
               </div>
             </div>
@@ -70,8 +69,8 @@ function Main(props) {
           {/* section */}
           <div className="main-page__section">
             <div className="main-page__section-heading">
-              <h1>Điểm nổi trội của RATP</h1><br/>
-              <p>RATP cung cấp giải pháp xác minh tính tin cậy của sản phẩm. <br/>Từ đó giúp loại bỏ hàng giả và đảm bảo cho các giao dịch mua bán sản phẩm của người dùng</p>
+              <h1>{t('mainPage.section.title')}</h1><br/>
+              <p>{t('mainPage.section.content.0')} . <br/>{t('mainPage.section.content.1')}</p>
             </div>
             <div className="main-page__section-content">
               <div className="section-content__img">
@@ -86,19 +85,19 @@ function Main(props) {
           {/* guide */}
           <div className="main-page__guide" >
             <div className="main-page__guide-title">
-              <h1>Hướng dẫn sử dụng RATP?</h1>
+              <h1>{t('mainPage.guide.title')}</h1>
             </div>
             <div className="main-page__guide-content">
               {/* product regist */}
               <div className="main-page__guide-row">
                 <div className="main-page__guide-row__content">
-                  <h2>Đăng ký sản phẩm</h2>
+                  <h2>{t('mainPage.guide.guideSub.0.name')}</h2>
                   <div>
                     <ul>
-                      <li>Bước 1: Kết nối ví MetaMask (Nếu chưa có ví bạn có thể đăng ký theo hướng dẫn tại đây).</li>
-                      <li>Bước 2: Điền đầy đủ thông tin ở mục nhập thông tín sản phẩm.</li>
-                      <li>Bước 3: Tích vào ô “Đồng ý” sau đó nhấp vào phần “Đăng ký”.</li>
-                      <li>Bước 4: Xác nhận trên ví MetaMask và chờ nhận lại mã QR của sản phẩm.</li>
+                      <li>{t('mainPage.guide.guideSub.0.guideChild.0')}</li>
+                      <li>{t('mainPage.guide.guideSub.0.guideChild.1')}</li>
+                      <li>{t('mainPage.guide.guideSub.0.guideChild.2')}</li>
+                      <li>{t('mainPage.guide.guideSub.0.guideChild.3')}</li>
                     </ul>
                   </div>
                 </div>
@@ -109,13 +108,13 @@ function Main(props) {
               {/* product search */}
               <div className="main-page__guide-row" style={{background: 'var(--color-gray-secondary)'}}>
                 <div className="main-page__guide-row__content" style={{order: '1', padding: '20px 0'}}>
-                  <h2>Tìm kiếm sản phẩm</h2>
+                  <h2>{t('mainPage.guide.guideSub.1.name')}</h2>
                   <div>
                     <ul>
-                      <li>Bước 1: Nhấp vào “Sử dụng” trên thanh menu.</li>
-                      <li>Bước 2: Chọn mục “Tiềm kiếm thông tin sản phẩm”.</li>
-                      <li>Bước 3: Tải mã code QR (Camera hoặc Upload file)</li>
-                      <li>Bước 4: Bấm "Tìm kiếm"</li>
+                      <li>{t('mainPage.guide.guideSub.1.guideChild.0')}</li>
+                      <li>{t('mainPage.guide.guideSub.1.guideChild.1')}</li>
+                      <li>{t('mainPage.guide.guideSub.1.guideChild.2')}</li>
+                      <li>{t('mainPage.guide.guideSub.1.guideChild.3')}</li>
                     </ul>
                   </div>
                 </div>
@@ -127,13 +126,13 @@ function Main(props) {
               {/* product list */}
               <div className="main-page__guide-row">
                 <div className="main-page__guide-row__content">
-                  <h2>Giao dịch sản phẩm</h2>
+                  <h2>{t('mainPage.guide.guideSub.2.name')}</h2>
                   <div>
                     <ul>
-                      <li>Bước 1: Nhấp vào “Sử dụng” trên thanh Menu.</li>
-                      <li>Bước 2: Chọn mục “Danh sách sản phẩm”.</li>
-                      <li>Bước 3: Chọn sản phẩm và bấm "Giao dịch"</li>
-                      <li>Bước 4: Nhập địa chỉ người nhận và bấm "Thực hiện".</li>
+                      <li>{t('mainPage.guide.guideSub.2.guideChild.0')}</li>
+                      <li>{t('mainPage.guide.guideSub.2.guideChild.1')}</li>
+                      <li>{t('mainPage.guide.guideSub.2.guideChild.2')}</li>
+                      <li>{t('mainPage.guide.guideSub.2.guideChild.3')}</li>
                     </ul>
                   </div>
                 </div>
@@ -151,26 +150,24 @@ function Main(props) {
   );
 }
 const SectionContent = () => {
+  const {t, i18n} = useTranslation();
   const sectionList = [{
     label: 'check-real',
-    title: `Doanh nghiệp hoặc cá nhân sở hữu sản phẩm có thể dễ dàng đăng ký với RATP để bảo vệ sản phẩm của mình. 
-    Bằng việc bảo vệ sản phẩm, nhà sản xuất có thể đảm bảo quyền lợi của người mua hàng giúp tăng uy tín và giá trị của thương hiệu.`,
+    title: t('mainPage.section.sectionSub.sectionChild.0.title'),
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
-    content: ['• Đăng ký dễ dàng', '• Định danh và bảo vệ sản phẩm', '• Khẳng định chất lượng thương hiệu'],
+    content: [t('mainPage.section.sectionSub.sectionChild.0.descList.0'), t('mainPage.section.sectionSub.sectionChild.0.descList.1'), t('mainPage.section.sectionSub.sectionChild.0.descList.2')],
   },
   {
     label: 'check-tracking',
-    title: `Với thông tin được mã hóa trong mã QR được gắn trên sản phẩm, RATP giúp người dùng kiểm tra xuất xứ, 
-    lịch sử giao dịch của sản phẩm với thông tin minh bạch, chính xác và nói không với giao dịch bằng “lòng tin” vô điều kiện.`,
+    title: t('mainPage.section.sectionSub.sectionChild.1.title'),
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
-    content: ['• Chống giả mạo', '• Truy xuất dễ dàng', '• Thông tin minh bạch'],
+    content: [t('mainPage.section.sectionSub.sectionChild.1.descList.0'), t('mainPage.section.sectionSub.sectionChild.1.descList.1'), t('mainPage.section.sectionSub.sectionChild.1.descList.2')],
   },
   {
     label: 'store-point',
-    title: `Mỗi giao dịch của sản phẩm đều được đảm bảo bằng việc giao dịch NFT thay cho quyền sở hữu. 
-    Người mua có thể xác minh nguồn gốc cũng như quyền sở hữu sản phẩm của người bán hàng một cách dễ dàng.`,
+    title: t('mainPage.section.sectionSub.sectionChild.2.title'),
     imgSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKQLYCnxyw-Wt42JyfPiPMxY-ibRsiCM1yew&usqp=CAU',
-    content: ['• Đảm bảo quyền lợi của hai bên giao dịch', '• Thao tác giao dịch đơn giản', '• Niềm tin ở sản phẩm thật thay vì lòng tin mong manh với người bán'],
+    content: [t('mainPage.section.sectionSub.sectionChild.2.descList.0'), t('mainPage.section.sectionSub.sectionChild.2.descList.1'), t('mainPage.section.sectionSub.sectionChild.2.descList.2')],
   },
   ];
   const [selectTab, setSelectTab] = useState('check-real');
@@ -179,16 +176,16 @@ const SectionContent = () => {
   useEffect(() => {
     const contenTemp = sectionList.filter((item) => item.label === selectTab);
     setContent(contenTemp[0]);
-  }, [selectTab]);
+  }, [selectTab, t]);
 
   return (
     <div className="content-container">
       <div className="content-container__wrap">
         <h1 className="content-container__name">RATP</h1>
         <ul className="content-container__list">
-          <li onClick={() => setSelectTab('check-real')}>Đăng ký sản phẩm</li>
-          <li onClick={() => setSelectTab('check-tracking')}>Kiểm tra nguồn gốc</li>
-          <li onClick={() => setSelectTab('store-point')}>Giao dịch đảm bảo</li>
+          <li onClick={() => setSelectTab('check-real')}>{t('mainPage.section.sectionSub.sectionChild.0.name')}</li>
+          <li onClick={() => setSelectTab('check-tracking')}>{t('mainPage.section.sectionSub.sectionChild.1.name')}</li>
+          <li onClick={() => setSelectTab('store-point')}>{t('mainPage.section.sectionSub.sectionChild.2.name')}</li>
         </ul>
       </div>
       { content.length !== 0 &&

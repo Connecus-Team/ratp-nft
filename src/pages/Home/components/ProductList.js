@@ -85,9 +85,7 @@ function ProductList(props) {
           from: accounts[0],
         },
       }, (err, data) => {
-        console.log(data);
         let productsTemp = products.filter((item) => item.token_id !== product.token_id);
-        // localStorage.setItem('products', JSON.stringify(productsTemp));
         setProducts(productsTemp);
         alert('Giao Dịch Thành Công');
       });

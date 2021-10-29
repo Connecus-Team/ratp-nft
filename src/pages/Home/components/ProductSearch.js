@@ -32,7 +32,6 @@ function ProductSearch(props) {
       alert('Vui lòng quét mã Barcode của sản phẩm muốn tra cứu');
       return;
     }
-
     if (!web3) {
       alert('Vui truy cập ví để thực hiện tru cứu');
       return;
@@ -71,7 +70,10 @@ function ProductSearch(props) {
         } else {
           alert('Truy xuất dữ liệu có lỗi, Vui lòng thử lại sau!!!');
         }
-      }).catch((error) => console.log(error));
+      }).catch((error) => {
+        alert('Truy cập API Moralis phát sinh lỗi, Vui lòng thử lại sau !!!');
+        console.log(error);
+      });
     } catch (error) {
       alert('Truy xuất dữ liệu phát sinh lỗi, Vui lòng thử lại sau');
     }
@@ -185,8 +187,8 @@ function ProductSearch(props) {
                     return (
                       <tr key={idx}>
                         <th>{idx + 1}</th>
-                        <th><a href="https://testnet.bscscan.com/address/0x4cf496524ce5fe537a04101e051703b808ffb65a" target="_blank" rel="noopener noreferrer"> {item.from_address}</a></th>
-                        <th><a href="https://testnet.bscscan.com/address/0x4cf496524ce5fe537a04101e051703b808ffb65a" target="_blank" rel="noopener noreferrer" >{item.to_address} </a></th>
+                        <th><a href={`https://testnet.bscscan.com/address/${item.from_address}`} target="_blank" rel="noopener noreferrer"> {item.from_address}</a></th>
+                        <th><a href={`https://testnet.bscscan.com/address/${item.to_address}`} target="_blank" rel="noopener noreferrer" >{item.to_address} </a></th>
                       </tr>
                     );
                   })

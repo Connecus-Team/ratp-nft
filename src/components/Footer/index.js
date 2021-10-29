@@ -1,46 +1,44 @@
 import React from 'react';
 import './styles.scss';
+import {useTranslation} from 'react-i18next';
 
 function Footer(props) {
+  const {t, i18n} = useTranslation();
   return (
     <div className="footer">
-      <h2 className="footer__title">Bắt đầu với RATP, tăng lòng tin người dùng</h2>
+      <h2 className="footer__title">{t('mainPage.footer.title')}</h2>
       <div className="footer__map">
         <ul className="footer__map-list">
           <li>
-            <p>Dịch vụ</p>
+            <p>{t('mainPage.footer.webmap.0.name')}</p>
             <ul className="footer__map-list-child">
-              <li>Đăng ký sản phẩm</li>
-              <li>Truy xuất sản phẩm</li>
-              <li>Giao dịch sản phẩm</li>
+              <li>{t('mainPage.footer.webmap.0.content.0')}</li>
+              <li>{t('mainPage.footer.webmap.0.content.1')}</li>
+              <li>{t('mainPage.footer.webmap.0.content.2')}</li>
             </ul>
           </li>
-
           <li>
-            <p>Thông tin</p>
+            <p>{t('mainPage.footer.webmap.1.name')}</p>
             <ul className="footer__map-list-child">
-              <li>Hoạt động</li>
+              <li>{t('mainPage.footer.webmap.1.content.0')}</li>
             </ul>
           </li>
-
           <li>
-            <p>Sự kiện</p>
+            <p>{t('mainPage.footer.webmap.2.name')}</p>
             <ul className="footer__map-list-child">
-              <li>Danh sách sự kiện</li>
+              <li>{t('mainPage.footer.webmap.2.content.0')}</li>
             </ul>
           </li>
-
           <li>
-            <p>Giới thiệu</p>
+            <p>{t('mainPage.footer.webmap.3.name')}</p>
             <ul className="footer__map-list-child">
-              <li>Giới thiệu thành viên</li>
+              <li>{t('mainPage.footer.webmap.3.content.0')}</li>
             </ul>
           </li>
-
           <li>
-            <p>Liên hệ</p>
+            <p>{t('mainPage.footer.webmap.4.name')}</p>
             <ul className="footer__map-list-child">
-              <li>ratp@gmail.com</li>
+              <li>{t('mainPage.footer.webmap.4.content.0')}</li>
             </ul>
           </li>
         </ul>

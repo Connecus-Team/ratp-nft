@@ -1,0 +1,93 @@
+.search-page{
+
+  .loading-event{
+    margin: 20px;
+    background: var(--color-gray-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .product-search{
+    /* border: 1px solid #ccc; */
+    padding: 10px 30px;
+
+    //--> Product Info 
+    &__result{
+      margin-top:20px;
+      display: flex;
+      &-img{
+        width: 40%;
+        text-align: center;
+        img{
+          width: 40%;
+        }
+      }
+      &-content{
+        width: 60%;
+        .product-sub-info{
+          width: 100%;
+          display: flex;
+          margin: 5px 0;
+          label{
+            width: 20%;
+          }
+        }
+      }
+    }
+    //--> History
+    &__history{
+      margin-top: 20px;
+      &-check{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button{
+          padding: 7px 0px;
+          width: 130px;
+          margin-left: 10px;
+
+          background-color: var(--color-background);
+          border: transparent;
+          color: white;
+          cursor: pointer;
+          border-radius:  5px;
+          i{
+            margin-right: 5px;
+            font-size: 20px;
+          }
+        }
+      }
+      
+      p{
+        margin-bottom: 10px;
+      }
+      table{
+        width: 100%;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      }
+      table thead th i {
+        font-size: 20px;
+        margin-left: 5px;
+      }
+      table thead th{
+        background-color: var(--color-background);
+        color: white;
+        padding: 10px;
+      }
+      table, th{
+        font-weight: 500;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        padding: 5px 2px;
+        a{
+          text-decoration: none;
+          color: blue;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

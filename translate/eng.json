@@ -1,0 +1,130 @@
+{
+  "lang": "eng",
+  "headerText": ["Main", "Work", "Future", "Event", "Member", "Source"],
+  "headerButton": "Lauch",
+  "mainPage": {
+    "banner": {
+      "name": "RATP",
+      "": "RATP",
+      "bannerText": ["Safety", "Transparency", "Trust"],
+      "hashtag": ["Register for product protection", "Look up transparent origin", "Verify ownership", "Secured Transactions"],
+      "button": {
+        "use" : "USER MANUAL",
+        "app" : "Lauch"
+      }
+    },
+    "intro": {
+      "name": "RATP Application",
+      "text": "RATP applies Blockchain and NFT technology to identify external products and certify consumer ownership of those products. By allowing users to easily check the origin and verify the owner of a product, RATP helps protect consumers' interests as well as helps businesses and individuals protect the revenue from their products. problems of counterfeit goods, poor quality goods."
+    },
+    "section" : {
+      "title" : "Highlights of RATP",
+      "content" : ["RATP provides a solution to verify product reliability","Thereby helping to eliminate fakes and ensure the purchase and sale of users' products"],
+      "sectionSub": {
+        "name" : "RATP",
+        "sectionChild": [
+          {
+            "name" : "Product registration",
+            "title" : "Businesses or individuals who own products can easily register with RATP to protect their products. By protecting the product, the manufacturer can ensure the interests of the buyer helping to increase the reputation and value of the brand.",
+            "descList" : [
+              "• Sign up is easy",
+              "• Product identification and protection",
+              "• Brand quality affirmation"
+            ]
+          },
+          {
+            "name" : "Check the origin",
+            "title" : "With the information encoded in the QR code attached to the product, RATP helps users to check the origin and transaction history of the product with transparent and accurate information and say no to transactions with 'trust'. unconditional.",
+            "descList" : [
+              "• Anti-forgery",
+              "• Easy access",
+              "• Transparent information"
+            ]
+          },{
+            "name" : "Secured Transactions",
+            "title" : "Every transaction of the product is secured by trading NFT in lieu of ownership. Buyers can verify the seller's product origin and ownership easily.",
+            "descList" : [
+              "• Ensure the interests of both parties to the transaction",
+              "• Simple transaction operation",
+              "• Trust in the real product instead of fragile trust with the seller"
+            ]
+          }
+        ]
+      }
+    },
+    "guide": {
+      "title" : "How to use RATP?",
+      "guideSub" : [
+        {
+          "name" : "Product registration",
+          "guideChild" : ["Step 1: Connect the MetaMask wallet (If you do not have a wallet, you can register by following the instructions here).",
+          "Step 2: Fill in the information in the product information entry.",
+          "Step 3: Check the box 'Agree' then click 'Register'.",
+          "Step 4: Confirm on MetaMask wallet and wait to receive the product's QR code back."
+          ]
+        },
+        {
+          "name" : "Search product",
+          "guideChild" : ["Step 1: Click “Use” on the menu bar.",
+          "Step 2: Select 'Search for product information'.",
+          "Step 3: Download the QR code (Camera or Upload file)",
+          "Step 4: Click 'Search'"
+          ]
+        },
+        {
+          "name" : "Product trading",
+          "guideChild" : ["Step 1: Click “Use” on the Menu bar.",
+          "Step 2: Select the item “List of products”.",
+          "Step 3: Select the product and click 'Transaction'",
+          "Step 4: Enter the recipient's address and click 'Done'"
+          ]
+        }
+      ]
+    },
+    "footer" : {
+      "title" : "Start with RATP, increase user trust",
+      "webmap": [
+      {
+        "name" : "Service",
+        "content" : ["Product registration","Product Retrieval","Product trading"]
+      },
+      {
+        "name" : "Information",
+        "content" : ["Work"]
+      },
+      {
+        "name" : "Event",
+        "content" : ["List of events"]
+      },
+      {
+        "name" : "Member",
+        "content" : ["Member Introduction"]
+      },
+      {
+        "name" : "Contact",
+        "content" : ["hi@ratp.link"]
+      }
+    ]}
+  },
+  "application": {
+    "buttonList": ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN SẢN PHẨM", "DANH SÁCH SẢN PHẨM"],
+    "form": {
+      "type" : {
+        "name" : "Hình thức kinh doanh",
+        "content" : ["Cá nhân", "Doanh Nghiệp"]
+      }
+    }
+  },
+  "applicationPage": {
+
+  },
+  "futurePage" : {
+
+  },
+  "eventPage" : {
+
+  },
+  "memberPage" : {
+
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "lang": "vn",
+  "headerText": ["TRANG CHỦ", "HOẠT ĐỘNG", "KẾ HOẠCH", "SỰ KIỆN", "THÀNH VIÊN", "MÃ NGUỒN"],
+  "headerButton": "SỬ DỤNG",
+  "mainPage": {
+    "banner": {
+      "name": "RATP",
+      "": "RATP",
+      "bannerText": ["An toàn", "Minh bạch", "Tin cậy"],
+      "hashtag": ["Đăng ký bảo vệ sản phẩm", "Tra cứu nguồn gốc minh bạch", "Xác minh quyền sở hữu", "Giao dịch đảm bảo"],
+      "button": {
+        "use" : "HƯỚNG DẪN SỬ DỤNG",
+        "app" : "SỬ DỤNG"
+      }
+    },
+    "intro": {
+      "name": "Ứng dụng RATP",
+      "text" : "RATP ứng dụng công nghệ Blockchain và NFT để định danh các sản phẩm ngoài và chứng nhận quyền sở hữu của người tiêu dùng đối với các sản phẩm đó. Bằng cách cho phép người dùng dễ dàng kiểm tra nguồn gốc và xác minh chủ sở hữu của sản phẩm, RATP giúp bảo vệ quyền lợi người tiêu dùng cũng như giúp doanh nghiệp và các cá nhân bảo vệ doanh thu từ sản phẩm của mình trước những vấn đề về hàng giả, hàng kém chất lượng."
+    },
+    "section" : {
+      "title" : "Điểm nổi trội của RATP",
+      "content" : ["RATP cung cấp giải pháp xác minh tính tin cậy của sản phẩm","Từ đó giúp loại bỏ hàng giả và đảm bảo cho các giao dịch mua bán sản phẩm của người dùng"],
+      "sectionSub": {
+        "name" : "RATP",
+        "sectionChild": [
+          {
+            "name" : "Đăng ký sản phẩm",
+            "title" : "Doanh nghiệp hoặc cá nhân sở hữu sản phẩm có thể dễ dàng đăng ký với RATP để bảo vệ sản phẩm của mình. Bằng việc bảo vệ sản phẩm, nhà sản xuất có thể đảm bảo quyền lợi của người mua hàng giúp tăng uy tín và giá trị của thương hiệu.",
+            "descList" : [
+              "• Đăng ký dễ dàng",
+              "• Định danh và bảo vệ sản phẩm",
+              "• Khẳng định chất lượng thương hiệu"
+            ]
+          },
+          {
+            "name" : "Kiểm tra nguồn gốc",
+            "title" : "Với thông tin được mã hóa trong mã QR được gắn trên sản phẩm, RATP giúp người dùng kiểm tra xuất xứ, lịch sử giao dịch của sản phẩm với thông tin minh bạch, chính xác và nói không với giao dịch bằng “lòng tin” vô điều kiện.",
+            "descList" : [
+              "• Chống giả mạo",
+              "• Truy xuất dễ dàng",
+              "• Thông tin minh bạch"
+            ]
+          },{
+            "name" : "Giao dịch đảm bảo",
+            "title" : "Mỗi giao dịch của sản phẩm đều được đảm bảo bằng việc giao dịch NFT thay cho quyền sở hữu. Người mua có thể xác minh nguồn gốc cũng như quyền sở hữu sản phẩm của người bán hàng một cách dễ dàng.",
+            "descList" : [
+              "• Đảm bảo quyền lợi của hai bên giao dịch",
+              "• Thao tác giao dịch đơn giản",
+              "• Niềm tin ở sản phẩm thật thay vì lòng tin mong manh với người bán"
+            ]
+          }
+        ]
+      }
+    },
+    "guide": {
+      "title" : "Hướng dẫn sử dụng RATP?",
+      "guideSub" : [
+        {
+          "name" : "Đăng ký sản phẩm",
+          "guideChild" : ["Bước 1: Kết nối ví MetaMask (Nếu chưa có ví bạn có thể đăng ký theo hướng dẫn tại đây).",
+          "Bước 2: Điền đầy đủ thông tin ở mục nhập thông tín sản phẩm.",
+          "Bước 3: Tích vào ô “Đồng ý” sau đó nhấp vào phần “Đăng ký”.",
+          "Bước 4: Xác nhận trên ví MetaMask và chờ nhận lại mã QR của sản phẩm."
+          ]
+        },
+        {
+          "name" : "Tìm kiếm sản phẩm",
+          "guideChild" : ["Bước 1: Nhấp vào “Sử dụng” trên thanh menu.",
+          "Bước 2: Chọn mục 'Tiềm kiếm thông tin sản phẩm'.",
+          "Bước 3: Tải mã code QR (Camera hoặc Upload file)",
+          "Bước 4: Bấm 'Tìm kiếm'"
+          ]
+        },
+        {
+          "name" : "Giao dịch sản phẩm",
+          "guideChild" : ["Bước 1: Nhấp vào “Sử dụng” trên thanh Menu.",
+          "Bước 2: Chọn mục “Danh sách sản phẩm”.",
+          "Bước 3: Chọn sản phẩm và bấm 'Giao dịch",
+          "Bước 4: Nhập địa chỉ người nhận và bấm 'Thực hiện'"
+          ]
+        }
+      ]
+    },
+    "footer" : {
+      "title" : "Bắt đầu với RATP, tăng lòng tin người dùng",
+      "webmap": [
+      {
+        "name" : "Dịch vụ",
+        "content" : ["Đăng ký sản phẩm","Truy xuất sản phẩm","Giao dịch sản phẩm"]
+      },
+      {
+        "name" : "Thông tin",
+        "content" : ["Hoạt động"]
+      },
+      {
+        "name" : "Sự kiện",
+        "content" : ["Danh sách sự kiện"]
+      },
+      {
+        "name" : "Thành viên",
+        "content" : ["Giới thiệu thành viên"]
+      },
+      {
+        "name" : "Liên hệ",
+        "content" : ["hi@ratp.link"]
+      }
+    ]}
+  },
+  "applicationPage": {
+
+  },
+  "futurePage" : {
+
+  },
+  "eventPage" : {
+
+  },
+  "memberPage" : {
+
+  }
+}
