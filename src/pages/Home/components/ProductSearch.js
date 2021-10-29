@@ -153,7 +153,7 @@ function ProductSearch(props) {
             <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
               <LoadingInline type={'bubbles'} color={'#0F054C'} />
             </div>
-            <span>Vui lòng đợi trong giây lát. Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
+            <span>{t('applicationPage.formSeacrh.loadingText')}</span>
           </div> :
         <div className="product-search__result" style={productData === null ? {display: 'none'} : {}}>
           <div className="product-search__result-img">
@@ -161,7 +161,7 @@ function ProductSearch(props) {
           </div>
           <div className="product-search__result-content">
             <div className="product-sub-info">
-              <label className="label-control">Thông tin sản phẩm</label>
+              <label className="label-control"> {t('applicationPage.formSeacrh.searchInfo.text.0')}</label>
               <textarea style={{width: '100%'}} rows="10" cols="50" value={productData} />
             </div>
           </div>
@@ -171,15 +171,15 @@ function ProductSearch(props) {
           historyTransfer.length !== 0 &&
           <div className="product-search__history">
             <div className="product-search__history-check">
-              <p><i className="fa fa-history"></i> Lịch sử giao dịch</p>
-              <button className="btn btn-check" onClick={() => handleCheckTokenDirectBSC()}><i className="fa fa-share-square"/>Kiểm tra</button>
+              <p><i className="fa fa-history"></i> {t('applicationPage.formSeacrh.searchInfo.text.1')}</p>
+              <button className="btn btn-check" onClick={() => handleCheckTokenDirectBSC()}><i className="fa fa-share-square"/> {t('applicationPage.formSeacrh.checkBtn')}</button>
             </div>
             <table>
               <thead>
                 <tr>
                   <th width="10%">No.</th>
-                  <th width="45%"> Người Gửi<i className="fa fa-arrow-circle-o-right" style={{color: 'red'}} /></th>
-                  <th width="45%"> Người Nhận <i className="fa fa-arrow-circle-o-left" style={{color: 'green'}} /></th>
+                  <th width="45%"> {t('applicationPage.formSeacrh.searchInfo.tableCol.0')}<i className="fa fa-arrow-circle-o-right" style={{color: 'red'}} /></th>
+                  <th width="45%"> {t('applicationPage.formSeacrh.searchInfo.tableCol.1')} <i className="fa fa-arrow-circle-o-left" style={{color: 'green'}} /></th>
                 </tr>
               </thead>
               <tbody>

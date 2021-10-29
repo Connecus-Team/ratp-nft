@@ -144,7 +144,13 @@
       }
     },
     "formSeacrh": {
-      "btnList": ["Search", "Capture QR Code", "Upload QR Code"]
+      "btnList": ["Search", "Capture QR Code", "Upload QR Code"],
+      "loadingText": "Please wait a moment. Uploading authentication online may take some time",
+      "searchInfo": {
+        "text" : ["Product information", "Transaction history"],
+        "tableCol": ["Sender", "Receiver"]
+      },
+      "checkBtn": "Check"
     }
   },
   "futurePage" : {
