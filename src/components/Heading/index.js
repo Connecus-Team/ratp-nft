@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import Icon from '../../constants/icons';
 import './styles.scss';
 
 function Heading() {
@@ -34,9 +35,9 @@ function Heading() {
   return (
     <div className="heading" id="heading" style={isFixed ? {position: 'fixed', top: '0px', zIndex: 999} : {}}>
       <ul className="heading-lang">
-        <li className={language === 'vn' ? 'active-lang' : ''} onClick={() => handleClickLanguage('vn')}>VN</li>
-        <li className={language === 'en' ? 'active-lang' : ''} onClick={() => handleClickLanguage('en')}>ENG</li>
-        <li className={language === 'ko' ? 'active-lang' : ''} onClick={() => handleClickLanguage('ko')}>KOR</li>
+        <li className={language === 'vn' ? 'active-lang' : ''} onClick={() => handleClickLanguage('vn')}><img src={Icon.vn} />VN</li>
+        <li className={language === 'ko' ? 'active-lang' : ''} onClick={() => handleClickLanguage('ko')}><img src={Icon.ko} />KOR</li>
+        <li className={language === 'en' ? 'active-lang' : ''} onClick={() => handleClickLanguage('en')}><img src={Icon.eng} />ENG</li>
       </ul>
       <ul className="heading-task">
         <li><NavLink className={splitLocation[1] === '' ? 'page-active' : ''} to="/">{t('headerText.0')}</NavLink></li>
