@@ -20,9 +20,10 @@ function Home(props) {
               <h2>Mentor Member</h2>
               <ul>
                 <li className="mentor-list__item-li">
-                  {/* <div className="mentor-list__img-wrap">
-                    <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/244712661_1709607392711099_2992031891309241091_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dRtUdv0qg7EAX_ljcXf&_nc_ht=scontent-ssn1-1.xx&oh=c893970b04d017122315f2564d91de5f&oe=619D1903"/>
-                  </div> */}
+                  <div className="mentor-list__img-wrap">
+                    <img src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-6/241066992_4515680945120558_6136173180553120887_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=174925&_nc_ohc=HGuKeD5yR30AX8Uwuos&_nc_ht=scontent-gmp1-1.xx&oh=5a15f92863771bb793c906e8ff1b9d05&oe=6180D9E8"/>
+                  </div>
+                  <br/>
                   <div className="mentor-list__content-wrap">
                     <p>Le Thanh Hung</p>
                   </div>
