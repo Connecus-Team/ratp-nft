@@ -11,10 +11,10 @@ import moment from 'moment';
 function ProductRegist(props) {
   const [type, setType] = useState('individual');
   const [category, setCategory] = useState('clothes');
-  const [productName, setProductName] = useState('LV level3');
-  const [productCode, setProductCode] = useState('LVTEST');
+  const [productName, setProductName] = useState('');
+  const [productCode, setProductCode] = useState('');
   const [productDate, setProductDate] = useState(moment().format('YYYY-MM-DD'));
-  const [productDesc, setProductDesc] = useState('Túi thời trang');
+  const [productDesc, setProductDesc] = useState('');
   const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
 
@@ -55,7 +55,7 @@ function ProductRegist(props) {
 
       const accounts = await web3.eth.getAccounts();
       let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
-      let productInfo = `"type: ${type}$$$category: ${category}$$$name:${productName}$$$code:${productCode}$$$date:${productDate}, desc:${productDesc}"`;
+      let productInfo = `"type: ${type}, category: ${category}, name:${productName}, code:${productCode}, date:${productDate}, desc:${productDesc}"`;
       console.log(productInfo);
       await contract.methods.create(`https://ipfs.io/ipfs/${ipfsHash}`, productInfo).send({from: accounts[0]});
       setLoadingListingEventSC(true);
@@ -88,36 +88,6 @@ function ProductRegist(props) {
         alert('Sự kiện chả về thất bại, Vui lòng thử lại sau');
         return;
       }); ;
-      // let options = {
-      //   fromBlock: 13578731,
-      //   address: [accounts[0]], // Only get events from specific addresses
-      //   topics: [], // What topics to subscribe to
-      // };
-      // let subscription = web3.eth.subscribe('logs', options, (err, event) => {
-      //   if (!err)
-      //   {console.log(event);};
-      // });
-
-      // subscription.on('data', (event) => console.log(event));
-      // subscription.on('changed', (changed) => console.log(changed));
-      // subscription.on('error', (err) => console.log('error', err.message, err.stack));
-      // subscription.on('connected', (nr) => console.log(nr));
-
-
-      // send({from: , gas: })
-      // const result = await contract.methods.countFunc().call();
-
-      // console.log(result);
-      // create contract
-      // await new web3.eth.Contract(REACT_APP_CONTRACT_ABI, REACT_APP_CONTRACT_ADDRESS);
-      // const dataInfo = `${type}===${productName}===${productCode}===${productColor}===${productDesc}`;
-      // const result = web3.eth.methods.create(`https://ipfs.io/ipfs/${ipfsHash}` );
-
-      return;
-      const qrContent = ipfsHash;
-      const response = await QRCode.toDataURL(qrContent);
-      const productData = {type, category, productName, productCode, productColor, productDesc, ipfsHash};
-      setQrImageUrl(response);
     } catch (error) {
       alert('Truy cập có lỗi, Vui lòng thử lại sau. Hãy đọc qua phần hướng dẫn sử dụng !!!');
       console.log(error);
