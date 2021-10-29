@@ -22,7 +22,7 @@ function Banner({handleToUse}) {
           </ul>
           <div className="banner__btn">
             <div className="banner__help-btn" onClick={() => handleToUse()}>{t('mainPage.banner.button.use')}</div>
-            <div className="banner__use-btn"><Link to="/application" className="use-link">{t('mainPage.banner.button.app')}</Link></div>
+            <Link className="banner__use-btn" to="/application" >{t('mainPage.banner.button.app')}</Link>
           </div>
         </div>
       </div>
