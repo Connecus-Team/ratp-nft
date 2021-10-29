@@ -108,7 +108,37 @@
   },
   "applicationPage": {
     "btnTop" : "KẾT NỐI VÍ",
-    "btnList" : ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN", "DANH SÁCH SẢN PHẨM"]
+    "btnList" : ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN", "DANH SÁCH SẢN PHẨM"],
+    "formRegist" : {  
+      "type" : {
+        "key" : "Hình thức kinh doanh",
+        "value" : ["Cá Nhân", "Doanh Nghiệp"]
+      },
+      "productCategory" : {
+        "key" : "Loại sán phẩm",
+        "value" : ["Quấn Áo", "Mỹ Phấm", "Nghệ Thuật"]
+      },
+      "productName" : {
+        "key" : "Tên sản phẩm",
+        "value" : ""
+      },
+      "productCode": {
+        "key" : "Mã sản phẩm",
+        "value" : ""
+      },
+      "productDate": {
+        "key" : "Ngày sản xuất",
+        "value" : ""
+      },
+      "productDesc": {
+        "key" : "Miêu tả",
+        "value" : ""
+      },
+      "productImage": {
+        "key" : "Ảnh sản phẩm",
+        "value" : ""
+      }
+    }
   },
   "futurePage" : {
 

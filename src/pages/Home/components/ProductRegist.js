@@ -15,7 +15,7 @@ function ProductRegist(props) {
   const [productCode, setProductCode] = useState('');
   const [productDate, setProductDate] = useState(moment().format('YYYY-MM-DD'));
   const [productDesc, setProductDesc] = useState('');
-  const [rulesChecked, setRulesChecked] = useState(false);
+  // const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
@@ -47,7 +47,7 @@ function ProductRegist(props) {
         alert('Chưa khởi tạo đối tượng Web3, Vui lòng liên kết ví với Website');
         return;
       }
-      if (!type || !category || !productName || !productCode || !productDate || !productDesc || !rulesChecked) {
+      if (!type || !category || !productName || !productCode || !productDate || !productDesc) {
         alert('Vui lòng kiểm tra lại thông tin sản phẩm');
         return;
       }
@@ -155,7 +155,7 @@ function ProductRegist(props) {
             }
           </div>
         </div>
-        <div className="form-sub-wrap">
+        {/* <div className="form-sub-wrap">
           <label className="control-label">Điều khoản</label>
           <div className="input-content form-group rules">
             <div className="rules-content">
@@ -196,7 +196,7 @@ function ProductRegist(props) {
               <label>Đồng ý</label>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="regist-btn">
           <button onClick={() => handleRegistProduct()}>Đăng ký</button>
         </div>
