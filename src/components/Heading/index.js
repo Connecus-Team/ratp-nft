@@ -9,7 +9,6 @@ function Heading() {
   const pathname = location.pathname;
   const splitLocation = pathname.split('/');
   const [isFixed, setIsFixed] = useState(false);
-
   const [language, setLanguage] = useState('vn');
   const {t, i18n} = useTranslation();
 

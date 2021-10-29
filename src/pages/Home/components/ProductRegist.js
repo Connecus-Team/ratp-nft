@@ -75,7 +75,7 @@ function ProductRegist(props) {
           const {returnValues} = event;
           const {requestId} = returnValues;
 
-          const qrURL = `http://localhost:9000/search?rqid=${requestId}`;
+          const qrURL = `${contractValue.webDomain}/search?rqid=${requestId}`;
           const response = await QRCode.toDataURL(qrURL);
           setQrImageUrl(response);
           setLoadingListingEventSC(false);
@@ -93,8 +93,6 @@ function ProductRegist(props) {
       console.log(error);
     }
   };
-
-  console.log(productDate);
   return (
     <ProductRegistDiv>
       <div className="form form-section">

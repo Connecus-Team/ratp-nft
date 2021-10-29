@@ -656,10 +656,12 @@ const ABI = [
 ];
 
 const address = '0x3742A23d44a3f1bBA6AfAa451a379839825613Ea';
+const webDomain = 'http://ratp.link';
 
 const contracts = {
   ABI,
   address,
+  webDomain,
 };
 
 
