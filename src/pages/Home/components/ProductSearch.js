@@ -105,7 +105,7 @@ function ProductSearch(props) {
   const handleCheckTokenDirectBSC = () => {
     if (contractValue.address && tokenId) {
       let url = `https://testnet.bscscan.com/token/${contractValue.address}?a=${tokenId}`;
-      window.open(`https://metamask.io/`, '_blank');
+      window.open(url, '_blank');
     } else {
       alert('Không thể chuyển trang với đường dẫn này, Vui lòng thử lại sau !!!');
     }
