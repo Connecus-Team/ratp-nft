@@ -65,12 +65,12 @@ function Home(props) {
         {/* <Banner /> */}
         <div className="home-page__container">
           <div className="home-page__btn">
-            <button className="connect__btn" onClick={() => handleConnectWallet()}><p>{currentAccount ? currentAccount : 'KẾT NỐI VÍ'}</p></button>
+            <button className="connect__btn" onClick={() => handleConnectWallet()}><p>{currentAccount ? currentAccount : t('applicationPage.btnTop')}</p></button>
           </div>
           <div className="home-page__btn-list btn">
-            <div className="btn__insert " id={selectPage === 'regist' ? 'btn--active' : ''} onClick={() => setSelectPage('regist')}><i className="fa fa-pencil-square-o"/>ĐĂNG KÝ SẢN PHẨM</div>
-            <div className="btn__search" id={selectPage === 'search' ? 'btn--active' : ''} onClick={() => setSelectPage('search')}><i className="fa fa-search"/>Tra cứu thông tin sản phẩm</div>
-            <div className="btn__list" id={selectPage === 'list' ? 'btn--active' : ''} onClick={() => setSelectPage('list')}><i className="fa fa-list-alt"/>Danh sách sản phẩm</div>
+            <div className="btn__insert " id={selectPage === 'regist' ? 'btn--active' : ''} onClick={() => setSelectPage('regist')}><i className="fa fa-pencil-square-o"/>{t('applicationPage.btnList.0')}</div>
+            <div className="btn__search" id={selectPage === 'search' ? 'btn--active' : ''} onClick={() => setSelectPage('search')}><i className="fa fa-search"/>{t('applicationPage.btnList.1')}</div>
+            <div className="btn__list" id={selectPage === 'list' ? 'btn--active' : ''} onClick={() => setSelectPage('list')}><i className="fa fa-list-alt"/>{t('applicationPage.btnList.2')}</div>
           </div >
           <div className="home-page__content">
             { selectPage === 'regist' ?

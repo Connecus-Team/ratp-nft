@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 function ProductSearch(props) {
   const web3 = useSelector(web3Selector.selectWeb3);
@@ -24,7 +25,7 @@ function ProductSearch(props) {
   const [tokenId, setTokenId] = useState(null);
 
   const qrRef = useRef(null);
-
+  const {t, i18n} = useTranslation();
 
   // search btn
   const getProductFromSmartContract = async () => {
@@ -128,9 +129,9 @@ function ProductSearch(props) {
       <div className="product-search">
         <div className="product-search__form">
           <input type="text" className="product-search__input" value={getRequestId(scanResultWebCam)} onChange={(e) => setScanResultWebCam(e.target.value)}/>
-          <button onClick={() =>getProductFromSmartContract()}>Tìm kiếm</button>
-          <button onClick={() => handleSearchQRCode()}>QR Code Scan</button>
-          <button onClick={() => onScanFile()}>QR Code Upload</button>
+          <button onClick={() =>getProductFromSmartContract()}><i className="fa fa-search"/> {t('applicationPage.formSeacrh.btnList.0')}</button>
+          <button onClick={() => handleSearchQRCode()}><i className="fa fa-camera"/> {t('applicationPage.formSeacrh.btnList.1')}</button>
+          <button onClick={() => onScanFile()}><i className="fa fa-upload"/> {t('applicationPage.formSeacrh.btnList.2')}</button>
         </div>
         <div className="product-search__option">
           <div style={{display: 'none'}}>

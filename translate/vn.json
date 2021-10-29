@@ -109,14 +109,15 @@
   "applicationPage": {
     "btnTop" : "KẾT NỐI VÍ",
     "btnList" : ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN", "DANH SÁCH SẢN PHẨM"],
+    "btnBottom" : "ĐĂNG KÝ",
     "formRegist" : {  
       "type" : {
         "key" : "Hình thức kinh doanh",
         "value" : ["Cá Nhân", "Doanh Nghiệp"]
       },
       "productCategory" : {
-        "key" : "Loại sán phẩm",
-        "value" : ["Quấn Áo", "Mỹ Phấm", "Nghệ Thuật"]
+        "key" : "Loại sản phẩm",
+        "value" : ["Thời trang", "Mỹ Phẩm", "Nghệ Thuật"]
       },
       "productName" : {
         "key" : "Tên sản phẩm",
@@ -137,7 +138,14 @@
       "productImage": {
         "key" : "Ảnh sản phẩm",
         "value" : ""
+      },
+      "productDescInfo" :{
+        "value" : ["Ngoài những thông tin trên bạn có thể nhập thêm các thông tin miêu tả quan trọng về sản phẩm vào form trên", "Giới hạn 200 kí tự"]
       }
+    },
+    "formSeacrh": {
+      "btnList": ["Tìm kiếm", "Chụp QR Code", "Đăng QR Code"],
+      "loadingText" : "Vui lòng đợi trong giây lát. Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!"
     }
   },
   "futurePage" : {

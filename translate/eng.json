@@ -106,17 +106,46 @@
       }
     ]}
   },
-  "application": {
-    "buttonList": ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN SẢN PHẨM", "DANH SÁCH SẢN PHẨM"],
-    "form": {
-      "type" : {
-        "name" : "Hình thức kinh doanh",
-        "content" : ["Cá nhân", "Doanh Nghiệp"]
-      }
-    }
-  },
   "applicationPage": {
-
+    "btnTop" : "Connect Wallet",
+    "btnList" : ["PRODUCT REGISTRATION", "INFORMATION SEARCH", "LIST OF PRODUCTS"],
+    "btnBottom" : "Register",
+    "formRegist" : {  
+      "type" : {
+        "key" : "Business type",
+        "value" : ["Individual", "Enterprise"]
+      },
+      "productCategory" : {
+        "key" : "Product Category",
+        "value" : ["Fashion", "Cosmetics", "Art"]
+      },
+      "productName" : {
+        "key" : "Product Name",
+        "value" : ""
+      },
+      "productCode": {
+        "key" : "Product Code",
+        "value" : ""
+      },
+      "productDate": {
+        "key" : "Product Date",
+        "value" : ""
+      },
+      "productDesc": {
+        "key" : "Product Desctription",
+        "value" : ""
+      },
+      "productImage": {
+        "key" : "Product Image",
+        "value" : ""
+      },
+      "productDescInfo" :{
+        "value" : ["In addition to the above information, you can enter important descriptive information about the product in the form above.", "Limited to 200 characters"]
+      }
+    },
+    "formSeacrh": {
+      "btnList": ["Search", "Capture QR Code", "Upload QR Code"]
+    }
   },
   "futurePage" : {
 

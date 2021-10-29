@@ -109,7 +109,45 @@
     ]}
   },
   "applicationPage": {
-
+    "btnTop" : "지갑을 연결",
+    "btnList" : ["제품 등록", "정보를 조회", "제품 목록"],
+    "btnBottom" : "등록하기",
+    "formRegist" : {  
+      "type" : {
+        "key" : "비즈니스 형식",
+        "value" : ["개인", "사업"]
+      },
+      "productCategory" : {
+        "key" : "카테고리",
+        "value" : ["패션", "화장품", "예술"]
+      },
+      "productName" : {
+        "key" : "상품 이름",
+        "value" : ""
+      },
+      "productCode": {
+        "key" : "상품 코드",
+        "value" : ""
+      },
+      "productDate": {
+        "key" : "제조 자",
+        "value" : ""
+      },
+      "productDesc": {
+        "key" : "상품 설명",
+        "value" : ""
+      },
+      "productImage": {
+        "key" : "상품 사진",
+        "value" : ""
+      },
+      "productDescInfo" :{
+        "value" : ["위의 정보 외에도 제품에 대한 중요한 묘사 정보를 위 폼에 추가할 수 있습니다.", "200자 제한"]
+      }
+    },
+    "formSeacrh": {
+      "btnList": ["검색", "QR Code 찍기", "QR Code 업데이트"]
+    }
   },
   "futurePage" : {
 

@@ -6,6 +6,7 @@ import ipfs from '../../../apis/ipfsapi';
 import QRCode from 'qrcode';
 import contractValue from '../../../constants/contract';
 import LoadingInline from '../../../components/Loading/LoadingInline';
+import {useTranslation} from 'react-i18next';
 import moment from 'moment';
 
 function ProductRegist(props) {
@@ -22,6 +23,7 @@ function ProductRegist(props) {
   const web3 = useSelector(web3Selector.selectWeb3);
 
   const [imgProductTemp, setImageProductTemp] = useState(null);
+  const {t, i18n} = useTranslation();
 
   // const [submitBtn, setSubmitBtn] = useState(true);
   const [loadingListingEventSC, setLoadingListingEventSC] = useState(false);
@@ -97,55 +99,55 @@ function ProductRegist(props) {
     <ProductRegistDiv>
       <div className="form form-section">
         <div className="form-sub-wrap">
-          <label className="control-label">Hình thức kinh doanh</label>
+          <label className="control-label">{t('applicationPage.formRegist.type.key')}</label>
           <div className="input-content form-group type">
             <div>
               <input type="radio" name="type" id="individual" value="individual" checked onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="individual"> Cá Nhân</label>
+              <label htmlFor="individual">{t('applicationPage.formRegist.type.value.0')}</label>
             </div>
             <div>
               <input type="radio" name="type" value="enterprise" onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="enterprise" id="enterprise"> Doanh Nghiệp</label>
+              <label htmlFor="enterprise" id="enterprise">{t('applicationPage.formRegist.type.value.1')}</label>
             </div>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Loại sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productCategory.key')}</label>
           <div className="input-content form-group" >
             <select onChange={(e) => setCategory(e.target.value)} value={category} >
-              <option value="clothes">Quần Áo</option>
-              <option value="cosmetic">Mỹ Phấm</option>
-              <option value="art">Nghệ Thuật</option>
+              <option value="clothes">{t('applicationPage.formRegist.productCategory.value.0')}</option>
+              <option value="cosmetic">{t('applicationPage.formRegist.productCategory.value.1')}</option>
+              <option value="art">{t('applicationPage.formRegist.productCategory.value.2')}</option>
             </select>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Tên sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productName.key')}</label>
           <div className="input-content form-group">
             <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)}/>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Mã sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productCode.key')}</label>
           <div className="input-content form-group">
             <input type="text" value={productCode} onChange={(e) => setProductCode(e.target.value)} />
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Ngày sản xuất</label>
+          <label className="control-label">{t('applicationPage.formRegist.productDate.key')}</label>
           <div className="input-content form-group">
             <input type="date" id='input-date' value={productDate} onChange={(e) => setProductDate(e.target.value)} />
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Miêu tả</label>
+          <label className="control-label">{t('applicationPage.formRegist.productDesc.key')}</label>
           <div className="input-content form-group input-desc">
             <textarea type="text" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} rows="5" maxLength="200" />
-            <label>Ngoài những thông tin trên bạn có thể nhập thêm các thông tin miêu tả quan trọng về sản phẩm vào form trên <span>Giới hạn 200 kí tự</span></label>
+            <label>{t('applicationPage.formRegist.productDescInfo.value.0')} <span style={{color: 'red', fontWeight: 'bold'}}>{t('applicationPage.formRegist.productDescInfo.value.1')}</span></label>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Ảnh sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productImage.key')}</label>
           <div className="input-content form-group" style={{display: 'flex'}}>
             <input type="file" onChange={(e) => captureFile(e)} style={{border: 'none', width: '200px'}}/>
 
@@ -198,7 +200,7 @@ function ProductRegist(props) {
           </div>
         </div> */}
         <div className="regist-btn">
-          <button onClick={() => handleRegistProduct()}>Đăng ký</button>
+          <button onClick={() => handleRegistProduct()}>{t('applicationPage.btnBottom')}</button>
         </div>
         {
           loadingListingEventSC ?
