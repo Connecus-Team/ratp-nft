@@ -90,15 +90,15 @@ function ProductList(props) {
       const accounts = await web3.eth.getAccounts(); // => array => array[0]
       let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
       await contract.methods.safeTransferFrom(accounts[0], addressTo, product.token_id).send({from: accounts[0]});
-      contract.events.Transfer({
-        filter: {
-          from: accounts[0],
-        },
-      }, (err, data) => {
-        let productsTemp = products.filter((item) => item.token_id !== product.token_id);
-        setProducts(productsTemp);
-        alert('Giao Dịch Thành Công');
-      });
+      let productsTemp = products.filter((item) => item.token_id !== product.token_id);
+      setProducts(productsTemp);
+      alert('Giao Dịch Thành Công');
+      // contract.events.Transfer({
+      //   filter: {
+      //     from: accounts[0],
+      //   },
+      // }, (err, data) => {
+      // });
     } catch (error) {
       alert('Giao Dịch Bị lỗi');
       console.log(error);
