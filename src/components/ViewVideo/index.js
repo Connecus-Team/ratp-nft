@@ -12,7 +12,7 @@ function QRScanner() {
           <i className="fa fa-times clear-icon" onClick={(e) => closeEvent(e)} />
         </div>
         <div className="container-form__video">
-          <iframe width="760" height="515" src="https://www.youtube.com/embed/Wjg5IrSWmZM" frameBorder="0" autoPlay="1"
+          <iframe width="760" height="515" src="https://www.youtube.com/embed/q531gUKPax8" frameBorder="0" autoPlay="1"
             allow="accelerometer; autoplay; encrypted-media; gyroscope;picture-in-picture"
             allowFullScreen />
         </div>

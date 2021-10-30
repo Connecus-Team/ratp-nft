@@ -44,7 +44,7 @@ function Main(props) {
             <div className="main-page__intro-content">
               <div className="intro-video">
                 <div className="intro-video__wrap" onClick={() => hanleClickVewVideo()}>
-                  <img src="https://blockodyssey.io/static/media/revituImg01.2d13f689.png" className="intro-video__wrap-img"/>
+                  <img src={Icon.banner2} className="intro-video__wrap-img"/>
                   <svg data-v-01741338="" viewBox="0 0 47.51 47.51" xmlns="http://www.w3.org/2000/svg" className="
                     absolute
                     top-0
