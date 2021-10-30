@@ -102,12 +102,61 @@
       },
       {
         "name" : "Liên hệ",
-        "content" : ["hi@ratp.link"]
+        "content" : ["hi@ratp.link", "https://twitter.com/ratp_link","https://t.me/joinchat/awkHSfjXaHkwMjA1", "https://discord.gg/MPrrd6eE"]
       }
     ]}
   },
   "applicationPage": {
-
+    "btnTop" : "KẾT NỐI VÍ",
+    "btnList" : ["ĐĂNG KÝ SẢN PHẨM", "TRA CỨU THÔNG TIN", "DANH SÁCH SẢN PHẨM"],
+    "btnBottom" : "ĐĂNG KÝ",
+    "formRegist" : {  
+      "type" : {
+        "key" : "Hình thức kinh doanh",
+        "value" : ["Cá Nhân", "Doanh Nghiệp"]
+      },
+      "productCategory" : {
+        "key" : "Loại sản phẩm",
+        "value" : ["Thời trang", "Mỹ Phẩm", "Nghệ Thuật"]
+      },
+      "productName" : {
+        "key" : "Tên sản phẩm",
+        "value" : ""
+      },
+      "productCode": {
+        "key" : "Mã sản phẩm",
+        "value" : ""
+      },
+      "productDate": {
+        "key" : "Ngày sản xuất",
+        "value" : ""
+      },
+      "productDesc": {
+        "key" : "Miêu tả",
+        "value" : ""
+      },
+      "productImage": {
+        "key" : "Ảnh sản phẩm",
+        "value" : ""
+      },
+      "productDescInfo" :{
+        "value" : ["Ngoài những thông tin trên bạn có thể nhập thêm các thông tin miêu tả quan trọng về sản phẩm vào form trên", "Giới hạn 200 kí tự"]
+      }
+    },
+    "formSeacrh": {
+      "btnList": ["Tìm kiếm", "Chụp QR Code", "Đăng QR Code"],
+      "tableText": ["Thông tin sản phẩm", "Hình thức kinh doanh", "Loại sản phảm", "Tên sản phẩm", "Mã sản phẩm", "Ngày sản xuất", "Miêu tả", "Barcode"],
+      "loadingText" : "Vui lòng đợi trong giây lát. Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!",
+      "searchInfo": {
+        "text" : ["Thông tin sản phẩm", "Lịch sử giao dịch"],
+        "tableCol": ["Người Gửi", "Người Nhận"]
+      },
+      "checkBtn": "Kiểm tra"
+    },
+    "formList": {
+      "btnList" : ["Giao dịch", "Thực hiện"],
+      "text" : "Địa chỉ người nhận"
+    }
   },
   "futurePage" : {
 

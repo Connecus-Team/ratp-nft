@@ -6,7 +6,10 @@ import ipfs from '../../../apis/ipfsapi';
 import QRCode from 'qrcode';
 import contractValue from '../../../constants/contract';
 import LoadingInline from '../../../components/Loading/LoadingInline';
+import {useTranslation} from 'react-i18next';
 import moment from 'moment';
+import Waiting from '../../../components/Waiting';
+import ImgZoomIn from '../../../components/ImgZoomIn';
 
 function ProductRegist(props) {
   const [type, setType] = useState('individual');
@@ -15,13 +18,14 @@ function ProductRegist(props) {
   const [productCode, setProductCode] = useState('');
   const [productDate, setProductDate] = useState(moment().format('YYYY-MM-DD'));
   const [productDesc, setProductDesc] = useState('');
-  const [rulesChecked, setRulesChecked] = useState(false);
+  // const [rulesChecked, setRulesChecked] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(null);
 
   const [qrImageUrl, setQrImageUrl] = useState(null);
   const web3 = useSelector(web3Selector.selectWeb3);
 
   const [imgProductTemp, setImageProductTemp] = useState(null);
+  const {t, i18n} = useTranslation();
 
   // const [submitBtn, setSubmitBtn] = useState(true);
   const [loadingListingEventSC, setLoadingListingEventSC] = useState(false);
@@ -47,16 +51,20 @@ function ProductRegist(props) {
         alert('Chưa khởi tạo đối tượng Web3, Vui lòng liên kết ví với Website');
         return;
       }
-      if (!type || !category || !productName || !productCode || !productDate || !productDesc || !rulesChecked) {
+      if (!type || !category || !productName || !productCode || !productDate || !productDesc) {
         alert('Vui lòng kiểm tra lại thông tin sản phẩm');
+        return;
+      }
+
+      if (productName.length >= 100 || productCode.length >= 100 || productDate.length >= 200) {
+        alert('Độ dài tối thiểu của các thuộc tính sản phẩm có độ dài tối đa là 100, và miêu tả là 200. Vui lòng kiểm tra lại');
         return;
       }
 
 
       const accounts = await web3.eth.getAccounts();
       let contract = new web3.eth.Contract(contractValue.ABI, contractValue.address);
-      let productInfo = `"type: ${type}, category: ${category}, name:${productName}, code:${productCode}, date:${productDate}, desc:${productDesc}"`;
-      console.log(productInfo);
+      let productInfo = `"type: ${type}, category: ${category}, name: ${productName}, code: ${productCode}, date: ${productDate}, desc: ${productDesc}"`;
       await contract.methods.create(`https://ipfs.io/ipfs/${ipfsHash}`, productInfo).send({from: accounts[0]});
       setLoadingListingEventSC(true);
       contract.events.CreatedColection({}, (err, event) => {
@@ -65,17 +73,14 @@ function ProductRegist(props) {
           console.log(err);
           return;
         }
-        console.log( 'eror', err, event);
       }).on('connected', function(subscriptionId) {
         console.log('subscriptionId', subscriptionId);
       }).on('data', async function(event) {
-        console.log('data', event);
         const {event: eventName} = event;
         if (eventName === 'CreatedColection') {
           const {returnValues} = event;
           const {requestId} = returnValues;
-
-          const qrURL = `http://localhost:9000/search?rqid=${requestId}`;
+          const qrURL = `${contractValue.webDomain}/search?rqid=${requestId}`;
           const response = await QRCode.toDataURL(qrURL);
           setQrImageUrl(response);
           setLoadingListingEventSC(false);
@@ -93,71 +98,68 @@ function ProductRegist(props) {
       console.log(error);
     }
   };
-
-  console.log(productDate);
   return (
     <ProductRegistDiv>
       <div className="form form-section">
         <div className="form-sub-wrap">
-          <label className="control-label">Hình thức kinh doanh</label>
+          <label className="control-label">{t('applicationPage.formRegist.type.key')}</label>
           <div className="input-content form-group type">
             <div>
               <input type="radio" name="type" id="individual" value="individual" checked onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="individual"> Cá Nhân</label>
+              <label htmlFor="individual"> {t('applicationPage.formRegist.type.value.0')}</label>
             </div>
             <div>
               <input type="radio" name="type" value="enterprise" onChange={(e) => setType(e.target.value)}/>
-              <label htmlFor="enterprise" id="enterprise"> Doanh Nghiệp</label>
+              <label htmlFor="enterprise" id="enterprise"> {t('applicationPage.formRegist.type.value.1')}</label>
             </div>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Loại sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productCategory.key')}</label>
           <div className="input-content form-group" >
             <select onChange={(e) => setCategory(e.target.value)} value={category} >
-              <option value="clothes">Quần Áo</option>
-              <option value="cosmetic">Mỹ Phấm</option>
-              <option value="art">Nghệ Thuật</option>
+              <option value="clothes">{t('applicationPage.formRegist.productCategory.value.0')}</option>
+              <option value="cosmetic">{t('applicationPage.formRegist.productCategory.value.1')}</option>
+              <option value="art">{t('applicationPage.formRegist.productCategory.value.2')}</option>
             </select>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Tên sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productName.key')}</label>
           <div className="input-content form-group">
-            <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)}/>
+            <input type="text" value={productName} onChange={(e) => setProductName(e.target.value)} maxLength="100"/>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Mã sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productCode.key')}</label>
           <div className="input-content form-group">
-            <input type="text" value={productCode} onChange={(e) => setProductCode(e.target.value)} />
+            <input type="text" value={productCode} onChange={(e) => setProductCode(e.target.value)} maxLength="100" />
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Ngày sản xuất</label>
+          <label className="control-label">{t('applicationPage.formRegist.productDate.key')}</label>
           <div className="input-content form-group">
-            <input type="date" id='input-date' value={productDate} onChange={(e) => setProductDate(e.target.value)} />
+            <input type="date" id='input-date' value={productDate} onChange={(e) => setProductDate(e.target.value)} maxLength="100"/>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Miêu tả</label>
+          <label className="control-label">{t('applicationPage.formRegist.productDesc.key')}</label>
           <div className="input-content form-group input-desc">
             <textarea type="text" value={productDesc} onChange={(e) => setProductDesc(e.target.value)} rows="5" maxLength="200" />
-            <label>Ngoài những thông tin trên bạn có thể nhập thêm các thông tin miêu tả quan trọng về sản phẩm vào form trên <span>Giới hạn 200 kí tự</span></label>
+            <label>{t('applicationPage.formRegist.productDescInfo.value.0')} <span style={{color: 'red', fontWeight: 'bold'}}>{t('applicationPage.formRegist.productDescInfo.value.1')}</span></label>
           </div>
         </div>
         <div className="form-sub-wrap">
-          <label className="control-label">Ảnh sản phẩm</label>
+          <label className="control-label">{t('applicationPage.formRegist.productImage.key')}</label>
           <div className="input-content form-group" style={{display: 'flex'}}>
             <input type="file" onChange={(e) => captureFile(e)} style={{border: 'none', width: '200px'}}/>
-
             {
               ipfsHash &&
-              <img src={imgProductTemp} id="product-img" style={{width: '70px', zIndex: 1}}/>
+              <img src={imgProductTemp} onClick={() => {ImgZoomIn({imgUrl: imgProductTemp});}} id="product-img" style={{width: '70px', zIndex: 1}}/>
             }
           </div>
         </div>
-        <div className="form-sub-wrap">
+        {/* <div className="form-sub-wrap">
           <label className="control-label">Điều khoản</label>
           <div className="input-content form-group rules">
             <div className="rules-content">
@@ -198,18 +200,13 @@ function ProductRegist(props) {
               <label>Đồng ý</label>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="regist-btn">
-          <button onClick={() => handleRegistProduct()}>Đăng ký</button>
+          <button onClick={() => handleRegistProduct()}>{t('applicationPage.btnBottom')}</button>
         </div>
         {
           loadingListingEventSC ?
-          <div className="loading-event">
-            <div style={{width: '50px', height: '50px', margin: '0 auto'}}>
-              <LoadingInline type={'bubbles'} color={'#0F054C'} />
-            </div>
-            <span>Vui lòng đợi trong giây lát, Quá trình tải xác thực lên mạng có thể mất chút thời gian !!!</span>
-          </div> :
+          <Waiting /> :
           <div className="qr-canvas" style={qrImageUrl ? {} : {display: 'none'}}>
             <img src={qrImageUrl} alt = 'qrCode Image'/>
             <a href={qrImageUrl} download> Tải xuống </a>
