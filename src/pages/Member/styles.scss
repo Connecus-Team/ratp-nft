@@ -29,6 +29,9 @@
         align-items:center;
         li{
           margin:  0 50px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           .mentor-list__img-wrap{
             width: 150px;
             height: 150px;
@@ -63,6 +66,9 @@
         justify-content: center;
         li{
           margin:  0 50px;
+          display: flex;
+          flex-direction: column;
+          align-items:center;
           .developer-list__img-wrap{
             width: 150px;
             height: 150px;

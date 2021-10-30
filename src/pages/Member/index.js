@@ -28,12 +28,30 @@ function Home(props) {
                     <p>Le Thanh Hung</p>
                   </div>
                 </li>
+                <li className="mentor-list__item-li">
+                  <div className="mentor-list__img-wrap">
+                    <img src="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-6/245587884_3088644268125490_8983103366257027624_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=3ebJgYVWSEQAX_O6-QG&_nc_ht=scontent-gmp1-1.xx&oh=c50a8a626094a75dcd090ee7d75c5da1&oe=61812DA3"/>
+                  </div>
+                  <br/>
+                  <div className="mentor-list__content-wrap">
+                    <p>Nguyen Quynh Ngoc Tien</p>
+                  </div>
+                </li>
               </ul>
             </div>
             <div className="developer-list">
-              <h2>Devoloper Member</h2>
+              <h2>Developer Member</h2>
               <div className="developer-list__item">
                 <ul className="developer-list__item-ul">
+                  <li className="developer-list__item-li">
+                    <div className="developer-list__img-wrap">
+                      <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-1/s320x320/149717604_3733638833378908_7672286221174580202_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_ohc=jSwEqxfGpx0AX8oJJjn&_nc_oc=AQn232syZtUlkjlFP_eh48KvDjsZRtghzRIS8TKjlLv3ignsoe0YAVzdJzXItl7Q2OM&_nc_ht=scontent-ssn1-1.xx&oh=ecd077fb88347f88328d35fb3f3ed3bc&oe=619ADA45"/>
+                    </div>
+                    <div className="developer-list__content-wrap">
+                      <p>Huynh Phu Dat</p>
+                      <p>Product Manager</p>
+                    </div>
+                  </li>
                   <li className="developer-list__item-li">
                     <div className="developer-list__img-wrap">
                       <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.15752-9/244712661_1709607392711099_2992031891309241091_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dRtUdv0qg7EAX_ljcXf&_nc_ht=scontent-ssn1-1.xx&oh=c893970b04d017122315f2564d91de5f&oe=619D1903"/>
@@ -44,17 +62,10 @@ function Home(props) {
                     </div>
                   </li>
 
-                  <li className="developer-list__item-li">
-                    <div className="developer-list__img-wrap">
-                      <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-1/s320x320/149717604_3733638833378908_7672286221174580202_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_ohc=jSwEqxfGpx0AX8oJJjn&_nc_oc=AQn232syZtUlkjlFP_eh48KvDjsZRtghzRIS8TKjlLv3ignsoe0YAVzdJzXItl7Q2OM&_nc_ht=scontent-ssn1-1.xx&oh=ecd077fb88347f88328d35fb3f3ed3bc&oe=619ADA45"/>
-                    </div>
-                    <div className="developer-list__content-wrap">
-                      <p>Phan Ke Hien</p>
-                      <p>DevOps Engineer</p>
-                    </div>
-                  </li>
                 </ul>
               </div>
+              <br/>
+              <br/>
               <div>
                 <ul className="developer-list__item-ul">
                   <li className="developer-list__item-li">
@@ -63,7 +74,7 @@ function Home(props) {
                     </div>
                     <div className="developer-list__content-wrap">
                       <p>Nguyen Dinh Huong</p>
-                      <p>DevOps Engineer</p>
+                      <p>Web Developer</p>
                     </div>
                   </li>
 
