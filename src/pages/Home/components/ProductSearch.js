@@ -81,6 +81,7 @@ function ProductSearch(props) {
       setLoadingHistory(true);
       const tokenId = await contract.methods.requestIdToTokenId(requestId).call();
       const url = `https://deep-index.moralis.io/api/v2/nft/${contractValue.address}/${tokenId}/transfers?chain=bsc%20testnet&format=decimal`;
+      console.log(url);
       axios.get(url, {
         headers: {
           'accept': 'application/json',
