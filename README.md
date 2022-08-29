@@ -3,7 +3,6 @@
 RAPT - NFT là phần mền sử dụng công nghệ Blockchain hoặc việc hỗ trợ scan sản phẩm và lưu thông tin vào mạng network Ethereum.
 
 Phần mềm hỗ trợ cái chứng năng sau :
-
  - Nhập thông tin sản phẩm và tạo ra mã QR
  - Lưu thông tin sản phẩm vào mạng lưới Ethereum
  - Truy xuất nguồn gốc sản phẩm
